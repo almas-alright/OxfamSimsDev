@@ -1,0 +1,82 @@
+/*Start CSS for Home Page*/
+
+.app-title {
+    margin: 0px;
+    color: #FFF;
+}
+
+.double-navbar .button-collapse {
+
+    padding-top: 0;
+
+}
+
+section.page-content {
+    padding-top: 80px;
+}
+
+.home-icon-menu-box {
+    color: #61a534;
+    text-align: center;
+    font-size: 20px;
+}
+
+.home-icon-menu-box:hover {
+    color: #f16e22;
+}
+
+.home-icon-menu-box i.fa {
+    font-size: 40px;
+}
+
+.home-icon-menu-box h3 {
+    font-size: 20px;
+    min-height: 50px;
+    margin: 10px 0 0 0;
+}
+
+.watch-area {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/*End CSS of Home Page*/
+
+.btn.btn-block {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+@media screen and (max-width: 767px) {
+    .side-nav a {
+        height: 45px;
+        line-height: 45px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    /*Start CSS for Home Page*/
+    nav {
+        padding: 10px 0;
+    }
+
+    .app-title {
+        font-size: 24px;
+    }
+
+    .card-panel {
+        padding: 10px;
+    }
+
+    .home-icon-menu-box h3 {
+        font-size: 14px;
+        min-height: 35px;
+        margin-bottom: 0;
+    }
+
+    .home-icon-menu-box i.fa {
+        font-size: 25px;
+    }
+
+    /*End CSS of Home Page*/
+}
