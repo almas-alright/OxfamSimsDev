@@ -2,9 +2,7 @@
 
 
 document.addEventListener("deviceready", db_init, false);
-document.addEventListener("online", onOnline, false);
-// Cordova is ready
-//
+
 function db_init() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
     db.transaction(populateDB, errorCB, successCB);
