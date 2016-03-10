@@ -4,18 +4,18 @@
 
 
 
-function getLocationPos() {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
-}
-// onSuccess Geolocation  
-function onSuccess(position) {
-    document.getElementById('lat').value = position.coords.latitude;
-    document.getElementById('lon').value = position.coords.longitude;
-}
-function onError(error) {
-    alert('code: ' + error.code + '\n' +
-            'message: ' + error.message + '\n');
-}
+//function getLocationPos() {
+//    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+//}
+//// onSuccess Geolocation  
+//function onSuccess(position) {
+//    document.getElementById('lat').value = position.coords.latitude;
+//    document.getElementById('lon').value = position.coords.longitude;
+//}
+//function onError(error) {
+//    alert('code: ' + error.code + '\n' +
+//            'message: ' + error.message + '\n');
+//}
 
 
 //$(document).bind('deviceready', function () {
