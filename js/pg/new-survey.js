@@ -20,6 +20,9 @@ function onError(error) {
 
 $(document).bind('deviceready', function(){
     getCameraCapturePhoto("#benificiaryPhotoBtn", "#benificiaryPhoto");
+    $("#benificiarySDcardBtn").bind('touchstart', function(){
+        alert("working");
+    })
 });
 
 
