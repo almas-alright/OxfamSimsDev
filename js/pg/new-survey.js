@@ -1,10 +1,6 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * syurvey data processing
  */
-
-
 
 
 
@@ -21,3 +17,30 @@ function onError(error) {
             'message: ' + error.message + '\n');
 }
 
+
+$(document).bind('deviceready', function(){
+    getCameraCapturePhoto("#benificiaryPhotoBtn", "#benificiaryPhoto");
+});
+
+
+function getCameraCapturePhoto(buttonID, imgID)
+{
+    $(buttonID).bind('touchstart', function(){
+        navigator.camera.getPicture(
+                function(data){
+                    $(imgID).attr('src', "data:image/jpeg;base64," + data).css("visibility", "visible");
+                },
+                onCaptureFail,
+                {
+                    quality: 50,
+                    destinationType: Camera.destinationType.DATA_URL,
+                    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                    mediaType: Camera.MediaType.PICTURE
+                }
+                );
+    });
+}
+
+function onCaptureFail(message) {
+                alert('Failed because: ' + message);
+            }
