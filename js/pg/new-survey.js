@@ -18,32 +18,35 @@ function onError(error) {
 }
 
 
-$(document).bind('deviceready', function(){
+$(document).bind('deviceready', function () {
     getCameraCapturePhoto("#benificiaryPhotoBtn", "#benificiaryPhoto");
-    $("#benificiarySDcardBtn").bind('touchstart', function(){
+    $("#benificiarySDcardBtn").bind('touchstart', function () {
         alert("working");
     })
+
+
+    function getCameraCapturePhoto(buttonID, imgID)
+    {
+        $(buttonID).bind('touchstart', function () {
+            navigator.camera.getPicture(
+                    function (data) {
+                        $(imgID).attr('src', "data:image/jpeg;base64," + data).css("visibility", "visible");
+                    },
+                    onCaptureFail(),
+                    {
+                        quality: 50,
+                        destinationType: Camera.destinationType.DATA_URL,
+                        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                        mediaType: Camera.MediaType.PICTURE
+                    }
+            );
+        });
+    }
+
+    function onCaptureFail(message) {
+        alert('Failed because: ' + message);
+    }
 });
 
 
-function getCameraCapturePhoto(buttonID, imgID)
-{
-    $(buttonID).bind('touchstart', function(){
-        navigator.camera.getPicture(
-                function(data){
-                    $(imgID).attr('src', "data:image/jpeg;base64," + data).css("visibility", "visible");
-                },
-                onCaptureFail,
-                {
-                    quality: 50,
-                    destinationType: Camera.destinationType.DATA_URL,
-                    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                    mediaType: Camera.MediaType.PICTURE
-                }
-                );
-    });
-}
 
-function onCaptureFail(message) {
-                alert('Failed because: ' + message);
-            }
