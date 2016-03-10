@@ -29,11 +29,10 @@ $(document).bind('deviceready', function () {
                     function (data) {
                         $("#benificiaryPhoto").attr('src', "data:image/jpeg;base64," + data).css("visibility", "visible");
                     },
-                    onCaptureFail(),
-                    {
-                        quality: 50,
+                    onCaptureFail,
+                    {                        
                         destinationType: destinationType.DATA_URL,
-                        sourceType: PictureSourceType.PHOTOLIBRARY,
+                        sourceType: PictureSourceType.PHOTOLIBRARY,                       
                         mediaType: MediaType.PICTURE
                     }
             );
