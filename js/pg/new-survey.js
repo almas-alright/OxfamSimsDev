@@ -27,14 +27,14 @@ $(document).bind('deviceready', function () {
         $("#benificiaryPhotoBtn").bind('touchstart', function () {
             navigator.camera.getPicture(
                     function (data) {
-                        $("#benificiaryPhotoBtn").attr('src', "data:image/jpeg;base64," + data).css("visibility", "visible");
+                        $("#benificiaryPhoto").attr('src', "data:image/jpeg;base64," + data).css("visibility", "visible");
                     },
                     onCaptureFail(),
                     {
                         quality: 50,
-                        destinationType: Camera.destinationType.DATA_URL,
-                        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                        mediaType: Camera.MediaType.PICTURE
+                        destinationType: destinationType.DATA_URL,
+                        sourceType: PictureSourceType.PHOTOLIBRARY,
+                        mediaType: MediaType.PICTURE
                     }
             );
         });   
