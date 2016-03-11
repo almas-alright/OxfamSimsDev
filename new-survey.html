@@ -13,23 +13,7 @@
         <link href="css/mdb.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
 
-
-        <!-- JQuery -->
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-
-        <!-- cordova -->
-        <script type="text/javascript" src="cordova.js"></script>
-
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-        <!-- Material Design Bootstrap -->
-        <script type="text/javascript" src="js/mdb.min.js"></script>
-
-        <!--<script type="text/javascript" src="js/custom.js"></script>-->
-
-        <!--new syrvey-->
-        <script type="text/javascript" src="js/pg/new-survey.js"></script>
+        
         
     </head>
 
@@ -99,9 +83,8 @@
             </div>
         </nav>
         <div class="container">
+            
             <section class="page-content">
-
-
                 <div class="row">
                     <div class="col-sm-12">
                         <h5 class="page-title"> New  Survey</h5>
@@ -115,7 +98,7 @@
 
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-primary waves-effect waves-light">Save</button>
+                                <button type="button" id="save" class="btn btn-primary waves-effect waves-light">Save</button>
                             </div>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-info waves-effect waves-light">Load</button>
@@ -171,7 +154,7 @@
                         <div class="row">
                             <div class="col-xs-4 text-center">
 
-                                <button onclick="capturePhoto()" id="benificiaryPhotoBtn" class="btn btn-sm btn-link">Camera</button>
+                                <button onclick="capturePhoto();" id="benificiaryPhotoBtn" class="btn btn-sm btn-link">Camera</button>
                             </div>
                             <div class="col-xs-4 text-center">
                                 <img id="benificiaryPhoto" class="text-center" src="images/demo-photo.jpg" alt="">
@@ -323,7 +306,8 @@
                                         <button type="button" class="btn btn-primary waves-effect waves-light">Quest</button>
                                     </div>
                                     <div class="btn-group" role="group">
-                                        <button onclick="getLocationPos()" type="button" class="btn btn-info waves-effect waves-light">GPS</button>
+                                        <button type="button" class="btn btn-info waves-effect waves-light">GPS</button>
+                                        <!--<button onclick="getLocationPos()" type="button" class="btn btn-info waves-effect waves-light">GPS</button>-->
                                     </div>
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-warning waves-effect waves-light">Start</button>
@@ -342,12 +326,37 @@
                     <div class="clearfix"></div>
                 </div>
                 <!--card-panel-->
-
             </section>
+            
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <ul id="beneficiary-list">
+                        <li>No Data Found</li>
+                    </ul>
+                </div>
+            </div>
+            
+            
         </div>
 
         <!--container-->
+<!-- JQuery -->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
 
+        <!-- cordova -->
+        <script type="text/javascript" src="cordova.js"></script>
+
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+        <!-- Material Design Bootstrap -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+
+        <script type="text/javascript" src="js/custom.js"></script>
+
+        <!--new syrvey-->
+        <script type="text/javascript" src="js/pg/new-survey.js"></script>
 
 
 

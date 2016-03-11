@@ -1,84 +1,52 @@
-var pictureSource;   // picture source
-    var destinationType; // sets the format of returned value
 
-    // Wait for device API libraries to load
-    //
-    document.addEventListener("deviceready",onDeviceReady,false);
 
-    // device APIs are available
-    //
-    function onDeviceReady() {
-        pictureSource=navigator.camera.PictureSourceType;
-        destinationType=navigator.camera.DestinationType;
-    }
+$(document).ready(function () {
+        populateBeneficiaryList();
+    $('#save').on('click', function () {
+        var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
+        db.transaction(function (tx) {
+           tx.executeSql('INSERT INTO beneficiary_info (select_id, response_by, benificiary_name, benificiary_img, fathers_name, mothers_name, union_name, word, address, grnder, age, mobile, nominee_name, relation, nominee_img, marital_sts, occupation, occupation_1, occupation_2, location_gps) VALUES ("1234", "response by people", "benificiary had name", "img/img/img/benf.jpg", "father", "mother", "union intersect", "word no 152", "no address", "female", "16 yrs", "01678591535", "nominee has name", "boy friend", "img/img/img/nominee.jpg", "unmaried", "hair dresser", "begger", "sex worker", "23.737785, 90.395173")');
+        }, errorCB, successCB);
+    });
+});
 
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoDataSuccess(imageData) {
-      // Uncomment to view the base64-encoded image data
-      // console.log(imageData);
 
-      // Get image handle
-      //
-      var smallImage = document.getElementById('benificiaryPhoto');
+function getLocationPos() {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+}
+// onSuccess Geolocation  
+function onSuccess(position) {
+    document.getElementById('lat').value = position.coords.latitude;
+    document.getElementById('lon').value = position.coords.longitude;
+}
+function onError(error) {
+    alert('code: ' + error.code + '\n' +
+            'message: ' + error.message + '\n');
+}
 
-      // Unhide image elements
-      //
-      smallImage.style.display = 'block';
+function errorCB(tx, err) {
+    alert("Error processing SQL: " + err);
+}
 
-      // Show the captured photo
-      // The in-line CSS rules are used to resize the image
-      //
-      smallImage.src = "data:image/jpeg;base64," + imageData;
-    }
+// Transaction success callback
+//
+function successCB() {
+    alert("success!");
+}
 
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoURISuccess(imageURI) {
-      // Uncomment to view the image file URI
-      // console.log(imageURI);
 
-      // Get image handle
-      //
-      var largeImage = document.getElementById('benificiaryPhoto');
-
-      // Unhide image elements
-      //
-      largeImage.style.display = 'block';
-
-      // Show the captured photo
-      // The in-line CSS rules are used to resize the image
-      //
-      largeImage.src = imageURI;
-    }
-
-    // A button will call this function
-    //
-    function capturePhoto() {
-      // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-        destinationType: destinationType.DATA_URL });
-    }
-
-    // A button will call this function
-    //
-    function capturePhotoEdit() {
-      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
-        destinationType: destinationType.DATA_URL });
-    }
-
-    // A button will call this function
-    //
-    function getPhoto(source) {
-      // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
-        destinationType: destinationType.FILE_URI,
-        sourceType: source });
-    }
-
-    // Called if something bad happens.
-    //
-    function onFail(message) {
-      alert('Failed because: ' + message);
-    }
+function benificiaryList(tx, results) {
+    var benf_single = '';
+    var len = results.rows.length;
+    for (var i = 0; i < len; i++) {
+        benf_single += '<li><img class="text-center" src="'+results.rows.item(i).benificiary_img+'" alt=""> <span>Name: '+results.rows.item(i).benificiary_name +'</span></li>';
+    }   
+    $('#beneficiary-list').html(benf_single);
+}
+function populateBeneficiaryList() {
+    var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
+        db.transaction(function(tx) {
+            tx.executeSql('SELECT * FROM beneficiary_info ORDER BY b_id DESC', [], benificiaryList, errorCB);
+        }, errorCB, successCB);
+    	
+}
