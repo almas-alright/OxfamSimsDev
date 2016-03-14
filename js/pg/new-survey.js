@@ -1,4 +1,13 @@
 
+function errorCB(tx, err) {
+    alert("Error processing SQL: " + err);
+}
+
+// Transaction success callback
+//
+function successCB() {
+    alert("success!");
+}
 
 $(document).ready(function () {
     populateBeneficiaryList();
