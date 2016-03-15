@@ -9,8 +9,8 @@ function successCB() {
     alert("success!");
 }
 
-$(document).ready(function () {
-    populateBeneficiaryList();
+
+    
     $('#save').on('click', function () {
         var select_id = get_input_value_of("#select_id"); 
         var response_by = get_input_value_of("#response_by"); 
@@ -39,7 +39,7 @@ $(document).ready(function () {
             tx.executeSql('INSERT INTO beneficiary_info (select_id, response_by, benificiary_name, benificiary_img, fathers_name, mothers_name, union_name, word, address, grnder, age, mobile, nominee_name, relation, nominee_img, marital_sts, occupation, occupation_1, occupation_2, location_gps) VALUES ("'+select_id+'", "'+response_by+'", "'+benificiary_name+'", "'+benificiary_img+'", "'+fathers_name+'", "'+mothers_name+'", "'+union_name+'", "'+union_name+'", "'+address+'", "'+gender+'", "'+age+'", "'+mobile_no+'", "'+nominee_name+'", "'+relation_with_nom+'", "'+nominee_img+'", "'+marital_status+'", "'+occupation_main+'", "'+occupation_2+'", "'+occupation_3+'", "'+location_gps+'")');
         }, errorCB, successCB);
     });
-});
+
 
 function get_input_value_of(inputID)
 {

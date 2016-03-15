@@ -27,3 +27,6 @@ function populateBeneficiaryList() {
     }, errorCB, successCB);
 
 }
+
+document.addEventListener("deviceready", populateBeneficiaryList, false);
+populateBeneficiaryList();
