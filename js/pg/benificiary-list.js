@@ -28,8 +28,8 @@ function populateBeneficiaryList() {
 
 }
 
-document.addEventListener("deviceready", populateBeneficiaryList, false);
-populateBeneficiaryList();
+//document.addEventListener("deviceready", populateBeneficiaryList, false);
+//populateBeneficiaryList();
 
 
 function dateTimeFileName() {
@@ -60,7 +60,7 @@ function linesForCsv(tx, results) {
 function populateCsvFile() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
     db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM beneficiary_info ORDER BY b_id ASC', [], linesForCsv, errorCB);
+        tx.executeSql('SELECT * FROM beneficiary_info ORDER BY b_id DESC', [], linesForCsv, errorCB);
     }, errorCB, successCB);
 }
 
@@ -68,6 +68,7 @@ $(document).ready(function ($) {
 
     $("#btn-csv").click(function () {
         populateCsvFile();
+//        populateBeneficiaryList();
     });
 });
 
