@@ -39,15 +39,18 @@ function dateTimeFileName() {
 }
 
 function linesForCsv(tx, results) {
-    var data = results;
+    var data = results.rows;
+    var arrayR = $.map(data, function (value, index) {
+        return [value];
+    });
     var csvContent = "data:text/csv;charset=utf-8,";
-    data.forEach(function (infoArray, index) {
+    arrayR.forEach(function (infoArray, index) {
 
         var dataString = infoArray.join(",");
-        csvContent += index < data.length ? dataString + "\n" : dataString;
+        csvContent += index < arrayR.length ? dataString + "\n" : dataString;
 
     });
-    
+
     $('#csv_data').html(csvContent);
 
 //    var encodedUri = encodeURI(csvContent);
@@ -66,13 +69,13 @@ function populateCsvFile() {
     }, errorCB, successCB);
 }
 
-$(document).bind("deviceready",function () {
-    
+$(document).bind("deviceready", function () {
+
     populateBeneficiaryList();
-    
+
     $("#btn-csv").click(function () {
         populateCsvFile();
-        
+
     });
 });
 
