@@ -47,13 +47,15 @@ function linesForCsv(tx, results) {
         csvContent += index < data.length ? dataString + "\n" : dataString;
 
     });
+    
+    $('#csv_data').html(csvContent);
 
-    var encodedUri = encodeURI(csvContent);
-    var link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", dateTimeFileName() + ".csv");
-
-    link.click();
+//    var encodedUri = encodeURI(csvContent);
+//    var link = document.createElement("a");
+//    link.setAttribute("href", encodedUri);
+//    link.setAttribute("download", dateTimeFileName() + ".csv");
+//
+//    link.click();
 
 }
 
@@ -66,7 +68,7 @@ function populateCsvFile() {
 
 $(document).bind("deviceready",function () {
     
-//    populateBeneficiaryList();
+    populateBeneficiaryList();
     
     $("#btn-csv").click(function () {
         populateCsvFile();
