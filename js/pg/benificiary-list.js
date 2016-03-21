@@ -64,11 +64,11 @@ function populateCsvFile() {
     }, errorCB, successCB);
 }
 
-$(document).ready(function ($) {
+$(document).bind("deviceready",function () {
 
     $("#btn-csv").click(function () {
-        populateCsvFile();
-//        populateBeneficiaryList();
+//        populateCsvFile();
+        populateBeneficiaryList();
     });
 });
 
