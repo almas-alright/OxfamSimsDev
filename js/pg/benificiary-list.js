@@ -38,27 +38,36 @@ function dateTimeFileName() {
     return str_d;
 }
 
-function linesForCsv(tx, results) {
-    var data = results.rows;
-    var arrayR = $.map(data, function (value, index) {
-        return [value];
-    });
+function linesForCsv() {
+//    var data = results.rows;
+//    var arrayR = $.map(data, function (value, index) {
+//        return [value];
+//    });
+//    var csvContent = "data:text/csv;charset=utf-8,";
+//    arrayR.forEach(function (infoArray, index) {
+//
+//        var dataString = infoArray.join(",");
+//        csvContent += index < arrayR.length ? dataString + "\n" : dataString;
+//
+//    });
+//
+
+
+    var data = [["name1", "city1", "some other info"], ["name2", "city2", "more info"]];
     var csvContent = "data:text/csv;charset=utf-8,";
-    arrayR.forEach(function (infoArray, index) {
+    data.forEach(function (infoArray, index) {
 
         var dataString = infoArray.join(",");
-        csvContent += index < arrayR.length ? dataString + "\n" : dataString;
+        csvContent += index < data.length ? dataString + "\n" : dataString;
 
     });
 
+    var encodedUri = encodeURI(csvContent);
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", dateTimeFileName() + ".csv");
     $('#csv_data').html(csvContent);
-
-//    var encodedUri = encodeURI(csvContent);
-//    var link = document.createElement("a");
-//    link.setAttribute("href", encodedUri);
-//    link.setAttribute("download", dateTimeFileName() + ".csv");
-//
-//    link.click();
+    link.click();
 
 }
 
@@ -74,7 +83,7 @@ $(document).bind("deviceready", function () {
     populateBeneficiaryList();
 
     $("#btn-csv").click(function () {
-        populateCsvFile();
+        linesForCsv();
 
     });
 });
