@@ -65,10 +65,12 @@ function populateCsvFile() {
 }
 
 $(document).bind("deviceready",function () {
-
+    
+    populateBeneficiaryList();
+    
     $("#btn-csv").click(function () {
-//        populateCsvFile();
-        populateBeneficiaryList();
+        populateCsvFile();
+        
     });
 });
 
