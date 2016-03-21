@@ -39,7 +39,7 @@ function dateTimeFileName() {
 }
 
 function linesForCsv(tx, results) {
-    var data = results.rows;
+    var data = results;
     var csvContent = "data:text/csv;charset=utf-8,";
     data.forEach(function (infoArray, index) {
 
@@ -66,7 +66,7 @@ function populateCsvFile() {
 
 $(document).bind("deviceready",function () {
     
-    populateBeneficiaryList();
+//    populateBeneficiaryList();
     
     $("#btn-csv").click(function () {
         populateCsvFile();
