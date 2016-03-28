@@ -1,6 +1,4 @@
-
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.oxfam.qc23" version="1.0.0">
-
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.oxfam.qc" version="1.0.0">
     <name>Oxfam SIMS</name>
     <description>Oxfam Fast SIMS for collecting beneficiary information.</description>
     <author href="http://quantumcloud.com" email="test.qc@gmail.com">QC Team</author>
