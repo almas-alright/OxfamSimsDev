@@ -5,7 +5,12 @@ document.addEventListener("deviceready", db_init, false);
 
 function db_init() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
-    db.transaction(populateDB, errorCB, successCB);
+    if (db.version == "1.0") {
+        db.changeVersion("1.0", "2.0", function (t) {
+            db.transaction(populateDB, errorCB, successCB);
+        });
+        //db.transaction(populateDB, errorCB, successCB);
+    }
 }
 
 // Populate the database 
