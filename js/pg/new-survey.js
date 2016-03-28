@@ -9,17 +9,13 @@ function successCB() {
     alert("success!");
 }
 
-
-    
+$(document).ready(function () {
+    populateBeneficiaryList();
     $('#save').on('click', function () {
         var select_id = get_input_value_of("#select_id"); 
-        var project_id = get_input_value_of("#select_id"); 
-        var office_id = get_input_value_of("#select_id"); 
-        var group = get_input_value_of("#response_by"); 
+        var response_by = get_input_value_of("#response_by"); 
         var benificiary_name = get_input_value_of("#beneficiary_name");
         var benificiary_img = $("#benificiaryPhoto").attr("src");
-        var nid_front_img = $("#benificiaryPhoto").attr("src");
-        var nid_back_img = $("#benificiaryPhoto").attr("src");
         var fathers_name = get_input_value_of("#fathers_name");
         var mothers_name = get_input_value_of("#mothers_name");
         var union_name = get_input_value_of("#union_name");
@@ -38,12 +34,12 @@ function successCB() {
         var location_gps = get_input_value_of("#lat")+","+get_input_value_of("#lon");
 
         //word, address, grnder, age, mobile, nominee_name, relation, nominee_img, marital_sts, occupation, occupation_1, occupation_2, location_gps
-        var db = window.openDatabase("oxfam_sims_dev", "2.0", "OxfamSIMS", 1000000);
+        var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
         db.transaction(function (tx) {
-            tx.executeSql('INSERT INTO beneficiary_info (select_id, project_id, office_id, group, benificiary_name, benificiary_img, nid_img_front, nid_img_back, fathers_name, mothers_name, union_name, word, address, grnder, age, mobile, nominee_name, relation, nominee_img, marital_sts, occupation, occupation_1, occupation_2, location_gps, status) VALUES ("'+select_id+'","'+project_id+'","'+office_id+'", "'+group+'", "'+benificiary_name+'", "'+benificiary_img+'","'+nid_front_img+'","'+nid_back_img+'", "'+fathers_name+'", "'+mothers_name+'", "'+union_name+'", "'+union_name+'", "'+address+'", "'+gender+'", "'+age+'", "'+mobile_no+'", "'+nominee_name+'", "'+relation_with_nom+'", "'+nominee_img+'", "'+marital_status+'", "'+occupation_main+'", "'+occupation_2+'", "'+occupation_3+'", "'+location_gps+'", "1")');
+            tx.executeSql('INSERT INTO beneficiary_info (select_id, response_by, benificiary_name, benificiary_img, fathers_name, mothers_name, union_name, word, address, grnder, age, mobile, nominee_name, relation, nominee_img, marital_sts, occupation, occupation_1, occupation_2, location_gps) VALUES ("'+select_id+'", "'+response_by+'", "'+benificiary_name+'", "'+benificiary_img+'", "'+fathers_name+'", "'+mothers_name+'", "'+union_name+'", "'+union_name+'", "'+address+'", "'+gender+'", "'+age+'", "'+mobile_no+'", "'+nominee_name+'", "'+relation_with_nom+'", "'+nominee_img+'", "'+marital_status+'", "'+occupation_main+'", "'+occupation_2+'", "'+occupation_3+'", "'+location_gps+'")');
         }, errorCB, successCB);
     });
-
+});
 
 function get_input_value_of(inputID)
 {
