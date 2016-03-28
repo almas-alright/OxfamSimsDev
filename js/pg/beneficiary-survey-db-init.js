@@ -4,7 +4,7 @@
 document.addEventListener("deviceready", db_init, false);
 
 function db_init() {
-    var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
+    var db = window.openDatabase("oxfam_sims_dev", "2.0", "OxfamSIMS", 1000000);
     db.transaction(populateDB, errorCB, successCB);
 }
 
