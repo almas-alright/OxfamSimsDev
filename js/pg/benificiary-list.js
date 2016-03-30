@@ -137,7 +137,7 @@ function allBeneficiary(tx, results) {
 function postAllData() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
     db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM beneficiary_info WHERE status = "0" ORDER BY b_id DESC', [], allBeneficiary, errorCB);
+        tx.executeSql('SELECT * FROM beneficiary_info WHERE status = "0" ORDER BY rowid DESC', [], allBeneficiary, errorCB);
     }, errorCB, successCB);
 
 }
