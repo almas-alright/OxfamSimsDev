@@ -63,6 +63,7 @@ $(document).bind("deviceready", function () {
     });
     
      $('#gps_pos_co').on('click', function () {
+         alert("location added..")
          getLocationPos();
      });
     

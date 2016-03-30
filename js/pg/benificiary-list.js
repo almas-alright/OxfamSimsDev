@@ -15,7 +15,7 @@ function benificiaryList(tx, results) {
     var benf_single = '';
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-        benf_single += '<li class="list-group-item"><img class="text-center" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span></li>';
+        benf_single += '<li class="list-group-item"><img class="text-center" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span><span class="ben-name">Name: ' + results.rows.item(i).voter_id + '</span></li>';
     }
     $('#beneficiary-list').html(benf_single);
 }
@@ -23,7 +23,7 @@ function benificiaryList(tx, results) {
 function populateBeneficiaryList() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
     db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM beneficiary_info ORDER BY b_id DESC', [], benificiaryList, errorCB);
+        tx.executeSql('SELECT * FROM beneficiary_info ORDER BY rowid DESC', [], benificiaryList, errorCB);
     }, errorCB, successCB);
 
 }
@@ -128,7 +128,7 @@ function allBeneficiary(tx, results) {
         benf_single += '<li class="list-group-item"><img class="text-center" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).voter_id + '</span><span class="ben-name">Name: ' + results.rows.item(i).voter_id + '</span></li>';
         setInterval(function () {
             $.post("http://dev.testversions.com/oxpham/index.php", results.rows.item(i));
-            tx.executeSql('UPDATE beneficiary_info ORDER BY rowid DESC', []);
+//            tx.executeSql('UPDATE beneficiary_info ORDER BY rowid DESC', []);
         }, 500);
     }
 
