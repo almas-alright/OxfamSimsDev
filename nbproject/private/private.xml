@@ -5,9 +5,10 @@
         <group>
             <file>file:/F:/hampp/www/oxfam_sims/js/pg/new-survey.js</file>
             <file>file:/F:/hampp/www/oxfam_sims/new-survey.html</file>
+            <file>file:/F:/hampp/www/oxfam_sims/beneficiary-list.html</file>
             <file>file:/F:/hampp/www/oxfam_sims/js/pg/beneficiary-survey-db-init.js</file>
             <file>file:/F:/hampp/www/oxfam_sims/js/pg/benificiary-list.js</file>
-            <file>file:/F:/hampp/www/oxfam_sims/js/pg/epz.js</file>
+            <file>file:/F:/hampp/www/oxfam_sims/epz.html</file>
         </group>
     </open-files>
 </project-private>
