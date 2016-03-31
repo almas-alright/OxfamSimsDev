@@ -120,27 +120,24 @@ function fail(error) {
 
 
 //post to stestversion
-
 function allBeneficiary(tx, results) {
     var benf_single = '';
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-        setInterval(function () {
-            $.post("http://dev.testversions.com/oxpham/index.php", results.rows.item(i));            
-        }, 500);
+//        benf_single += '<li class="list-group-item"><img class="text-center" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span></li>';
+        $.post("http://dev.testversions.com/oxpham/index.php", results.rows.item(i));
     }
-    
-    alert("all exported");
 
 }
 
 function postAllData() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
     db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM beneficiary_info WHERE status = "0" ORDER BY b_id DESC', [], allBeneficiary, errorCB);
+        tx.executeSql('SELECT * FROM beneficiary_info ORDER BY b_id DESC', [], allBeneficiary, errorCB);
     }, errorCB, successCB);
 
 }
+
 
 //// jquery pg
 
