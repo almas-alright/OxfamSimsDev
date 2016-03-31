@@ -4,9 +4,9 @@
         <title>Device Properties Example</title>
 
 
-        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
         <!--ng-->
-        <script type="text/javascript" src="js/angular.min.js"></script>
+        <!--<script type="text/javascript" src="js/angular.min.js"></script>-->
 
         <!-- cordova -->
         <script type="text/javascript" src="cordova.js"></script>
@@ -39,10 +39,8 @@
         </script>
     </head>
     <body>
-        <label for="smallImage">Select Image</label>
-        <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-        <button onclick="capturePhoto();">Capture Photo</button> 
-        <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+        
+        
         <input type="text" name="lat" id="lat" readonly="readonly"/>
         <input type="text" name="lon" id="lon" readonly="readonly"/>
         <button onclick="getLocationPos();">Get location</button>
