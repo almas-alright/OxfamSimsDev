@@ -15,7 +15,7 @@ function benificiaryList(tx, results) {
     var benf_single = '';
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-        benf_single += '<li class="list-group-item"><img class="text-center" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span><span class="ben-name">Name: ' + results.rows.item(i).voter_id + '</span></li>';
+        benf_single += '<li class="list-group-item">'+results.rows.item(i).b_id+'<img class="text-center" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span><span class="ben-name">Name: ' + results.rows.item(i).voter_id + '</span></li>';
     }
     $('#beneficiary-list').html(benf_single);
 }

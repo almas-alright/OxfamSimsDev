@@ -1,6 +1,7 @@
 
 function errorCB(tx, err) {
-    alert("Error processing SQL: " + err);}
+    alert("Error processing SQL: " + err);
+}
 
 // Transaction success callback
 //
@@ -18,8 +19,9 @@ function getLocationPos() {
 }
 // onSuccess Geolocation  
 function onSuccess(position) {
-    document.getElementById('lat').value = position.coords.latitude;
-    document.getElementById('lon').value = position.coords.longitude;
+    $("#lat").val(position.coords.latitude);
+    $("#lon").val(position.coords.longitude);
+    alert("location added..\n"+position.coords.latitude+","+position.coords.latitude);
 }
 function onError(error) {
     alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
@@ -61,12 +63,11 @@ $(document).bind("deviceready", function () {
             tx.executeSql('INSERT INTO beneficiary_info (select_id,project_id,office_id,group_name,benificiary_name,benificiary_img,voter_id,nid_img_front,nid_img_back,fathers_name, mothers_name,union_name,word,address,grnder,age,mobile,nominee_name,relation,nominee_img,marital_sts,occupation,occupation_1,occupation_2,location_gps,status) VALUES ("' + select_id + '","' + project_id + '","' + office_id + '", "' + group + '", "' + benificiary_name + '", "' + benificiary_img + '", "' + voter_id + '","' + nid_front_img + '","' + nid_back_img + '", "' + fathers_name + '", "' + mothers_name + '", "' + union_name + '", "' + word_name + '", "' + address + '", "' + gender + '", "' + age + '", "' + mobile_no + '", "' + nominee_name + '", "' + relation_with_nom + '", "' + nominee_img + '", "' + marital_status + '", "' + occupation_main + '", "' + occupation_2 + '", "' + occupation_3 + '", "' + location_gps + '", "0")');
         }, errorCB, successCB);
     });
-    
-     $('#gps_pos_co').on('click', function () {
-         alert("location added..")
-         getLocationPos();
-     });
-    
-    
-    
+
+    $('#gps_pos_co').on('click', function () {        
+        getLocationPos();        
+    });
+
+
+
 });
