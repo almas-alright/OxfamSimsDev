@@ -21,34 +21,79 @@
 
 
 
-        <script>
-            //gps
-
-            function getLocationPos() {
-                navigator.geolocation.getCurrentPosition(onSuccess, onError);
-            }
-// onSuccess Geolocation  
-            function onSuccess(position) {
-                document.getElementById('lat').value = position.coords.latitude;
-                document.getElementById('lon').value = position.coords.longitude;
-            }
-            function onError(error) {
-                alert('code: ' + error.code + '\n' +
-                        'message: ' + error.message + '\n');
-            }
-        </script>
+        <!--        <script>
+                    //gps
+        
+                    function getLocationPos() {
+                        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                    }
+        // onSuccess Geolocation  
+                    function onSuccess(position) {
+                        document.getElementById('lat').value = position.coords.latitude;
+                        document.getElementById('lon').value = position.coords.longitude;
+                    }
+                    function onError(error) {
+                        alert('code: ' + error.code + '\n' +
+                                'message: ' + error.message + '\n');
+                    }
+                </script>-->
     </head>
     <body>
-        
-        
+
+
         <input type="text" name="lat" id="lat" readonly="readonly"/>
         <input type="text" name="lon" id="lon" readonly="readonly"/>
         <button onclick="getLocationPos();">Get location</button>
         <div id="show_details" style="background: #E4E4E4; height: 200px; " >
-
+            <p id="geolocation">Watching geolocation...</p>
+            <button onclick="clearWatch();">Clear Watch</button>
 
 
         </div>
+
+        <script type="text/javascript" charset="utf-8">
+
+            // Wait for device API libraries to load
+            //
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            var watchID = null;
+
+            // device APIs are available
+            //
+            function onDeviceReady() {
+                // Get the most accurate position updates available on the
+                // device.
+                var options = {enableHighAccuracy: true};
+                watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+            }
+
+            // onSuccess Geolocation
+            //
+            function onSuccess(position) {
+                var element = document.getElementById('geolocation');
+                element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+                        'Longitude: ' + position.coords.longitude + '<br />' +
+                        '<hr />' + element.innerHTML;
+            }
+
+            // clear the watch that was started earlier
+            //
+            function clearWatch() {
+                if (watchID != null) {
+                    navigator.geolocation.clearWatch(watchID);
+                    watchID = null;
+                }
+            }
+
+            // onError Callback receives a PositionError object
+            //
+            function onError(error) {
+                alert('code: ' + error.code + '\n' +
+                        'message: ' + error.message + '\n');
+            }
+
+        </script>
 
     </body>
 </html>
