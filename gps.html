@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Device Properties Example</title>
+
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <!--ng-->
+        <script type="text/javascript" src="js/angular.min.js"></script>
+
+        <!-- cordova -->
+        <script type="text/javascript" src="cordova.js"></script>
+
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+        <!-- Material Design Bootstrap -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+
+        <script type="text/javascript" src="js/custom.js"></script>
+
+
+
+        <script>
+            //gps
+
+            function getLocationPos() {
+                navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            }
+// onSuccess Geolocation  
+            function onSuccess(position) {
+                document.getElementById('lat').value = position.coords.latitude;
+                document.getElementById('lon').value = position.coords.longitude;
+            }
+            function onError(error) {
+                alert('code: ' + error.code + '\n' +
+                        'message: ' + error.message + '\n');
+            }
+        </script>
+    </head>
+    <body>
+        <label for="smallImage">Select Image</label>
+        <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+        <button onclick="capturePhoto();">Capture Photo</button> 
+        <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+        <input type="text" name="lat" id="lat" readonly="readonly"/>
+        <input type="text" name="lon" id="lon" readonly="readonly"/>
+        <button onclick="getLocationPos();">Get location</button>
+        <div id="show_details" style="background: #E4E4E4; height: 200px; " >
+
+
+
+        </div>
+
+    </body>
+</html>
