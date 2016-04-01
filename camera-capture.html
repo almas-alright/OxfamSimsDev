@@ -87,7 +87,7 @@
             <section class="page-content">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h5 class="page-title"> New  Survey</h5>
+                        <h5 class="page-title">Set Image</h5>
 
                     </div>
                     <!--col-sm-12-->
@@ -114,15 +114,15 @@
                         <div class="row">
                             <div class="col-xs-4 text-center">
 
-                                <button onclick="" id="benificiaryPhotoBtn" class="btn btn-sm btn-link">Camera</button>
+                                <button onclick="capturePhoto();" id="benificiaryPhotoBtn" class="btn btn-sm btn-link">Camera</button>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <img id="benificiaryPhoto" class="text-center" src="images/demo-photo.jpg" alt="">
+                                <img style="width:60px;height:60px;" id="benificiaryPhoto" class="text-center" src="images/demo-photo.jpg" alt="">
 
                             </div>
                             <div class="col-xs-4 text-center">
 
-                                <button id="benificiarySDcardBtn" class="btn btn-sm btn-link">SDcard</button>
+                                <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);" id="benificiarySDcardBtn" class="btn btn-sm btn-link">SDcard</button>
                             </div>
                         </div>
 
@@ -178,11 +178,11 @@
 
       // Get image handle
       //
-      var smallImage = document.getElementById('smallImage');
+      var smallImage = document.getElementById('benificiaryPhoto'); //smallImage
 
       // Unhide image elements
       //
-      smallImage.style.display = 'block';
+//      smallImage.style.display = 'block';
 
       // Show the captured photo
       // The in-line CSS rules are used to resize the image
@@ -198,11 +198,11 @@
 
       // Get image handle
       //
-      var largeImage = document.getElementById('largeImage');
+      var largeImage = document.getElementById('benificiaryPhoto');//largeImage
 
       // Unhide image elements
       //
-      largeImage.style.display = 'block';
+      //largeImage.style.display = 'block';
 
       // Show the captured photo
       // The in-line CSS rules are used to resize the image
@@ -243,12 +243,12 @@
 
     </script>
  
-    <button onclick="capturePhoto();">Capture Photo</button> <br>
+<!--    <button onclick="capturePhoto();">Capture Photo</button> <br>
     <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
     <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
     <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-    <img style="display:none;" id="largeImage" src="" />
+    <img style="display:none;" id="largeImage" src="" />-->
 
 
     </body>
