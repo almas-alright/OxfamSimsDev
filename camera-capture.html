@@ -127,7 +127,7 @@
                                 <!--<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);" id="benificiarySDcardBtn" class="btn btn-sm btn-link">SDcard</button>-->
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <h6>National id Front Image</h6>
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                         <div class="row">
-                           <div class="col-sm-12">
+                            <div class="col-sm-12">
                                 <h6>National id Back Image</h6>
                             </div>
                             <div class="col-xs-4 text-center">
@@ -193,100 +193,115 @@
 
         <script type="text/javascript" charset="utf-8">
 
-                                    var pictureSource;   // picture source
-                                    var destinationType; // sets the format of returned value
+            var pictureSource;   // picture source
+            var destinationType; // sets the format of returned value
 
-                                    // Wait for device API libraries to load
-                                    //
-                                    $(document).bind("deviceready", function () {
-                                        cameraInit();
-                                        
-                                       $(".set-image").on('touchend', function() {
-                                           var flag = $(this).attr("data-source");
-                                           $("#image-src-flag").val(flag);
-                                       });
-                                       
-                                    });
+            // Wait for device API libraries to load
+            //
+            $(document).bind("deviceready", function () {
+                cameraInit();
 
-                                    // device APIs are available
-                                    //
-                                    function cameraInit() {
-                                        pictureSource = navigator.camera.PictureSourceType;
-                                        destinationType = navigator.camera.DestinationType;
-                                    }
+                $(".set-image").on('touchend', function () {
+                    var flag = $(this).attr("data-source");
+                    $("#image-src-flag").val(flag);
+                });
 
-                                    // Called when a photo is successfully retrieved
-                                    //
-                                    function onPhotoDataSuccess(imageData) {
-                                        // Uncomment to view the base64-encoded image data
-                                        // console.log(imageData);
 
-                                        // Get image handle
-                                        //
-                                        var smallImage = document.getElementById('captured-img');
+                $("#myModal").on('hide.bs.modal', function () {
 
-                                        // Unhide image elements
-                                        //
-                                        smallImage.style.display = 'block';
+                    var destinationID = $("#image-src-flag").val();
+                    var sourceVal = $("#image-src-val").val();
 
-                                        // Show the captured photo
-                                        // The in-line CSS rules are used to resize the image
-                                        //
-                                        smallImage.src = "data:image/jpeg;base64," + imageData;
-                                    }
+                    $(destinationID).attr("src", sourceVal);
+                    setInterval(function () {
+                        $("#image-src-flag").val("");
+                        $("#image-src-val").val("");
+                        $("#capture-img").attr("src", "images/demo-photo.jpg");
+                    }, 2000);
 
-                                    // Called when a photo is successfully retrieved
-                                    //
-                                    function onPhotoURISuccess(imageURI) {
-                                        // Uncomment to view the image file URI
-                                        // console.log(imageURI);
+                });
 
-                                        // Get image handle
-                                        //
-                                        var largeImage = document.getElementById('captured-img');
-                                        var textField = document.getElementById('image-src-val');
+            });
 
-                                        // Unhide image elements
-                                        //
+            // device APIs are available
+            //
+            function cameraInit() {
+                pictureSource = navigator.camera.PictureSourceType;
+                destinationType = navigator.camera.DestinationType;
+            }
+
+            // Called when a photo is successfully retrieved
+            //
+            function onPhotoDataSuccess(imageData) {
+                // Uncomment to view the base64-encoded image data
+                // console.log(imageData);
+
+                // Get image handle
+                //
+                var smallImage = document.getElementById('captured-img');
+
+                // Unhide image elements
+                //
+                smallImage.style.display = 'block';
+
+                // Show the captured photo
+                // The in-line CSS rules are used to resize the image
+                //
+                smallImage.src = "data:image/jpeg;base64," + imageData;
+            }
+
+            // Called when a photo is successfully retrieved
+            //
+            function onPhotoURISuccess(imageURI) {
+                // Uncomment to view the image file URI
+                // console.log(imageURI);
+
+                // Get image handle
+                //
+                var largeImage = document.getElementById('captured-img');
+                var textField = document.getElementById('image-src-val');
+
+                // Unhide image elements
+                //
 //                                        largeImage.style.display = 'block';
 
-                                        // Show the captured photo
-                                        // The in-line CSS rules are used to resize the image
-                                        //
-                                        largeImage.src = imageURI;
-                                        textField.value = imageURI;
-                                    }
+                // Show the captured photo
+                // The in-line CSS rules are used to resize the image
+                //
+                largeImage.src = imageURI;
+                textField.value = imageURI;
+            }
 
-                                    // A button will call this function
-                                    //
-                                    function capturePhoto() {
-                                        // Take picture using device camera and retrieve image as base64-encoded string
-                                        navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
-                                            destinationType: destinationType.FILE_URI});
-                                    }
+            // A button will call this function
+            //
+            function capturePhoto() {
+                // Take picture using device camera and retrieve image as base64-encoded string
+                navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
+                    destinationType: destinationType.FILE_URI});
+            }
 
-                                    // A button will call this function
-                                    //
-                                    function capturePhotoEdit() {
-                                        // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
-                                        navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 20, allowEdit: true,
-                                            destinationType: destinationType.DATA_URL});
-                                    }
+            // A button will call this function
+            //
+            function capturePhotoEdit() {
+                // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
+                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 20, allowEdit: true,
+                    destinationType: destinationType.DATA_URL});
+            }
 
-                                    // A button will call this function
-                                    //
-                                    function getPhoto(source) {
-                                        // Retrieve image file location from specified source
-                                        navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
-                                            destinationType: destinationType.FILE_URI,
-                                            sourceType: source});
-                                    }
+            // A button will call this function
+            //
+            function getPhoto(source) {
+                // Retrieve image file location from specified source
+                navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
+                    destinationType: destinationType.FILE_URI,
+                    sourceType: source});
+            }
 
-                                    // Called if something bad happens.
-                                    //
-                                    function onFail(message) {
-                                        alert('Failed because: ' + message);
-                                    }
+            // Called if something bad happens.
+            //
+            function onFail(message) {
+                alert('Failed because: ' + message);
+            }
 
         </script>
 
@@ -327,7 +342,7 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
     </body>
 </html>
