@@ -108,16 +108,53 @@
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <h6>Photos</h6>
+                                <h5>Photos</h5>
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-sm-12">
+                                <h6>Beneficiary Image</h6>
+                            </div>
                             <div class="col-xs-4 text-center">
-
-                                <button data-toggle="modal" data-target="#myModal" id="benificiaryPhotoBtn" class="btn btn-sm btn-link">Set Image</button>
+                                <button data-toggle="modal" data-target="#myModal" data-source="#benificiaryPhoto"  class="btn btn-sm btn-link set-image">Set Image</button>
                             </div>
                             <div class="col-xs-4 text-center">
                                 <img id="benificiaryPhoto" class="text-center" src="images/demo-photo.jpg" alt="">
+
+                            </div>
+                            <div class="col-xs-4 text-center">
+
+                                <!--<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);" id="benificiarySDcardBtn" class="btn btn-sm btn-link">SDcard</button>-->
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h6>National id Front Image</h6>
+                            </div>
+                            <div class="col-xs-4 text-center">
+
+                                <button data-toggle="modal" data-target="#myModal" data-source="#nid-front"  class="btn btn-sm btn-link set-image">Set Image</button>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <img id="nid-front" class="text-center" src="images/demo-photo.jpg" alt="">
+
+                            </div>
+                            <div class="col-xs-4 text-center">
+
+                                <!--<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);" id="benificiarySDcardBtn" class="btn btn-sm btn-link">SDcard</button>-->
+                            </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-12">
+                                <h6>National id Back Image</h6>
+                            </div>
+                            <div class="col-xs-4 text-center">
+
+                                <button data-toggle="modal" data-target="#myModal" data-source="#nid-back"  class="btn btn-sm btn-link set-image">Set Image</button>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <img id="nid-back" class="text-center" src="images/demo-photo.jpg" alt="">
 
                             </div>
                             <div class="col-xs-4 text-center">
@@ -164,7 +201,11 @@
                                     $(document).bind("deviceready", function () {
                                         cameraInit();
                                         
-                                        
+                                       $(".set-image").on('touchend', function() {
+                                           var flag = $(this).attr("data-source");
+                                           $("#image-src-flag").val(flag);
+                                       });
+                                       
                                     });
 
                                     // device APIs are available
@@ -265,8 +306,8 @@
                         <h4 class="modal-title" id="myModalLabel">Manage Image</h4>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" id="image-src-flag">
-                        <input type="hidden" id="image-src-val">
+                        <p>Flag:<input type="text" id="image-src-flag"></p>
+                        <p>Source:<input type="text" id="image-src-val"></p>
                         <div class="row">                           
                             <div class="col-xs-4 text-center">
                                 <img id="captured-img" style="width:100px;height:100px;" class="text-center" src="images/demo-photo.jpg" alt="">
