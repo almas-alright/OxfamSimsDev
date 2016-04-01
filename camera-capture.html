@@ -114,45 +114,15 @@
                         <div class="row">
                             <div class="col-xs-4 text-center">
 
-                                <button onclick="capturePhoto('benificiaryPhoto');" class="btn btn-sm btn-link">Camera</button>
+                                <button data-toggle="modal" data-target="#myModal" id="benificiaryPhotoBtn" class="btn btn-sm btn-link">Set Image</button>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <img style="width:60px;height:60px;" id="benificiaryPhoto" class="text-center" src="images/demo-photo.jpg" alt="">
+                                <img id="benificiaryPhoto" class="text-center" src="images/demo-photo.jpg" alt="">
 
                             </div>
                             <div class="col-xs-4 text-center">
 
-                                <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);"  class="btn btn-sm btn-link">SDcard</button>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-xs-4 text-center">
-
-                                <button onclick="capturePhoto('nid-front-img');" class="btn btn-sm btn-link">Camera</button>
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                <img style="width:60px;height:60px;" id="nid-front-img" class="text-center" src="images/demo-photo.jpg" alt="">
-
-                            </div>
-                            <div class="col-xs-4 text-center">
-
-                                <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);"  class="btn btn-sm btn-link">SDcard</button>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-xs-4 text-center">
-
-                                <button onclick="capturePhoto('nid-back-img');" class="btn btn-sm btn-link">Camera</button>
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                <img style="width:60px;height:60px;" id="nid-back-img" class="text-center" src="images/demo-photo.jpg" alt="">
-
-                            </div>
-                            <div class="col-xs-4 text-center">
-
-                                <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);"  class="btn btn-sm btn-link">SDcard</button>
+                                <!--<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);" id="benificiarySDcardBtn" class="btn btn-sm btn-link">SDcard</button>-->
                             </div>
                         </div>
 
@@ -186,100 +156,133 @@
 
         <script type="text/javascript" charset="utf-8">
 
-    var pictureSource;   // picture source
-    var destinationType; // sets the format of returned value
+                                    var pictureSource;   // picture source
+                                    var destinationType; // sets the format of returned value
 
-    // Wait for device API libraries to load
-    //
-    document.addEventListener("deviceready",onDeviceReady,false);
+                                    // Wait for device API libraries to load
+                                    //
+                                    document.addEventListener("deviceready", onDeviceReady, false);
 
-    // device APIs are available
-    //
-    function onDeviceReady() {
-        pictureSource=navigator.camera.PictureSourceType;
-        destinationType=navigator.camera.DestinationType;
-    }
+                                    // device APIs are available
+                                    //
+                                    function onDeviceReady() {
+                                        pictureSource = navigator.camera.PictureSourceType;
+                                        destinationType = navigator.camera.DestinationType;
+                                    }
 
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoDataSuccess(imageData) {
-      // Uncomment to view the base64-encoded image data
-      // console.log(imageData);
+                                    // Called when a photo is successfully retrieved
+                                    //
+                                    function onPhotoDataSuccess(imageData) {
+                                        // Uncomment to view the base64-encoded image data
+                                        // console.log(imageData);
 
-      // Get image handle
-      //
-      var smallImage = document.getElementById('benificiaryPhoto'); //smallImage
+                                        // Get image handle
+                                        //
+                                        var smallImage = document.getElementById('captured-img');
 
-      // Unhide image elements
-      //
-//      smallImage.style.display = 'block';
+                                        // Unhide image elements
+                                        //
+                                        smallImage.style.display = 'block';
 
-      // Show the captured photo
-      // The in-line CSS rules are used to resize the image
-      //
-      smallImage.src = "data:image/jpeg;base64," + imageData;
-    }
+                                        // Show the captured photo
+                                        // The in-line CSS rules are used to resize the image
+                                        //
+                                        smallImage.src = "data:image/jpeg;base64," + imageData;
+                                    }
 
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoURISuccess(imageURI) {
-      // Uncomment to view the image file URI
-      // console.log(imageURI);
+                                    // Called when a photo is successfully retrieved
+                                    //
+                                    function onPhotoURISuccess(imageURI) {
+                                        // Uncomment to view the image file URI
+                                        // console.log(imageURI);
 
-      // Get image handle
-      //
-      var largeImage = document.getElementById('benificiaryPhoto');//largeImage
+                                        // Get image handle
+                                        //
+                                        var largeImage = document.getElementById('captured-img');
+                                        var textField = document.getElementById('image-src-val');
 
-      // Unhide image elements
-      //
-      //largeImage.style.display = 'block';
+                                        // Unhide image elements
+                                        //
+//                                        largeImage.style.display = 'block';
 
-      // Show the captured photo
-      // The in-line CSS rules are used to resize the image
-      //
-      largeImage.src = imageURI;
-    }
+                                        // Show the captured photo
+                                        // The in-line CSS rules are used to resize the image
+                                        //
+                                        largeImage.src = imageURI;
+                                        textField.value = imageURI;
+                                    }
 
-    // A button will call this function
-    //
-    function capturePhoto(setTo) {
-      // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(function(setTo){ var largeImage = document.getElementById(setTo); largeImage.src = destinationType.FILE_URI; }, onFail, { quality: 50,
-        destinationType: destinationType.FILE_URI });
-    }
+                                    // A button will call this function
+                                    //
+                                    function capturePhoto() {
+                                        // Take picture using device camera and retrieve image as base64-encoded string
+                                        navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
+                                            destinationType: destinationType.FILE_URI});
+                                    }
 
-    // A button will call this function
-    //
-    function capturePhotoEdit() {
-      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
-        destinationType: destinationType.DATA_URL });
-    }
+                                    // A button will call this function
+                                    //
+                                    function capturePhotoEdit() {
+                                        // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
+                                        navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 20, allowEdit: true,
+                                            destinationType: destinationType.DATA_URL});
+                                    }
 
-    // A button will call this function
-    //
-    function getPhoto(source) {
-      // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
-        destinationType: destinationType.FILE_URI,
-        sourceType: source });
-    }
+                                    // A button will call this function
+                                    //
+                                    function getPhoto(source) {
+                                        // Retrieve image file location from specified source
+                                        navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
+                                            destinationType: destinationType.FILE_URI,
+                                            sourceType: source});
+                                    }
 
-    // Called if something bad happens.
-    //
-    function onFail(message) {
-      alert('Failed because: ' + message);
-    }
+                                    // Called if something bad happens.
+                                    //
+                                    function onFail(message) {
+                                        alert('Failed because: ' + message);
+                                    }
 
-    </script>
- 
-    <button onclick="capturePhoto();">Capture Photo</button> <br>
-    <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
-    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
-    <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
-    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-    <img style="display:none;" id="largeImage" src="" />
+        </script>
 
+        <button onclick="capturePhoto();">Capture Photo</button> <br>
+        <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+        <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+        <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+        <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+        <img style="display:none;" id="largeImage" src="" />       
 
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Manage Image</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="image-src-val">
+                        <div class="row">
+                            <div class="col-xs-4 text-center">
+
+                                <button onclick="capturePhoto();" id="capture-cam" class="btn btn-sm btn-link">Camera</button>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <img id="captured-img" class="text-center" src="images/demo-photo.jpg" alt="">
+
+                            </div>
+                            <div class="col-xs-4 text-center">
+
+                                <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);" id="capture-lib" class="btn btn-sm btn-link">SDcard</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
