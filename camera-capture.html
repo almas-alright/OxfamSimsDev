@@ -161,11 +161,15 @@
 
                                     // Wait for device API libraries to load
                                     //
-                                    document.addEventListener("deviceready", onDeviceReady, false);
+                                    $(document).bind("deviceready", function () {
+                                        cameraInit();
+                                        
+                                        
+                                    });
 
                                     // device APIs are available
                                     //
-                                    function onDeviceReady() {
+                                    function cameraInit() {
                                         pictureSource = navigator.camera.PictureSourceType;
                                         destinationType = navigator.camera.DestinationType;
                                     }
@@ -261,28 +265,28 @@
                         <h4 class="modal-title" id="myModalLabel">Manage Image</h4>
                     </div>
                     <div class="modal-body">
+                        <input type="hidden" id="image-src-flag">
                         <input type="hidden" id="image-src-val">
-                        <div class="row">
+                        <div class="row">                           
                             <div class="col-xs-4 text-center">
+                                <img id="captured-img" style="width:100px;height:100px;" class="text-center" src="images/demo-photo.jpg" alt="">
 
+                            </div>
+                            <div class="col-xs-8 text-center">
+                                <hr>
                                 <button onclick="capturePhoto();" id="capture-cam" class="btn btn-sm btn-link">Camera</button>
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                <img id="captured-img" class="text-center" src="images/demo-photo.jpg" alt="">
-
-                            </div>
-                            <div class="col-xs-4 text-center">
-
                                 <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);" id="capture-lib" class="btn btn-sm btn-link">SDcard</button>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Done</button>
+                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                     </div>
                 </div>
             </div>
         </div>
+        
+        
     </body>
 </html>
