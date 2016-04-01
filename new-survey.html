@@ -174,18 +174,17 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-4 text-center">
-
-                                <button onclick="" id="benificiaryPhotoBtn" class="btn btn-sm btn-link">Camera</button>
+                            <div class="col-sm-12">
+                                <h6>Beneficiary Image</h6>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <img id="benificiaryPhoto" class="text-center" src="images/demo-photo.jpg" alt="">
-
+                                <button data-toggle="modal" data-target="#myModal" data-source="#benificiaryPhoto"  class="btn btn-sm btn-link set-image">Set Image</button>
                             </div>
                             <div class="col-xs-4 text-center">
+                                <img id="benificiaryPhoto" style="width:60px;height:60px;" class="text-center" src="images/demo-photo.jpg" alt="">
 
-                                <button id="benificiarySDcardBtn" class="btn btn-sm btn-link">SDcard</button>
                             </div>
+                            
                         </div>
 
                         <div class="row">
@@ -198,37 +197,31 @@
                         
                         <div class="row">
                             <div class="col-sm-12">
-                                <h6>National ID Image(front face)</h6>
+                                <h6>National id Front Image</h6>
                             </div>
                             <div class="col-xs-4 text-center">
 
-                                <button onclick="" id="nid_front_cam_cap" class="btn btn-sm btn-link">Camera</button>
+                                <button data-toggle="modal" data-target="#myModal" data-source="#nid-front"  class="btn btn-sm btn-link set-image">Set Image</button>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <img id="nid_front_image" class="text-center" src="images/demo-photo.jpg" alt="">
+                                <img id="nid-front" style="width:60px;height:60px;" class="text-center" src="images/demo-photo.jpg" alt="">
 
                             </div>
-                            <div class="col-xs-4 text-center">
-
-                                <button id="nid_front_lib_cap" class="btn btn-sm btn-link">SDcard</button>
-                            </div>
+                            
                         </div>
+                        
                         <div class="row">
                             <div class="col-sm-12">
-                                <h6>National ID Image(front face)</h6>
+                                <h6>National id Back Image</h6>
                             </div>
                             <div class="col-xs-4 text-center">
 
-                                <button onclick="" id="nid_back_cam_cap" class="btn btn-sm btn-link">Camera</button>
+                                <button data-toggle="modal" data-target="#myModal" data-source="#nid-back"  class="btn btn-sm btn-link set-image">Set Image</button>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <img id="nid_back_image" class="text-center" src="images/demo-photo.jpg" alt="">
+                                <img id="nid-back" style="width:60px;height:60px;" class="text-center" src="images/demo-photo.jpg" alt="">
 
-                            </div>
-                            <div class="col-xs-4 text-center">
-
-                                <button id="nid_back_lib_cap" class="btn btn-sm btn-link">SDcard</button>
-                            </div>
+                            </div>                            
                         </div>
 
 
@@ -392,7 +385,7 @@
                                         <a class="btn btn-warning waves-effect waves-light" href="beneficiary-list.html">Next</a>
                                     </div>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-warning waves-effect waves-light" href="gps.html">Check GPS</a>
+                                        <a class="btn btn-warning waves-effect waves-light" href="camera-capture.html">Check Camera</a>
                                     </div>
                                     <!--                                    <div class="btn-group" role="group">
                                                                             <button type="button" class="btn btn-danger waves-effect waves-light">Next</button>
@@ -420,6 +413,39 @@
             </div>
 
 
+        </div>
+        
+        
+        <!--IMAGE CAPTURE MODAL-->
+        
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Manage Image</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Flag:<input type="text" id="image-src-flag"></p>
+                        <p>Source:<input type="text" id="image-src-val"></p>
+                        <div class="row">                           
+                            <div class="col-xs-4 text-center">
+                                <img id="captured-img" style="width:100px;height:100px;" class="text-center" src="images/demo-photo.jpg" alt="">
+
+                            </div>
+                            <div class="col-xs-8 text-center">
+                                <hr>
+                                <button onclick="capturePhoto();" id="capture-cam" class="btn btn-sm btn-link">Camera</button>
+                                <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);" id="capture-lib" class="btn btn-sm btn-link">SDcard</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Done</button>
+                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!--container-->
