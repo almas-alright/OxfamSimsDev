@@ -12,8 +12,11 @@ function db_init() {
 //
 function populateDB(tx) {
     tx.executeSql('DROP TABLE IF EXISTS beneficiary_info');
+    tx.executeSql('DROP TABLE IF EXISTS intervention_list');
     tx.executeSql('CREATE TABLE IF NOT EXISTS beneficiary_info(b_id INTEGER PRIMARY KEY AUTOINCREMENT,select_id INT,project_id INT, office_id INT,group_name TEXT,benificiary_name TEXT,benificiary_img TEXT,voter_id TEXT,nid_img_front TEXT,nid_img_back TEXT,fathers_name TEXT,mothers_name TEXT,union_name TEXT,word TEXT,address TEXT,grnder TEXT,age TEXT,mobile TEXT,nominee_name TEXT,relation TEXT,nominee_img TEXT,marital_sts TEXT,occupation TEXT,occupation_1 TEXT,occupation_2 TEXT,location_gps TEXT,status INT)');
     tx.executeSql('INSERT INTO beneficiary_info (select_id,project_id,office_id,group_name,benificiary_name,benificiary_img,voter_id,nid_img_front,nid_img_back,fathers_name, mothers_name,union_name,word,address,grnder,age,mobile,nominee_name,relation,nominee_img,marital_sts,occupation,occupation_1,occupation_2,location_gps,status) VALUES ("1234","25","265","group of people","benificiary had name","img/img/img/benf.jpg","54353natid4554","img/img/img/nidf.jpg","img/img/img/nidb.jpg","father","mother","union intersect","word no 152","no address","female","16 yrs","01678591535","nominee has name","boy friend","img/img/img/nominee.jpg","unmaried","hair dresser","begger","sex worker","23.737785, 90.395173","0")');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS intervention_list(intervention_id INTEGER PRIMARY KEY AUTOINCREMENT,project_id INTEGER,office_id INTEGER,intervention_type INTEGER,union_name TEXT,word TEXT,address TEXT,descriptoin TEXT,intervention_photo TEXT)');
+    tx.executeSql('INSERT INTO intervention_list (project_id,office_id,intervention_type,union_name,word,address,descriptoin,intervention_photo) VALUES ("12","34","2","unionname D","word45","Abcd 1234 c4","river cleaning","imahes/photo.jpg")');
 }
 
 // Transaction error callback
@@ -30,6 +33,16 @@ function successCB() {
 
 
 
+/*
+project_id,
+office_id,
+intervention_type,
+union_name,
+word,
+address,
+descriptoin,
+intervention_photo 
+*/
 
 
 
