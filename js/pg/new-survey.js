@@ -2,20 +2,8 @@
 var pictureSource;   // picture source
 var destinationType; // sets the format of returned value
 
-function errorCB(tx, err) {
-    alert("Error processing SQL: " + err);
-}
 
-// Transaction success callback
-//
-function successCB() {
-    alert("success!");
-}
 
-function get_input_value_of(inputID)
-{
-    return $(inputID).val();
-}
 
 function getLocationPos() {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
