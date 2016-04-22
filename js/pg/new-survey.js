@@ -21,16 +21,16 @@ function onError(error) {
 
 $(document).bind("deviceready", function () {
 
-    $('#save').on('click', function () {
+    $('#save').on('touchend', function () {
         var select_id = get_input_value_of("#select_id");
         var project_id = get_input_value_of("#select_id");
         var office_id = get_input_value_of("#select_id");
         var group = get_input_value_of("#response_by");
         var benificiary_name = get_input_value_of("#beneficiary_name");
-        var benificiary_img = $("#benificiaryPhoto").attr("src");
+        var benificiary_img = getImgSrc("#benificiaryPhoto");
         var voter_id = get_input_value_of("#nid_num");
-        var nid_front_img = $("#benificiaryPhoto").attr("src");
-        var nid_back_img = $("#benificiaryPhoto").attr("src");
+        var nid_front_img = getImgSrc("#benificiaryPhoto");
+        var nid_back_img = getImgSrc("#benificiaryPhoto");
         var fathers_name = get_input_value_of("#fathers_name");
         var mothers_name = get_input_value_of("#mothers_name");
         var union_name = get_input_value_of("#union_name");
@@ -41,7 +41,7 @@ $(document).bind("deviceready", function () {
         var mobile_no = get_input_value_of("#mobile_no");
         var nominee_name = get_input_value_of("#nominee_name");
         var relation_with_nom = get_input_value_of("#relation_with_nom");
-        var nominee_img = $("#nominee_img").attr("src");
+        var nominee_img = getImgSrc("#nominee_img");
         var marital_status = $("input:radio[name=married]").val();
         var occupation_main = get_input_value_of("#occupation_main");
         var occupation_2 = get_input_value_of("#occupation_2");

@@ -130,28 +130,30 @@
                         </div>
                         <div class="row">
                             <div class="input-field col-md-12">
-                                <select id="office_id" class="browser-default">
+                                <select name="office_id" id="office_id">
                                     <option value="0">Select</option>
-                                    <option value="30">Office 1</option>
-                                    <option value="31">Office 2</option>
-                                    <option value="35">Office 3</option>
+                                    <option value="1">office 1</option>
+                                    <option value="2">office 2</option>
+                                    <option value="3">office 3</option>
                                 </select>
-                                <label for="response_by">Office </label>
+                                <label for="office_id">Office</label>
                             </div>
-
                         </div>
+                        
+                        
                         <div class="row">
                             <div class="input-field col-md-12">
-                                <label for="project_id">Project </label>
-                                <select id="project_id" class="browser-default">
+                                <select name="project_id" id="project_id">
                                     <option value="0">Select</option>
-                                    <option value="23">project 1</option>
-                                    <option value="21">project 2</option>
-                                    <option value="25">project 3</option>
-                                </select>                                
+                                    <option value="1">project 1</option>
+                                    <option value="2">project 2</option>
+                                    <option value="3">project 3</option>
+                                </select>
+                                <label for="project_id">Project</label>
                             </div>
-
-                        </div>
+                        </div>                       
+                        
+                        
                         <div class="row">
                             <div class="input-field col-md-12">
                                 <input id="response_by" type="text" class="validate">
@@ -183,7 +185,7 @@
                             <div class="col-xs-4 text-center">
                                 <img id="benificiaryPhoto" style="width:60px;height:60px;" class="text-center" src="images/demo-photo.jpg" alt="">
                             </div>
-                            
+
                         </div>
 
                         <div class="row">
@@ -193,29 +195,29 @@
                             </div>
 
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <h6>National id Front Image</h6>
                             </div>
                             <div class="col-xs-4 text-center">
 
-                                <button data-toggle="modal" data-target="#myModal" data-source="#nid-front"  class="btn btn-sm btn-link set-image">Set Image</button>
+                                <button type="button" data-toggle="modal" data-target="#myModal" data-source="#nid-front"  class="btn btn-sm btn-link set-image">Set Image</button>
                             </div>
                             <div class="col-xs-4 text-center">
                                 <img id="nid-front" style="width:60px;height:60px;" class="text-center" src="images/demo-photo.jpg" alt="">
 
                             </div>
-                            
+
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <h6>National id Back Image</h6>
                             </div>
                             <div class="col-xs-4 text-center">
 
-                                <button data-toggle="modal" data-target="#myModal" data-source="#nid-back"  class="btn btn-sm btn-link set-image">Set Image</button>
+                                <button type="button" data-toggle="modal" data-target="#myModal" data-source="#nid-back"  class="btn btn-sm btn-link set-image">Set Image</button>
                             </div>
                             <div class="col-xs-4 text-center">
                                 <img id="nid-back" style="width:60px;height:60px;" class="text-center" src="images/demo-photo.jpg" alt="">
@@ -259,14 +261,16 @@
                         </div>
 
 
+                        
+                        
                         <div class="row">
-                            <div class="input-field col-xs-6">
-                                <select id="gender" class="browser-default">
+                            <div class="input-field col-md-6">
+                                <select id="gender">
                                     <option value="#">select</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
-                                </select>                               
-                                <label for="gender">Gender  </label>
+                                </select> 
+                                <label for="gender">Gender</label>
                             </div>
                             <div class="input-field col-xs-6">
                                 <input id="age" type="text" class="validate">
@@ -297,37 +301,45 @@
                                 <label for="relation_with_nom">Relation </label>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-sm-12">
-                                <h6>Nominee Photo </h6>
+                                <h6>Nominee Photo</h6>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-xs-4 text-center">
 
-                                <button type="button" class="btn btn-sm btn-link">Camera</button>
+                                <button type="button" data-toggle="modal" data-target="#myModal" data-source="#nominee_img"  class="btn btn-sm btn-link set-image">Set Image</button>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <img id="nominee_img" class="text-center" src="images/demo-photo.jpg" alt="">
+                                <img id="nominee_img" style="width:60px;height:60px;" class="text-center" src="images/demo-photo.jpg" alt="">
 
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                <button type="button" class="btn btn-sm btn-link">SDcard</button>
-                            </div>
-                            
-                            <div class="col-xs-12 text-center">
-                                <a href="camera-capture.html" class="btn btn-sm btn-link">Capture Photo Here</a>
-                            </div>
+                            </div>                            
                         </div>
 
 
                         <div class="row">
-                            <div class="input-field col-md-12">                                
-                                <input type="radio" name="married" value="married"> Married<br>
-                                <input type="radio" name="married" value="unmarriedr" >UnMarried<br>
-                                <input type="radio" name="married" value="single" >Single<br>
-                                <input type="radio" name="married" value="divorcee" >divorcee<br>
-                                <label for="married">Marital Status</label>
+                            <div class="col-sm-12">
+                                <hr/>
+                                <h6>Marital Status</h6>
+                            </div>
+                            <div class="input-field col-md-12">
+                                <p>
+                                    <input name="married" type="radio" id="test1" value="married"/>
+                                    <label for="test1">Married</label>
+                                </p>
+                                <p>
+                                    <input name="married" type="radio" id="test2" value="unmarriedr"/>
+                                    <label for="test2">UnMarried</label>
+                                </p>
+                                <p>
+                                    <input name="married" type="radio" id="test3" value="single"/>
+                                    <label for="test3">Single</label>
+                                </p>
+                                <p>
+                                    <input name="married" type="radio" id="test4" value="divorcee"/>
+                                    <label for="test4">Divorcee</label>
+                                </p>
+                                <hr/>
                             </div>
                         </div>
 
@@ -377,9 +389,9 @@
                                         <button type="button" id="gps_pos_co" class="btn btn-info waves-effect waves-light">GPS</button>
                                         <!--<button onclick="getLocationPos()" type="button" class="btn btn-info waves-effect waves-light">GPS</button>-->
                                     </div>
-<!--                                    <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-warning waves-effect waves-light">Start</button>
-                                    </div>-->
+                                    <!--                                    <div class="btn-group" role="group">
+                                                                            <button type="button" class="btn btn-warning waves-effect waves-light">Start</button>
+                                                                        </div>-->
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-warning waves-effect waves-light" href="beneficiary-list.html">Next</a>
                                     </div>
@@ -401,22 +413,11 @@
                 </div>
                 <!--card-panel-->
             </section>
-
-
-            <div class="row">
-                <div class="col-md-6">
-                    <ul id="beneficiary-list">
-                        <li>No Data Found</li>
-                    </ul>
-                </div>
-            </div>
-
-
         </div>
-        
-        
+
+
         <!--IMAGE CAPTURE MODAL-->
-        
+
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
