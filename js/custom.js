@@ -9,5 +9,6 @@ jQuery('.collapsible').collapsible();
 
 //Initialize Select
 jQuery(document).ready(function () {
+      $('select').material_select();
 
 });
