@@ -163,20 +163,28 @@
                         </div>
 
                         <div class="row">
+                            <div class="input-field col-md-12">
+                                <textarea id="description" class="materialize-textarea"></textarea>
+                                <label for="textarea1">Description</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-sm-12">
                                 <h5 class="text-center">GPS Data </h5>
                             </div>
 
                             <div class="input-field col-md-12">
-                                <textarea name="location_gps" id="location_gps" cols="30" rows="10"></textarea>
-                                <label for="last_name">Lat,Lon</label>
+                                <!--<textarea name="location_gps" id="location_gps" class="materialize-textarea"></textarea>-->
+                                <div id="geolocation" class="materialize-textarea"></div>
+                                <label for="last_name">Location data</label>
                             </div>
                         </div>
 
 
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <button type="button" class="btn btn-link">Get PGS</button>
+                                <button type="button" id="get_location" class="btn btn-link">Get PGS</button>
                             </div>
                         </div>
 
@@ -230,123 +238,143 @@
         <!-- Material Design Bootstrap -->
         <script type="text/javascript" src="js/mdb.min.js"></script>
         <script type="text/javascript" src="js/custom.js"></script>
-        
-        
-        
+
+
+
         <script type="text/javascript" charset="utf-8">
 
-            var pictureSource;   // picture source
-            var destinationType; // sets the format of returned value
+                                    var pictureSource;   // picture source
+                                    var destinationType; // sets the format of returned value
 
-            // Wait for device API libraries to load
-            //
-            $(document).bind("deviceready", function () {
-                cameraInit();
+                                    // Wait for device API libraries to load
+                                    //
+                                    $(document).bind("deviceready", function () {
+                                        cameraInit();
 
-                $(".set-image").on('touchend', function () {
-                    var flag = $(this).attr("data-source");
-                    $("#image-src-flag").val(flag);
-                });
+                                        $(".set-image").on('touchend', function () {
+                                            var flag = $(this).attr("data-source");
+                                            $("#image-src-flag").val(flag);
+                                        });
+
+                                        $("#get_location").on('touchend', function () {
+                                            onLocationReady();
+                                        });
 
 
-                $("#myModal").on('hide.bs.modal', function () {
+                                        $("#myModal").on('hide.bs.modal', function () {
 
-                    var destinationID = $("#image-src-flag").val();
-                    var sourceVal = $("#image-src-val").val();
+                                            var destinationID = $("#image-src-flag").val();
+                                            var sourceVal = $("#image-src-val").val();
 
-                    $(destinationID).attr("src", sourceVal);
-                    
-                    $("#image-src-flag").val("");
-                    $("#image-src-val").val("");
-                    $("#capture-img").attr("src", "images/demo-photo.jpg");
-                   
+                                            $(destinationID).attr("src", sourceVal);
 
-                });
+                                            $("#image-src-flag").val("");
+                                            $("#image-src-val").val("");
+                                            $("#capture-img").attr("src", "images/demo-photo.jpg");
 
-            });
 
-            // device APIs are available
-            //
-            function cameraInit() {
-                pictureSource = navigator.camera.PictureSourceType;
-                destinationType = navigator.camera.DestinationType;
-            }
+                                        });
 
-            // Called when a photo is successfully retrieved
-            //
-            function onPhotoDataSuccess(imageData) {
-                // Uncomment to view the base64-encoded image data
-                // console.log(imageData);
+                                    });
 
-                // Get image handle
-                //
-                var smallImage = document.getElementById('captured-img');
+                                    // device APIs are available
+                                    //
+                                    function cameraInit() {
+                                        pictureSource = navigator.camera.PictureSourceType;
+                                        destinationType = navigator.camera.DestinationType;
+                                    }
 
-                // Unhide image elements
-                //
-                smallImage.style.display = 'block';
+                                    // Called when a photo is successfully retrieved
+                                    //
+                                    function onPhotoDataSuccess(imageData) {
+                                        // Uncomment to view the base64-encoded image data
+                                        // console.log(imageData);
 
-                // Show the captured photo
-                // The in-line CSS rules are used to resize the image
-                //
-                smallImage.src = "data:image/jpeg;base64," + imageData;
-            }
+                                        // Get image handle
+                                        //
+                                        var smallImage = document.getElementById('captured-img');
 
-            // Called when a photo is successfully retrieved
-            //
-            function onPhotoURISuccess(imageURI) {
-                // Uncomment to view the image file URI
-                // console.log(imageURI);
+                                        // Unhide image elements
+                                        //
+                                        smallImage.style.display = 'block';
 
-                // Get image handle
-                //
-                var largeImage = document.getElementById('captured-img');
-                var textField = document.getElementById('image-src-val');
+                                        // Show the captured photo
+                                        // The in-line CSS rules are used to resize the image
+                                        //
+                                        smallImage.src = "data:image/jpeg;base64," + imageData;
+                                    }
 
-                // Unhide image elements
-                //
-                //largeImage.style.display = 'block';
+                                    // Called when a photo is successfully retrieved
+                                    //
+                                    function onPhotoURISuccess(imageURI) {
+                                        // Uncomment to view the image file URI
+                                        // console.log(imageURI);
 
-                // Show the captured photo
-                // The in-line CSS rules are used to resize the image
-                //
-                largeImage.src = imageURI;
-                textField.value = imageURI;
-            }
+                                        // Get image handle
+                                        //
+                                        var largeImage = document.getElementById('captured-img');
+                                        var textField = document.getElementById('image-src-val');
 
-            // A button will call this function
-            //
-            function capturePhoto() {
-                // Take picture using device camera and retrieve image as base64-encoded string
-                navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
-                    destinationType: destinationType.FILE_URI});
-            }
+                                        // Unhide image elements
+                                        //
+                                        //largeImage.style.display = 'block';
 
-            // A button will call this function
-            //
-            function capturePhotoEdit() {
-                // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
-                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 20, allowEdit: true,
-                    destinationType: destinationType.DATA_URL});
-            }
+                                        // Show the captured photo
+                                        // The in-line CSS rules are used to resize the image
+                                        //
+                                        largeImage.src = imageURI;
+                                        textField.value = imageURI;
+                                    }
 
-            // A button will call this function
-            //
-            function getPhoto(source) {
-                // Retrieve image file location from specified source
-                navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
-                    destinationType: destinationType.FILE_URI,
-                    sourceType: source});
-            }
+                                    // A button will call this function
+                                    //
+                                    function capturePhoto() {
+                                        // Take picture using device camera and retrieve image as base64-encoded string
+                                        navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
+                                            destinationType: destinationType.FILE_URI});
+                                    }
 
-            // Called if something bad happens.
-            //
-            function onFail(message) {
-                alert('Failed because: ' + message);
-            }
-            
-            
-            
+                                    // A button will call this function
+                                    //
+                                    function capturePhotoEdit() {
+                                        // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
+                                        navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 20, allowEdit: true,
+                                            destinationType: destinationType.DATA_URL});
+                                    }
+
+                                    // A button will call this function
+                                    //
+                                    function getPhoto(source) {
+                                        // Retrieve image file location from specified source
+                                        navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
+                                            destinationType: destinationType.FILE_URI,
+                                            sourceType: source});
+                                    }
+
+                                    // Called if something bad happens.
+                                    //
+                                    function onFail(message) {
+                                        alert('Failed because: ' + message);
+                                    }
+
+
+
+                                    //geo location
+
+                                    function onLocationReady() {
+                                        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                                    }
+                                    function onSuccess(position) {
+                                        var element = document.getElementById('geolocation');
+                                        element.innerHTML = '(' + position.coords.latitude + ',' + position.coords.longitude + ')';
+                                    }
+
+                                    // onError Callback receives a PositionError object
+                                    //
+                                    function onError(error) {
+                                        alert('code: ' + error.code + '\n' +
+                                                'message: ' + error.message + '\n');
+                                    }
 
         </script>
 
