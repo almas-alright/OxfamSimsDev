@@ -74,11 +74,11 @@ $(document).bind("deviceready", function () {
         var sourceVal = $("#image-src-val").val();
 
         $(destinationID).attr("src", sourceVal);
-        setInterval(function () {
-            $("#image-src-flag").val("");
-            $("#image-src-val").val("");
-            $("#capture-img").attr("src", "images/demo-photo.jpg");
-        }, 2000);
+
+        $("#image-src-flag").val("");
+        $("#image-src-val").val("");
+        $("#capture-img").attr("src", "images/demo-photo.jpg");
+
 
     });
 
