@@ -5,7 +5,7 @@ document.addEventListener("deviceready", db_init, false);
 
 function db_init() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
-    db.transaction(populateDB, errorCB, successCB);
+    db.transaction(populateDB, errorCB, successCB_blank);
 }
 
 // Populate the database 
@@ -29,6 +29,10 @@ function errorCB(tx, err) {
 //
 function successCB() {
     alert("success!");
+}
+
+function successCB_blank() {
+    console.log("done");
 }
 
 

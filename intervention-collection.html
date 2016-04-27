@@ -307,7 +307,7 @@
                                             var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
                                             db.transaction(function (tx) {
                                                 tx.executeSql('INSERT INTO intervention_list (project_id,office_id,intervention_type,union_name,word,address,descriptoin,intervention_photo,location_gps) VALUES ("' + project_id + '","' + office_id + '","' + itn_type_id + '","' + union_name + '","' + word_name + '","' + int_address + '","' + description + '","' + intervention_photo + '","' + location_gps + '")');
-                                            }, errorCB, successCB);
+                                            }, errorCB, successRedir);
                                         });
 
                                     });
@@ -410,6 +410,11 @@
                                     function onError(error) {
                                         alert('code: ' + error.code + '\n' +
                                                 'message: ' + error.message + '\n');
+                                    }
+                                    
+                                    function successRedir()
+                                    {
+                                         window.location="intervention-list.html";
                                     }
 
         </script>

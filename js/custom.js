@@ -36,3 +36,7 @@ function errorCB(tx, err) {
 function successCB() {
     alert("success!");
 }
+
+function successCB_blank() {
+    console.log("done");
+}

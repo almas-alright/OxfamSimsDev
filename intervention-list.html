@@ -158,7 +158,7 @@
                 var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
                 db.transaction(function (tx) {
                     tx.executeSql('SELECT * FROM intervention_list ORDER BY intervention_id DESC', [], intv_list, errorCB);
-                }, errorCB, successCB);
+                }, errorCB, successCB_blank);
 
             }
         </script>

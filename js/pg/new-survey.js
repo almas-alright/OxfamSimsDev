@@ -18,7 +18,10 @@ function onError(error) {
     alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 }
 
-
+function insertSuccess()
+{
+    window.location="beneficiary-list.html";
+}
 $(document).bind("deviceready", function () {
 
     $('#save').on('touchend', function () {
@@ -52,7 +55,7 @@ $(document).bind("deviceready", function () {
         var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
         db.transaction(function (tx) {
             tx.executeSql('INSERT INTO beneficiary_info (select_id,project_id,office_id,group_name,benificiary_name,benificiary_img,voter_id,nid_img_front,nid_img_back,fathers_name, mothers_name,union_name,word,address,grnder,age,mobile,nominee_name,relation,nominee_img,marital_sts,occupation,occupation_1,occupation_2,location_gps,status) VALUES ("' + select_id + '","' + project_id + '","' + office_id + '", "' + group + '", "' + benificiary_name + '", "' + benificiary_img + '", "' + voter_id + '","' + nid_front_img + '","' + nid_back_img + '", "' + fathers_name + '", "' + mothers_name + '", "' + union_name + '", "' + word_name + '", "' + address + '", "' + gender + '", "' + age + '", "' + mobile_no + '", "' + nominee_name + '", "' + relation_with_nom + '", "' + nominee_img + '", "' + marital_status + '", "' + occupation_main + '", "' + occupation_2 + '", "' + occupation_3 + '", "' + location_gps + '", "0")');
-        }, errorCB, successCB);
+        }, errorCB, insertSuccess);
     });
 
     $('#gps_pos_co').on('touchend', function () {
