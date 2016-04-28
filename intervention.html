@@ -20,7 +20,7 @@
         <!--/. SideNav slide-out button -->
 
         <!-- Sidebar navigation -->
-        <ul id="slide-out" class="side-nav default-side-nav light-side-nav">
+        <div id="slide-out" class="side-nav default-side-nav light-side-nav">
             <!-- Logo -->
             <div class="logo-wrapper text-center">
                 <a href="index.html"><img src="images/oxfam-logo.png" alt=""></a>
@@ -51,7 +51,7 @@
             </ul>
             <!--/. Side navigation links -->
 
-        </ul>
+        </div>
         <!--/. Sidebar navigation -->
         <nav class="double-navbar navbar navbar-fixed-top light-green darken-3 z-depth-1">
 
@@ -84,35 +84,45 @@
 
                 <div class="row">
                     <div class="col-sm-12">
-
+                        <h5 class="page-title"> Intervention</h5>
 
                     </div>
                     <!--col-sm-12-->
                 </div>
-                <!--  row--> 
-
+                <!--  row-->
                 <div class="row">
                     <div class="col-sm-12">      
 
-                        <a href="beneficiary-verify.html" class="btn btn-block btn-danger waves-effect waves-light">Verification</a>
-                        
+                        <a href="intervention-collection.html" class="btn btn-block btn-danger waves-effect waves-light">Intervention Collection Form</a>
+                        <a href="intervention-list.html" class="btn btn-block btn-danger waves-effect waves-light">Intervention List</a>
                     </div>
                     <!--col-sm-12-->
                 </div>
+                <!--  row-->
+
+
 
             </section>
         </div>
 
         <!--container-->
 
+
+
         <!-- JQuery -->
         <script type="text/javascript" src="js/jquery.min.js"></script>
+
+        <!-- cordova -->
+        <script type="text/javascript" src="cordova.js"></script>
 
         <!-- Bootstrap core JavaScript -->
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
         <!-- Material Design Bootstrap -->
         <script type="text/javascript" src="js/mdb.min.js"></script>
+
+        <!--pg script-->
+        <script type="text/javascript" src="js/pg/beneficiary-survey-db-init.js"></script>
         <script>
             // Initialize collapse button
             $(".button-collapse").sideNav();
