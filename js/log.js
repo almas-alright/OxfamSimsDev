@@ -11,31 +11,32 @@ var user = "oxfam";
 var pass = "oxfam123";
 
 
-checkLog();
+$(document).bind("deviceready", function () {
+    $("#not-logged").width(w_width).height(w_height);
+    checkLog();
+    $("#log-click").on('touchend', function () {
+        var user_field = $("#user").val();
+        var pass_field = $("#pass").val();
 
-$("#not-logged").width(w_width).height(w_height);
+        if ((user_field === user) && (pass_field === pass))
+        {
+            window.localStorage.setItem("logged", "yes");
+            checkLog();
+        } else {
+            alert("Invalid Username or Password");
+            window.localStorage.setItem("logged", "no");
+            checkLog();
+        }
 
-$("#log-click").on('click', function () {
-    var user_field = $("#user").val();
-    var pass_field = $("#pass").val();
+    });
 
-    if ((user_field === user) && (pass_field === pass))
-    {
-        window.localStorage.setItem("logged", "yes");
-        checkLog();
-    } else {
+    $("#log-out").on('touchend', function () {
         window.localStorage.setItem("logged", "no");
         checkLog();
-    }
+        location.reload();
+    });
 
 });
-
-$("#log-out").on('click', function () {
-    window.localStorage.setItem("logged", "no");
-    checkLog();
-    location.reload(); 
-});
-
 function checkLog()
 {
     var flag = localStorage.getItem("logged")
