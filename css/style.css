@@ -82,7 +82,14 @@ section.page-content {
 }
 
 
-//almas
+
 
 .ben-name { margin-left: 10px; }
 .list-img{ width:35px; height: 35px; }
+
+
+
+.ox-bg{
+    background: #98cb00;
+    /*display: block;*/
+}
