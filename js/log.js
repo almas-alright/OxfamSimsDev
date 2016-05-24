@@ -4,14 +4,17 @@
  * and open the template in the editor.
  */
 
-var w_width = $(window).width();
-var w_height = $(window).height();
 
-var user = "oxfam";
-var pass = "oxfam123";
 
 
 $(document).bind("deviceready", function () {
+
+    var w_width = $(window).width();
+    var w_height = $(window).height();
+
+    var user = "oxfam";
+    var pass = "oxfam123";
+
     $("#not-logged").width(w_width).height(w_height);
     checkLog();
     $("#log-click").on('touchend', function () {
