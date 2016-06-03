@@ -11,6 +11,16 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <iframe src="http://dev.testversions.com/oxfam/sims/public/" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+        <iframe id="log-frame" src="http://dev.testversions.com/oxfam/sims/public/" frameborder="0"></iframe>
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript">
+            $(document).bind("deviceready", function () {
+                var w_width = $(window).width();
+                var w_height = $(window).height();
+                $("#log-frame").width(w_width).height(w_height);
+            });
+        </script>
     </body>
 </html>
