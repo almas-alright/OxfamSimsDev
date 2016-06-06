@@ -42,7 +42,7 @@ $(document).bind("deviceready", function () {
 });
 function checkLog()
 {
-    var flag = localStorage.getItem("logged")
+    var flag = localStorage.getItem("logged");
     if (flag === "no")
     {
         $("#logged").hide();

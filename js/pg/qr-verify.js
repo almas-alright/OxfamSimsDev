@@ -21,6 +21,9 @@ function startScan() {
                         "Format: " + result.format + "<br/>" +
                         "Cancelled: " + result.cancelled;
                 resultDiv.innerHTML = s;
+                window.localStorage.setItem("bid", result.text);
+                
+                window.location = "test-version-dist-remote.html"
             },
             function (error) {
                 alert("Scanning failed: " + error);

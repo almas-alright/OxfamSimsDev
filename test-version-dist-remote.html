@@ -11,8 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        
-        <iframe id="log-frame" src="http://dev.testversions.com/oxfam/sims/public/dashboard/distributions/distribute?id=8" frameborder="0"></iframe>
+        <iframe id="log-frame" src="#" frameborder="0"></iframe>
 
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
@@ -20,7 +19,11 @@ and open the template in the editor.
             $(document).bind("deviceready", function () {
                 var w_width = $(window).width();
                 var w_height = $(window).height();
+                var b_id = localStorage.getItem("bid");
                 $("#log-frame").width(w_width).height(w_height);
+
+                $("#log-frame").attr("src", "http://dev.testversions.com/oxfam/sims/public/dashboard/distributions/distribute?id="+b_id);
+                
             });
         </script>
     </body>
