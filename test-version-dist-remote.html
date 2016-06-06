@@ -9,8 +9,8 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
+
+
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -19,14 +19,14 @@ and open the template in the editor.
     </head>
     <body>
         <iframe id="log-frame" src="" frameborder="0"></iframe>
-        <div class="row">
+        <div id="prompt" class="row">
             <div class="col-sm-12">
 
                 <p class="text-center">
                     <button id="button" class="btn btn-info waves-effect waves-light">Check</button>
                 </p>
                 <p id="d"></p>
-                
+
 
             </div>
         </div>
@@ -37,11 +37,12 @@ and open the template in the editor.
                 var w_width = $(window).width();
                 var w_height = $(window).height();
                 var b_id = localStorage.getItem("bid");
-                $("#d").html("http://dev.testversions.com/oxfam/sims/public/dashboard/distributions/distribute?id=" + b_id);
+//                $("#d").html("http://dev.testversions.com/oxfam/sims/public/dashboard/distributions/distribute?id=" + b_id);
 
                 $("#button").click(function () {
                     $("#log-frame").width(w_width).height(w_height);
                     $("#log-frame").attr("src", "http://dev.testversions.com/oxfam/sims/public/dashboard/distributions/distribute?id=" + b_id);
+                    $("#prompt").hide();
                 });
 
 
