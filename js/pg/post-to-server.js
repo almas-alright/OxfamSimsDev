@@ -68,8 +68,9 @@ $(document).bind("deviceready", function () {
         $("#result").html(msg);
     });
 
-    $('.list-group-item').on('touchend', function () {        
+    $('.list-group-item').on('click', function () {        
         alert($(this).attr('data-bid'));
+        
     });
 
 });
