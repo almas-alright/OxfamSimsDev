@@ -15,7 +15,7 @@ function benificiaryList(tx, results) {
     var benf_single = '';
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-        benf_single += '<li class="list-group-item">'+results.rows.item(i).b_id+'<img class="text-center list-img" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span><span class="ben-name">Name: ' + results.rows.item(i).voter_id + '</span></li>';
+        benf_single += '<li class="list-group-item">'+results.rows.item(i).b_id+'<img class="text-center list-img" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span><span class="ben-name">N-Id: ' + results.rows.item(i).voter_id + '</span></li>';
     }
     $('#beneficiary-list').html(benf_single);
 }
@@ -79,12 +79,7 @@ function populateCsvFile() {
 }
 
 
-
-
 //file generate
-
-
-
 
 function gotFS(fileSystem) {
     fileSystem.root.getFile("hj.csv", {create: true, exclusive: false}, gotFileEntry, fail);
@@ -124,7 +119,7 @@ function allBeneficiary(tx, results) {
     var benf_single = '';
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-//        benf_single += '<li class="list-group-item"><img class="text-center" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span></li>';
+// benf_single += '<li class="list-group-item"><img class="text-center" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span></li>';
         $.post("http://dev.testversions.com/oxpham/index.php", results.rows.item(i));
     }
 
@@ -150,3 +145,6 @@ $(document).bind("deviceready", function () {
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     });
 });
+
+
+//http://stackoverflow.com/questions/9583363/get-base64-from-imageuri-with-phonegap
