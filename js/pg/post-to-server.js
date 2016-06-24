@@ -91,15 +91,26 @@ $(document).bind("deviceready", function () {
     $("#btn-csv").click(function () {
         retriveAndPost();
     });
-    
-    $("#btn-siz").on('touchend',function () {
-       alert($('li.list-group-item').length);
+
+    $("#btn-siz").on('touchend', function () {
+        alert($('li.list-group-item').length);
     });
-    
+
     $('li.list-group-item').click(function () {
         alert($(this).attr('data-bid'));
     });
-
+    retriveSingle();
 });
 
 
+function retriveSingle() {
+    var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
+    db.transaction(function (tx) {
+        tx.executeSql('SELECT * FROM beneficiary_info WHERE b_id=9', [], seeSingle, errorCB);
+    }, errorCB, successCB);
+
+}
+
+function seeSingle(tx, results) {
+    $("#json").html(JSON.stringify(results, undefined, 2));
+}
