@@ -111,5 +111,5 @@ function retriveSingle() {
 }
 
 function seeSingle(tx, results) {
-    $("#json").html(results.rows.item(0).national_id_image+"  "+results.rows.item(0).name);
+    $("#json").html(results);
 }
