@@ -108,9 +108,8 @@ function retriveSingle() {
     db.transaction(function (tx) {
         tx.executeSql('SELECT * FROM beneficiary_info WHERE b_id=9', [], seeSingle, errorCB);
     }, errorCB, successCB);
-
 }
 
 function seeSingle(tx, results) {
-    $("#json").html(JSON.stringify(results, undefined, 2));
+    $("#json").html(results.rows.item(0).national_id_image+"  "+results.rows.item(0).name);
 }
