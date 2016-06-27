@@ -111,5 +111,5 @@ function retriveSingle() {
 }
 
 function seeSingle(tx, results) {
-    $("#json").html(results);
+    $("#json").html(results.rows.item(0).mother+"  "+results.mother+"  "+results.rows.item("0").mother );
 }
