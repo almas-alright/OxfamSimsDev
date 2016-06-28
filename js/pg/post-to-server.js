@@ -41,7 +41,7 @@ function exportAll(tx, results) {
     for (var i = 0; i < len; i++) {
         $.ajax({
             method: "POST",
-            url: "http://dev.testversions.com/oxfam/json-export.php",
+            url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
             data: {
                 project_id: results.rows.item(i).project_id,
                 office_id: results.rows.item(i).office_id,
@@ -89,7 +89,8 @@ $(document).bind("deviceready", function () {
     populateBeneficiaryList();
 
     $("#btn-csv").click(function () {
-        retriveAndPost();
+//        retriveAndPost();
+        alert("Wait");
     });
 
     $("#btn-siz").on('touchend', function () {
@@ -111,14 +112,66 @@ function retriveSingle() {
 }
 
 function seeSingle(tx, results) {
-     var len = results.rows.length;
+    var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-        $("#json").html(results.rows.item(i).benificiary_name+"   "+results.rows.item(i).mother );
+        $("#json").html(results.rows.item(i).b_id + "  " + results.rows.item(i).benificiary_name + "   " + results.rows.item(i).mothers_name);
+        $.ajax({
+            method: "POST",
+            url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
+            data: {
+                project_id: results.rows.item(i).project_id,
+                office_id: results.rows.item(i).office_id,
+                beneficiary_id: results.rows.item(i).b_id,
+                group: results.rows.item(i).group_name,
+                name: results.rows.item(i).benificiary_name,
+                father: results.rows.item(i).fathers_name,
+                mother: results.rows.item(i).mothers_name,
+                union: results.rows.item(i).union_name,
+                ward: results.rows.item(i).word,
+                address: results.rows.item(i).address,
+                mobile_no: results.rows.item(i).mobile,
+                voter_id: results.rows.item(i).voter_id,
+                nominee_name: results.rows.item(i).nominee_name,
+                nominee_relation: results.rows.item(i).relation,
+                nominee_father: "Sariful Nominee Father",
+                nominee_mother: "Sariful Nominee Mother",
+                nominee_photo: results.rows.item(i).nominee_img,
+                lat: results.rows.item(i).location_gps,
+                lng: results.rows.item(i).location_gps,
+                national_id_image: "beneficiaries\/85814_nid-front.jpg",
+                national_id_image_back: "beneficiaries\/77953_nid-back.png",
+                beneficiary_photo: "beneficiaries\/22462_rahima.jpg",
+                updated_at: "",
+                created_at: "",
+                id: ""
+            }
+        }).done(function (msg) {
+             sendUpdate(results.rows.item(i).b_id)
+            $("#result3").append(results.rows.item(i).b_id + '||');
+            $("#result").html(msg);
+            
+        });
     }
-    
+
 }
 
 function alertDownQ()
 {
     alert("Export Query Fail");
+}
+
+function alertDownUpdate()
+{
+    alert("Update Query Fail");
+}
+
+function sendUpdate(bnf_id) {
+    var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
+    db.transaction(
+            function (tx) {
+                console.log(bnf_id);
+                tx.executeSql('UPDATE beneficiary_info SET status="1" WHERE b_id=' + bnf_id);
+            }, alertDownUpdate, function () {
+        console.log('status updated' + bnf_id);
+    });
 }
