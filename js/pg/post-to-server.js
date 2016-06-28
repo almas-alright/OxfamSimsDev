@@ -16,9 +16,20 @@ function benificiaryList(tx, results) {
     var benf_single = '';
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-        benf_single += '<li class="list-group-item" data-bid="' + results.rows.item(i).b_id + '">' + results.rows.item(i).b_id + '<img class="text-center list-img" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span><span class="ben-name">N-Id: ' + results.rows.item(i).voter_id + '</span></li>';
+        benf_single += '<li class="list-group-item" data-bid="' + results.rows.item(i).b_id + '">' + results.rows.item(i).b_id + '<img class="text-center list-img" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span><span class="ben-name">N-Id: ' + results.rows.item(i).voter_id + '</span>'+showStatus(results.rows.item(i).status)+'</li>';
     }
     $('#beneficiary-list').html(benf_single);
+}
+
+function showStatus(flag)
+{
+    if(flag == "0")
+    {
+        return '<hr><strong style="color:#EE2D24">Not Done</strong>';
+    } else 
+    {
+        return '<hr><strong style="color:#63D414">Done</strong>';
+    }
 }
 
 function populateBeneficiaryList() {
@@ -170,7 +181,7 @@ function sendUpdate(bnf_id) {
     db.transaction(
             function (tx) {
                 console.log(bnf_id);
-                tx.executeSql('UPDATE beneficiary_info SET status="1" WHERE b_id=' + bnf_id);
+                tx.executeSql('UPDATE beneficiary_info SET status=1 WHERE b_id=' + bnf_id);
             }, alertDownUpdate, function () {
         console.log('status updated' + bnf_id);
     });
