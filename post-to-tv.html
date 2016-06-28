@@ -21,12 +21,12 @@ and open the template in the editor.
                 var data = {
                     project_id: 1,
                     office_id: 2,
-                    beneficiary_id: "BEN1223",
+                    beneficiary_id: "BEN1355",
                     group: "Group",
                     name: "Shibly",
                     father: "Rahim Father",
                     mother: "Rahim Mother",
-                    union: 3,
+                    union: 123,
                     ward: "Poba",
                     address: "Dhaka Bangladesh",
                     mobile_no: "01613404299",
@@ -49,10 +49,10 @@ and open the template in the editor.
 
                 $.ajax({
                     method: "POST",
-                    url: "http://dev.testversions.com/oxfam/sims/public/site/requestBenInfo",
+                    url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
                     data: data
                 }).done(function (msg) {
-                    $("#result").html(msg.project_id+"   "+msg.nominee_photo);
+                    $("#result").html(msg.success+" "+msg.error);
                 });
             });
 

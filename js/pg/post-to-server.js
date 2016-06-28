@@ -106,10 +106,19 @@ $(document).bind("deviceready", function () {
 function retriveSingle() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
     db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM beneficiary_info WHERE b_id=9', [], seeSingle, errorCB);
-    }, errorCB, successCB);
+        tx.executeSql('SELECT * FROM beneficiary_info WHERE status=0 LIMIT 1', [], seeSingle, alertDownQ);
+    }, alertDownQ, successCB);
 }
 
 function seeSingle(tx, results) {
-    $("#json").html(results.rows.item(0).mother+"  "+results.mother+"  "+results.rows.item("0").mother );
+     var len = results.rows.length;
+    for (var i = 0; i < len; i++) {
+        $("#json").html(results.rows.item(i).benificiary_name+"   "+results.rows.item(i).mother );
+    }
+    
+}
+
+function alertDownQ()
+{
+    alert("Export Query Fail");
 }

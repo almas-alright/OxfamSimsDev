@@ -31,8 +31,9 @@ var data ={
 
 $.ajax({
   method: "POST",
-  url: "http://dev.testversions.com/oxfam/sims/public/site/requestBenInfo",
-  data: data
+  url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
+  data: data,
+  crossDomain: true,
 }).done(function( msg ) {
 //    alert( "Data Saved: " + msg );
 $("#result").html(msg);
