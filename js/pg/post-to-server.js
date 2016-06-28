@@ -125,7 +125,7 @@ function retriveSingle() {
 function seeSingle(tx, results) {
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-        $("#json").html(results.rows.item(i).b_id + "  " + results.rows.item(i).benificiary_name + "   " + results.rows.item(i).mothers_name);
+//        $("#json").html(results.rows.item(i).b_id + "  " + results.rows.item(i).benificiary_name + "   " + results.rows.item(i).mothers_name);
         $.ajax({
             method: "POST",
             url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
@@ -157,9 +157,10 @@ function seeSingle(tx, results) {
                 id: ""
             }
         }).done(function (msg) {
-             sendUpdate(results.rows.item(i).b_id)
-            $("#result3").append(results.rows.item(i).b_id + '||');
-            $("#result").html(msg);
+            sendUpdate(results.rows.item(i).b_id)
+//            $("#result3").append(results.rows.item(i).b_id + '||');
+//            $("#result").html(msg);
+
             
         });
     }
@@ -183,6 +184,6 @@ function sendUpdate(bnf_id) {
                 console.log(bnf_id);
                 tx.executeSql('UPDATE beneficiary_info SET status=1 WHERE b_id=' + bnf_id);
             }, alertDownUpdate, function () {
-        console.log('status updated' + bnf_id);
+        alert('status updated' + bnf_id);
     });
 }
