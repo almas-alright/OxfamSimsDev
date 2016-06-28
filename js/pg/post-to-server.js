@@ -117,9 +117,9 @@ $(document).bind("deviceready", function () {
 
 function retriveSingle() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
-    db.transaction(function (tx) {
+    db.transaction(function (tx){
         tx.executeSql('SELECT * FROM beneficiary_info WHERE status=0 LIMIT 1', [], seeSingle, alertDownQ);
-    }, alertDownQ, successCB);
+    }, alertDownQ, function(){ alert("Uploading Done"); });
 }
 
 function seeSingle(tx, results) {
@@ -158,10 +158,8 @@ function seeSingle(tx, results) {
             }
         }).done(function (msg) {
             sendUpdate(results.rows.item(i).b_id)
-//            $("#result3").append(results.rows.item(i).b_id + '||');
-//            $("#result").html(msg);
-
-            
+            $("#result3").append(results.rows.item(i).b_id + '||');
+            $("#result").html(msg);            
         });
     }
 
