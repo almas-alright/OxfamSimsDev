@@ -124,31 +124,31 @@ function retriveSingle() {
 
 function seeSingle(tx, results) {
     var len = results.rows.length;
-    for (var i = 0; i < len; i++) {
+//    for (var i = 0; i < len; i++) {
 //        $("#json").html(results.rows.item(i).b_id + "  " + results.rows.item(i).benificiary_name + "   " + results.rows.item(i).mothers_name);
         $.ajax({
             method: "POST",
             url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
             data: {
-                project_id: results.rows.item(i).project_id,
-                office_id: results.rows.item(i).office_id,
-                beneficiary_id: results.rows.item(i).b_id,
-                group: results.rows.item(i).group_name,
-                name: results.rows.item(i).benificiary_name,
-                father: results.rows.item(i).fathers_name,
-                mother: results.rows.item(i).mothers_name,
-                union: results.rows.item(i).union_name,
-                ward: results.rows.item(i).word,
-                address: results.rows.item(i).address,
-                mobile_no: results.rows.item(i).mobile,
-                voter_id: results.rows.item(i).voter_id,
-                nominee_name: results.rows.item(i).nominee_name,
-                nominee_relation: results.rows.item(i).relation,
+                project_id: results.rows.item(0).project_id,
+                office_id: results.rows.item(0).office_id,
+                beneficiary_id: results.rows.item(0).b_id,
+                group: results.rows.item(0).group_name,
+                name: results.rows.item(0).benificiary_name,
+                father: results.rows.item(0).fathers_name,
+                mother: results.rows.item(0).mothers_name,
+                union: results.rows.item(0).union_name,
+                ward: results.rows.item(0).word,
+                address: results.rows.item(0).address,
+                mobile_no: results.rows.item(0).mobile,
+                voter_id: results.rows.item(0).voter_id,
+                nominee_name: results.rows.item(0).nominee_name,
+                nominee_relation: results.rows.item(0).relation,
                 nominee_father: "Sariful Nominee Father",
                 nominee_mother: "Sariful Nominee Mother",
-                nominee_photo: results.rows.item(i).nominee_img,
-                lat: results.rows.item(i).location_gps,
-                lng: results.rows.item(i).location_gps,
+                nominee_photo: results.rows.item(0).nominee_img,
+                lat: results.rows.item(0).location_gps,
+                lng: results.rows.item(0).location_gps,
                 national_id_image: "beneficiaries\/85814_nid-front.jpg",
                 national_id_image_back: "beneficiaries\/77953_nid-back.png",
                 beneficiary_photo: "beneficiaries\/22462_rahima.jpg",
@@ -157,11 +157,12 @@ function seeSingle(tx, results) {
                 id: ""
             }
         }).done(function (msg) {
-            sendUpdate(results.rows.item(i).b_id)
-            $("#result3").append(results.rows.item(i).b_id + '||');
+            alert("dddd");
+            sendUpdate(results.rows.item(0).b_id);
+            $("#result3").append(results.rows.item(0).b_id + '||');
             $("#result").html(msg);            
         });
-    }
+//    }
 
 }
 
