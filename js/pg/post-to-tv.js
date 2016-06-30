@@ -29,13 +29,37 @@ var data ={
 };
 
 
-$.ajax({
-  method: "POST",
-  url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
-  data: data,
-  crossDomain: true,
-}).done(function( msg ) {
-//    alert( "Data Saved: " + msg );
-$("#result").html(msg);
-});
+//$.ajax({
+//  method: "POST",
+//  url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
+//  data: data,
+//  crossDomain: true,
+//}).done(function( msg ) {
+//$("#result").html(msg);
+//});
+
+
+
+
+
+function base64(file, callback){
+  var coolFile = {};
+  function readerOnload(e){
+    var base64 = btoa(e.target.result);
+    coolFile.base64 = base64;
+    callback(coolFile)
+  };
+
+  var reader = new FileReader();
+  reader.onload = readerOnload;
+
+  var file = file[0].files[0];
+  coolFile.filetype = file.type;
+  coolFile.size = file.size;
+  coolFile.filename = file.name;
+  reader.readAsBinaryString(file);
+}
+
+base64( $('https://support.files.wordpress.com/2009/07/pigeony.jpg?w=688'), function(data){ console.log(data.base64)});
+
 });

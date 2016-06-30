@@ -25,10 +25,10 @@ function showStatus(flag)
 {
     if(flag == "0")
     {
-        return '<hr><strong style="color:#EE2D24">Not Done</strong>';
+        return '<hr><strong class="red" style="color:#EE2D24">Not Done</strong>';
     } else 
     {
-        return '<hr><strong style="color:#63D414">Done</strong>';
+        return '<hr><strong class="green" style="color:#63D414">Done</strong>';
     }
 }
 
@@ -42,59 +42,6 @@ function populateBeneficiaryList() {
 // list end
 
 
-
-
-
-
-function exportAll(tx, results) {
-    var benf_single = '';
-    var len = results.rows.length;
-    for (var i = 0; i < len; i++) {
-        $.ajax({
-            method: "POST",
-            url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
-            data: {
-                project_id: results.rows.item(i).project_id,
-                office_id: results.rows.item(i).office_id,
-                beneficiary_id: results.rows.item(i).b_id,
-                group: results.rows.item(i).group_name,
-                name: results.rows.item(i).benificiary_name,
-                father: results.rows.item(i).fathers_name,
-                mother: results.rows.item(i).mothers_name,
-                union: results.rows.item(i).union_name,
-                ward: results.rows.item(i).word,
-                address: results.rows.item(i).address,
-                mobile_no: results.rows.item(i).mobile,
-                voter_id: results.rows.item(i).voter_id,
-                nominee_name: results.rows.item(i).nominee_name,
-                nominee_relation: results.rows.item(i).relation,
-                nominee_father: "Sariful Nominee Father",
-                nominee_mother: "Sariful Nominee Mother",
-                nominee_photo: results.rows.item(i).nominee_img,
-                lat: results.rows.item(i).location_gps,
-                lng: results.rows.item(i).location_gps,
-                national_id_image: "beneficiaries\/85814_nid-front.jpg",
-                national_id_image_back: "beneficiaries\/77953_nid-back.png",
-                beneficiary_photo: "beneficiaries\/22462_rahima.jpg",
-                updated_at: "",
-                created_at: "",
-                id: ""
-            }
-        }).done(function (msg) {
-
-            $("#result3").append(results.rows.item(i).b_id + '||');
-            $("#result").html(msg);
-        });
-    }
-}
-
-function retriveAndPost() {
-    var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
-    db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM beneficiary_info ORDER BY b_id DESC', [], exportAll, errorCB);
-    }, errorCB, successCB);
-
-}
 
 $(document).bind("deviceready", function () {
     populateBeneficiaryList();
@@ -111,7 +58,15 @@ $(document).bind("deviceready", function () {
     $('li.list-group-item').click(function () {
         alert($(this).attr('data-bid'));
     });
+    
     retriveSingle();
+    
+    
+    var total = $(".list-group-item").length;
+    var red = $(".red").length;
+    var green = $(".green").length;    
+    $("#result3").html("red:"+red+"   green:"+green+"  total:"+total );
+    
 });
 
 
@@ -132,7 +87,7 @@ function seeSingle(tx, results) {
             data: {
                 project_id: results.rows.item(0).project_id,
                 office_id: results.rows.item(0).office_id,
-                beneficiary_id: results.rows.item(0).b_id,
+                beneficiary_id: results.rows.item(0).select_id,
                 group: results.rows.item(0).group_name,
                 name: results.rows.item(0).benificiary_name,
                 father: results.rows.item(0).fathers_name,
@@ -156,11 +111,11 @@ function seeSingle(tx, results) {
                 created_at: "",
                 id: ""
             }
-        }).done(function (msg) {
-            alert("dddd");
+        }).done(function (msg) {      
             sendUpdate(results.rows.item(0).b_id);
-            $("#result3").append(results.rows.item(0).b_id + '||');
-            $("#result").html(msg);            
+            $("#result3").append(results.rows.item(0).b_id +" updated");
+            $("#result").html(msg);  
+            window.location.reload();
         });
 //    }
 
