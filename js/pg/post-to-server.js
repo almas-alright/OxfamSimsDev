@@ -16,7 +16,8 @@ function benificiaryList(tx, results) {
     var benf_single = '';
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-        benf_single += '<li class="list-group-item" data-bid="' + results.rows.item(i).b_id + '">' + results.rows.item(i).b_id + '<img class="text-center list-img" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span><span class="ben-name">N-Id: ' + results.rows.item(i).voter_id + '</span>'+showStatus(results.rows.item(i).status)+'</li>';
+//        benf_single += '<li class="list-group-item" data-bid="' + results.rows.item(i).b_id + '">' + results.rows.item(i).b_id + '<img class="text-center list-img" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span><span class="ben-name">N-Id: ' + results.rows.item(i).voter_id + '</span>'+showStatus(results.rows.item(i).status)+'</li>';
+        benf_single += '<li class="list-group-item" data-bid="' + results.rows.item(i).b_id + '">' + results.rows.item(i).b_id + '<span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span><span class="ben-name">N-Id: ' + results.rows.item(i).voter_id + '</span>'+showStatus(results.rows.item(i).status)+'</li>';
     }
     $('#beneficiary-list').html(benf_single);
 }
@@ -59,15 +60,9 @@ $(document).bind("deviceready", function () {
         alert($(this).attr('data-bid'));
     });
     
-    retriveSingle();
+    retriveSingle();   
     
-    
-    var total = parseInt($(".list-group-item").length);
-    var red = parseInt($(".red").length);
-    var green = parseInt($(".green").length);    
-    $("#result3").html("left:"+red+"   uploaded :"+green+"  total:"+total );
-    var percentageUp = (green/total)*100;
-    $("#pb").width(percentageUp+"%");
+   
     
 });
 
@@ -125,12 +120,20 @@ function seeSingle(tx, results) {
 
 function alertDownQ()
 {
-    alert("Export Query Fail");
+    //alert("Export Query Fail");
 }
 
 function alertDownUpdate()
 {
-    alert("Update Query Fail");
+    //alert("Update Query Fail");
+    
+    var total = parseInt($(".list-group-item").length);
+    var red = parseInt($(".red").length);
+    var green = parseInt($(".green").length);    
+    $("#result3").html("left:"+red+"   uploaded :"+green+"  total:"+total );
+    var percentageUp = (green/total)*100;
+    $("#pb").width(percentageUp+"%");
+    $("#ttp").html("Uploading... "+percentageUp+"% Complete")
 }
 
 function sendUpdate(bnf_id) {
