@@ -9,7 +9,7 @@ function errorCB(tx, err) {
 }
 
 function successCB() {
-    alert("success!");
+//    alert("success!");
 }
 
 function benificiaryList(tx, results) {
@@ -71,7 +71,7 @@ function retriveSingle() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
     db.transaction(function (tx){
         tx.executeSql('SELECT * FROM beneficiary_info WHERE status=0 LIMIT 1', [], seeSingle, alertDownQ);
-    }, alertDownQ, function(){ alert("Uploading Done"); });
+    }, alertDownQ, alertDownUpdate);
 }
 
 function seeSingle(tx, results) {
@@ -120,7 +120,7 @@ function seeSingle(tx, results) {
 
 function alertDownQ()
 {
-    //alert("Export Query Fail");
+    alert("Export Query Fail");
 }
 
 function alertDownUpdate()
