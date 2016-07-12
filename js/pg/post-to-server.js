@@ -62,10 +62,12 @@ $(document).bind("deviceready", function () {
     retriveSingle();
     
     
-    var total = $(".list-group-item").length;
-    var red = $(".red").length;
-    var green = $(".green").length;    
-    $("#result3").html("red:"+red+"   green:"+green+"  total:"+total );
+    var total = parseInt($(".list-group-item").length);
+    var red = parseInt($(".red").length);
+    var green = parseInt($(".green").length);    
+    $("#result3").html("left:"+red+"   uploaded :"+green+"  total:"+total );
+    var percentageUp = (green/total)*100;
+    $("#pb").width(percentageUp+"%");
     
 });
 
