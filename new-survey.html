@@ -10,9 +10,9 @@
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <!--<link href="css/mdb.min.css" rel="stylesheet">-->
+        <link href="css/mdb.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-        
+
         <style type="text/css">
             .pg-bg{background: #98cb00;}
             .center-img{ width: 20%; margin: 45% auto !important; border: 1px transparent solid; text-align: center; }
@@ -22,7 +22,7 @@
     <body class="pg-bg">
 
         <!-- SideNav slide-out button -->
-        <a href="#" data-activates="slide-out" class="navbar-brand button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#" data-activates="slide-out" class="navbar-brand button-collapse"><i class="material-icons"></i></a>
         <!--/. SideNav slide-out button -->
 
         <!-- Sidebar navigation -->
@@ -93,6 +93,7 @@
         </div>
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/mdb.min.js"></script>
         <script type="text/javascript">
             $(document).bind("deviceready", function () {
                 $("body").addClass("pg-bg");
@@ -118,6 +119,11 @@
 //                    alert(event.type);
 //                }); 
             });
+
+            // Initialize collapse button
+            $(".button-collapse").sideNav();
+            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+            $('.collapsible').collapsible();
         </script>
 
     </body>
