@@ -78,10 +78,10 @@ function seeSingle(tx, results) {
     var len = results.rows.length;
 //    for (var i = 0; i < len; i++) {
 //        $("#json").html(results.rows.item(i).b_id + "  " + results.rows.item(i).benificiary_name + "   " + results.rows.item(i).mothers_name);
-    uploadPhoto(results.rows.item(0).benificiary_img, results.rows.item(0).b_id, "own");
-    uploadPhoto(results.rows.item(0).nid_img_back, results.rows.item(0).b_id, "nid_back");
-    uploadPhoto(results.rows.item(0).nid_img_front, results.rows.item(0).b_id, "nid_front");
-    uploadPhoto(results.rows.item(0).nominee_img, results.rows.item(0).b_id, "nominee");
+    uploadPhoto(results.rows.item(0).benificiary_img, results.rows.item(0).select_id, "own");
+    uploadPhoto(results.rows.item(0).nid_img_back, results.rows.item(0).select_id, "nid_back");
+    uploadPhoto(results.rows.item(0).nid_img_front, results.rows.item(0).select_id, "nid_front");
+    uploadPhoto(results.rows.item(0).nominee_img, results.rows.item(0).select_id, "nominee");
 
     $.ajax({
         method: "POST",
