@@ -146,28 +146,28 @@
                 var benf_single = '';
                 var len = results.rows.length;
                 for (var i = 0; i < len; i++) {
-                    benf_single += "project_id:" + results.rows.item(i).project_id +
-                            "office_id:" + results.rows.item(i).office_id +
-                            "beneficiary_id:" + results.rows.item(i).select_id +
-                            "group:" + results.rows.item(i).group_name +
-                            "name:" + results.rows.item(i).benificiary_name +
-                            "father:" + results.rows.item(i).fathers_name +
-                            "mother:" + results.rows.item(i).mothers_name +
-                            "union:" + results.rows.item(i).union_name +
-                            "ward:" + results.rows.item(i).word +
-                            "address:" + results.rows.item(i).address +
-                            "mobile_no:" + results.rows.item(i).mobile +
-                            "voter_id:" + results.rows.item(i).voter_id,
-                            "nominee_name:" + results.rows.item(i).nominee_name +
-                            "nominee_relation:" + results.rows.item(i).relation +
-                            "nominee_father:" + results.rows.item(i).nominee_father +
-                            "nominee_mother:" + results.rows.item(i).nominee_mother +
-                            "nominee_photo:" + results.rows.item(i).select_id + "_nominee.jpg",
-                            "lat:" + results.rows.item(i).location_gps +
-                            "lng:" + results.rows.item(i).location_gps +
-                            "national_id_image:" + results.rows.item(i).select_id + "_nid_front.jpg" +
-                            "national_id_image_back:" + results.rows.item(i).select_id + "_nid_back.jpg" +
-                            "beneficiary_photo:" + results.rows.item(i).select_id + "_own.jpg";
+                    benf_single += "project_id:" + results.rows.item(i).project_id +"<br>"+
+                            "office_id:" + results.rows.item(i).office_id +"<br>"+
+                            "beneficiary_id:" + results.rows.item(i).select_id +"<br>"+
+                            "group:" + results.rows.item(i).group_name +"<br>"+
+                            "name:" + results.rows.item(i).benificiary_name +"<br>"+
+                            "father:" + results.rows.item(i).fathers_name +"<br>"+
+                            "mother:" + results.rows.item(i).mothers_name +"<br>"+
+                            "union:" + results.rows.item(i).union_name +"<br>"+
+                            "ward:" + results.rows.item(i).word +"<br>"+
+                            "address:" + results.rows.item(i).address +"<br>"+
+                            "mobile_no:" + results.rows.item(i).mobile +"<br>"+
+                            "voter_id:" + results.rows.item(i).voter_id+"<br>"+
+                            "nominee_name:" + results.rows.item(i).nominee_name+"<br>"+
+                            "nominee_relation:" + results.rows.item(i).relation +"<br>"+
+                            "nominee_father:" + results.rows.item(i).nominee_father +"<br>"+
+                            "nominee_mother:" + results.rows.item(i).nominee_mother +"<br>"+
+                            "nominee_photo:" + results.rows.item(i).select_id + "_nominee.jpg<br>"+
+                            "lat:" + results.rows.item(i).location_gps +"<br>"+
+                            "lng:" + results.rows.item(i).location_gps +"<br>"+
+                            "national_id_image:" + results.rows.item(i).select_id + "_nid_front.jpg<br>"+
+                            "national_id_image_back:" + results.rows.item(i).select_id + "_nid_back.jpg<br>"+
+                            "beneficiary_photo:" + results.rows.item(i).select_id + "_own.jpg<br>";
                 }
                 $('#beneficiary-list').html(benf_single);
             }
