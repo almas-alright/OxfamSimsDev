@@ -112,7 +112,10 @@ $(document).bind("deviceready", function () {
 
     populateBeneficiaryList();
     
-    $("#beneficiary-list").on('click', "li.list-group-item a", function(){ alert("dsdsdsd"); });
+    $("#beneficiary-list").on('click', "li.list-group-item a", function(){ 
+        var ffid = $(this).attr('data-bid');
+        alert("dsdsdsd"+ffid); 
+    });
     
     $("#btn-csv").click(function () {
         postAllData();
