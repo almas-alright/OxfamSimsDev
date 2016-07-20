@@ -16,10 +16,11 @@ function benificiaryList(tx, results) {
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
         benf_single += '<li class="list-group-item">'+results.rows.item(i).b_id+
+                '<a href="#" data-bid="'+results.rows.item(i).b_id+'"><span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span>'+
                 '<img class="text-center list-img" src="' + results.rows.item(i).benificiary_img + '" alt="">'+
                 '<img class="text-center list-img" src="' + results.rows.item(i).nominee_img + '" alt="">'+
                 '<img class="text-center list-img" src="' + results.rows.item(i).nid_img_front + '" alt="">'+
-                '<img class="text-center list-img" src="' + results.rows.item(i).nid_img_back + '" alt="">'+
+                '<img class="text-center list-img" src="' + results.rows.item(i).nid_img_back + '" alt=""></a>'+
                 '</li>';
     }
     $('#beneficiary-list').html(benf_single);
