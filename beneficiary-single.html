@@ -162,12 +162,12 @@
                             "nominee_relation:" + results.rows.item(i).relation +"<br>"+
                             "nominee_father:" + results.rows.item(i).nominee_father +"<br>"+
                             "nominee_mother:" + results.rows.item(i).nominee_mother +"<br>"+
-                            "nominee_photo:" + results.rows.item(i).select_id + "_nominee.jpg<br>"+
+                            "nominee_photo:" + results.rows.item(i).nominee_img + "<br>"+
                             "lat:" + results.rows.item(i).location_gps +"<br>"+
                             "lng:" + results.rows.item(i).location_gps +"<br>"+
-                            "national_id_image:" + results.rows.item(i).select_id + "_nid_front.jpg<br>"+
-                            "national_id_image_back:" + results.rows.item(i).select_id + "_nid_back.jpg<br>"+
-                            "beneficiary_photo:" + results.rows.item(i).select_id + "_own.jpg<br>";
+                            "national_id_image:" + results.rows.item(i).nid_img_front + "<br>"+
+                            "national_id_image_back:" + results.rows.item(i).nid_img_back + "<br>"+
+                            "beneficiary_photo:" + results.rows.item(i).benificiary_img + "<br>";
                 }
                 $('#beneficiary-list').html(benf_single);
             }

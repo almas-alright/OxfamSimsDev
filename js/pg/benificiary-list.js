@@ -105,13 +105,21 @@ function postAllData() {
 
 }
 
+function deleteClr() {
+    var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
+    db.transaction(function (tx) {
+        tx.executeSql('DELETE * FROM beneficiary_info', [], successCB, errorCB);
+    }, errorCB, successCB);
+
+}
+
 
 //// jquery pg
 
 $(document).bind("deviceready", function () {
 
     populateBeneficiaryList();
-    
+    $("#delete").click( function(){ deleteClr(); location.reload();  });
     $("#beneficiary-list").on('click', "li.list-group-item a", function(){ 
         var ffid = $(this).attr('data-bid');
 //        alert("dsdsdsd"+ffid); 
