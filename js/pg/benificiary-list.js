@@ -111,7 +111,9 @@ function postAllData() {
 $(document).bind("deviceready", function () {
 
     populateBeneficiaryList();
-    $("#beneficiary-list").on('click', "#beneficiary-list li a", function(){ alert($(this).attr("data-bid")); });
+    
+    $("#beneficiary-list").on('click', "li.list-group-item a", function(){ alert("dsdsdsd"); });
+    
     $("#btn-csv").click(function () {
         postAllData();
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
