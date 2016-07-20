@@ -114,7 +114,9 @@ $(document).bind("deviceready", function () {
     
     $("#beneficiary-list").on('click', "li.list-group-item a", function(){ 
         var ffid = $(this).attr('data-bid');
-        alert("dsdsdsd"+ffid); 
+//        alert("dsdsdsd"+ffid); 
+        window.localStorage.setItem("bid-temp", ffid)
+        window.location = "beneficiary-single.html";
     });
     
     $("#btn-csv").click(function () {
