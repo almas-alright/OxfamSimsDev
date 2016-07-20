@@ -180,7 +180,7 @@ function sendUpdate(bnf_id) {
                 console.log("Code = " + r.responseCode);
                 console.log("Response = " + r.response);
                 console.log("Sent = " + r.bytesSent);
-                //alert(r.response);
+                alert(r.response);
             }
 
             function fail(error) {

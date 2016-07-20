@@ -15,7 +15,12 @@ function benificiaryList(tx, results) {
     var benf_single = '';
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-        benf_single += '<li class="list-group-item">'+results.rows.item(i).b_id+'<img class="text-center list-img" src="' + results.rows.item(i).benificiary_img + '" alt=""> <a href="#" data-bid="'+results.rows.item(i).b_id+'"><span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span></a></li>';
+        benf_single += '<li class="list-group-item">'+results.rows.item(i).b_id+
+                '<img class="text-center list-img" src="' + results.rows.item(i).benificiary_img + '" alt="">'+
+                '<img class="text-center list-img" src="' + results.rows.item(i).nominee_img + '" alt="">'+
+                '<img class="text-center list-img" src="' + results.rows.item(i).nid_img_front + '" alt="">'+
+                '<img class="text-center list-img" src="' + results.rows.item(i).nid_img_back + '" alt="">'+
+                '</li>';
     }
     $('#beneficiary-list').html(benf_single);
 }
@@ -105,13 +110,19 @@ function postAllData() {
 
 }
 
-function deleteClr() {
+function db_init() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
-    db.transaction(function (tx) {
-        tx.executeSql('DELETE * FROM beneficiary_info', [], successCB, errorCB);
-    }, errorCB, successCB);
-
+    db.transaction(populateDB, errorCB, successCB_blank);
 }
+
+// Populate the database 
+//
+function populateDB(tx) {
+ tx.executeSql('DROP TABLE IF EXISTS beneficiary_info');
+tx.executeSql('CREATE TABLE IF NOT EXISTS beneficiary_info(b_id INTEGER PRIMARY KEY AUTOINCREMENT,select_id TEXT,project_id INT, office_id INT,group_name TEXT,benificiary_name TEXT,benificiary_img TEXT,voter_id TEXT,nid_img_front TEXT,nid_img_back TEXT,fathers_name TEXT,mothers_name TEXT,union_name TEXT,word TEXT,address TEXT,grnder TEXT,age TEXT,mobile TEXT,nominee_name TEXT,nominee_father TEXT,nominee_mother TEXT,relation TEXT,nominee_img TEXT,marital_sts TEXT,occupation TEXT,occupation_1 TEXT,occupation_2 TEXT,location_gps TEXT,status INT)');
+
+    
+  }
 
 
 //// jquery pg
@@ -119,7 +130,7 @@ function deleteClr() {
 $(document).bind("deviceready", function () {
 
     populateBeneficiaryList();
-    $("#delete").click( function(){ deleteClr(); location.reload();  });
+    $("#delete").click( function(){ db_init(); location.reload();  });
     $("#beneficiary-list").on('click', "li.list-group-item a", function(){ 
         var ffid = $(this).attr('data-bid');
 //        alert("dsdsdsd"+ffid); 
