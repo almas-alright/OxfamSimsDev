@@ -7,7 +7,7 @@ function errorCB(tx, err) {
 // Transaction success callback
 //
 function successCB() {
-    alert("success!");
+//    alert("success!");
 }
 
 
@@ -15,7 +15,7 @@ function benificiaryList(tx, results) {
     var benf_single = '';
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-        benf_single += '<li class="list-group-item">'+results.rows.item(i).b_id+'<img class="text-center list-img" src="' + results.rows.item(i).benificiary_img + '" alt=""> <span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span><span class="ben-name">N-Id: ' + results.rows.item(i).voter_id + '</span></li>';
+        benf_single += '<li class="list-group-item">'+results.rows.item(i).b_id+'<img class="text-center list-img" src="' + results.rows.item(i).benificiary_img + '" alt=""> <a href="#" data-bid="'+results.rows.item(i).b_id+'"><span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span></a></li>';
     }
     $('#beneficiary-list').html(benf_single);
 }
@@ -39,35 +39,7 @@ function dateTimeFileName() {
 }
 
 function linesForCsv() {
-//    var data = results.rows;
-//    var arrayR = $.map(data, function (value, index) {
-//        return [value];
-//    });
-//    var csvContent = "data:text/csv;charset=utf-8,";
-//    arrayR.forEach(function (infoArray, index) {
-//
-//        var dataString = infoArray.join(",");
-//        csvContent += index < arrayR.length ? dataString + "\n" : dataString;
-//
-//    });
 
-
-
-//    var data = [["name1", "city1", "some other info"], ["name2", "city2", "more info"]];
-//    var csvContent = "data:text/csv;charset=utf-8,";
-//    data.forEach(function (infoArray, index) {
-//
-//        var dataString = infoArray.join(",");
-//        csvContent += index < data.length ? dataString + "\n" : dataString;
-//
-//    });
-//
-//    var encodedUri = encodeURI(csvContent);
-//    var link = document.createElement("a");
-//    link.setAttribute("href", encodedUri);
-//    link.setAttribute("download", dateTimeFileName() + ".csv");
-//    $('#csv_data').html(csvContent);
-//    link.click();
 
 }
 
@@ -139,7 +111,7 @@ function postAllData() {
 $(document).bind("deviceready", function () {
 
     populateBeneficiaryList();
-
+    $("#beneficiary-list").on('click', "#beneficiary-list li a", function(){ alert($(this).attr("data-bid")); });
     $("#btn-csv").click(function () {
         postAllData();
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);

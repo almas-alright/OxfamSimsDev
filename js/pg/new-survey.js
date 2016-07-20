@@ -20,7 +20,7 @@ function onError(error) {
 
 function insertSuccess()
 {
-    window.location="beneficiary-list.html";
+    window.location = "beneficiary-list.html";
 }
 $(document).bind("deviceready", function () {
 
@@ -30,10 +30,10 @@ $(document).bind("deviceready", function () {
         var office_id = get_input_value_of("#select_id");
         var group = get_input_value_of("#response_by");
         var benificiary_name = get_input_value_of("#beneficiary_name");
-        var benificiary_img = getImgSrc("#benificiaryPhoto");
+        var benificiary_img = getImgSrc("#benificiaryPhoto"); //img
         var voter_id = get_input_value_of("#nid_num");
-        var nid_front_img = getImgSrc("#benificiaryPhoto");
-        var nid_back_img = getImgSrc("#benificiaryPhoto");
+        var nid_front_img = getImgSrc("#nid-front"); //img
+        var nid_back_img = getImgSrc("#nid-back"); //img
         var fathers_name = get_input_value_of("#fathers_name");
         var mothers_name = get_input_value_of("#mothers_name");
         var union_name = get_input_value_of("#union_name");
@@ -43,8 +43,10 @@ $(document).bind("deviceready", function () {
         var age = get_input_value_of("#age");
         var mobile_no = get_input_value_of("#mobile_no");
         var nominee_name = get_input_value_of("#nominee_name");
+        var nominee_father = get_input_value_of("#nominee_father");
+        var nominee_mother = get_input_value_of("#nominee_mother");
         var relation_with_nom = get_input_value_of("#relation_with_nom");
-        var nominee_img = getImgSrc("#nominee_img");
+        var nominee_img = getImgSrc("#nominee_img"); //img
         var marital_status = $("input:radio[name=married]").val();
         var occupation_main = get_input_value_of("#occupation_main");
         var occupation_2 = get_input_value_of("#occupation_2");
@@ -54,7 +56,7 @@ $(document).bind("deviceready", function () {
         //word, address, grnder, age, mobile, nominee_name, relation, nominee_img, marital_sts, occupation, occupation_1, occupation_2, location_gps
         var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
         db.transaction(function (tx) {
-            tx.executeSql('INSERT INTO beneficiary_info (select_id,project_id,office_id,group_name,benificiary_name,benificiary_img,voter_id,nid_img_front,nid_img_back,fathers_name, mothers_name,union_name,word,address,grnder,age,mobile,nominee_name,relation,nominee_img,marital_sts,occupation,occupation_1,occupation_2,location_gps,status) VALUES ("' + select_id + '","' + project_id + '","' + office_id + '", "' + group + '", "' + benificiary_name + '", "' + benificiary_img + '", "' + voter_id + '","' + nid_front_img + '","' + nid_back_img + '", "' + fathers_name + '", "' + mothers_name + '", "' + union_name + '", "' + word_name + '", "' + address + '", "' + gender + '", "' + age + '", "' + mobile_no + '", "' + nominee_name + '", "' + relation_with_nom + '", "' + nominee_img + '", "' + marital_status + '", "' + occupation_main + '", "' + occupation_2 + '", "' + occupation_3 + '", "' + location_gps + '", "0")');
+            tx.executeSql('INSERT INTO beneficiary_info (select_id,project_id,office_id,group_name,benificiary_name,benificiary_img,voter_id,nid_img_front,nid_img_back,fathers_name, mothers_name,union_name,word,address,grnder,age,mobile,nominee_name,nominee_father,nominee_mother,relation,nominee_img,marital_sts,occupation,occupation_1,occupation_2,location_gps,status) VALUES ("' + select_id + '","' + project_id + '","' + office_id + '", "' + group + '", "' + benificiary_name + '", "' + benificiary_img + '", "' + voter_id + '","' + nid_front_img + '","' + nid_back_img + '", "' + fathers_name + '", "' + mothers_name + '", "' + union_name + '", "' + word_name + '", "' + address + '", "' + gender + '", "' + age + '", "' + mobile_no + '", "' + nominee_name + '", "' + nominee_father + '", "' + nominee_mother + '", "' + relation_with_nom + '", "' + nominee_img + '", "' + marital_status + '", "' + occupation_main + '", "' + occupation_2 + '", "' + occupation_3 + '", "' + location_gps + '", "0")');
         }, errorCB, insertSuccess);
     });
 
@@ -141,7 +143,10 @@ function onPhotoURISuccess(imageURI) {
 //
 function capturePhoto() {
     // Take picture using device camera and retrieve image as base64-encoded string
-    navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
+    navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+        quality: 50,
+        targetWidth: "512",
+        targetHeight: "512",
         destinationType: destinationType.FILE_URI});
 }
 
@@ -157,7 +162,10 @@ function capturePhotoEdit() {
 //
 function getPhoto(source) {
     // Retrieve image file location from specified source
-    navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
+    navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+        quality: 50,
+        targetWidth: "512",
+        targetHeight: "512",
         destinationType: destinationType.FILE_URI,
         sourceType: source});
 }

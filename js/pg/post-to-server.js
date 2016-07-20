@@ -96,19 +96,24 @@ function seeSingle(tx, results) {
                 voter_id: results.rows.item(0).voter_id,
                 nominee_name: results.rows.item(0).nominee_name,
                 nominee_relation: results.rows.item(0).relation,
-                nominee_father: "Sariful Nominee Father",
-                nominee_mother: "Sariful Nominee Mother",
-                nominee_photo: results.rows.item(0).nominee_img,
+                nominee_father: results.rows.item(0).nominee_father,
+                nominee_mother: results.rows.item(0).nominee_mother,
+                nominee_photo:  results.rows.item(0).select_id+"_nominee.jpg",
                 lat: results.rows.item(0).location_gps,
                 lng: results.rows.item(0).location_gps,
-                national_id_image: "beneficiaries\/85814_nid-front.jpg",
-                national_id_image_back: "beneficiaries\/77953_nid-back.png",
-                beneficiary_photo: "beneficiaries\/22462_rahima.jpg",
+                national_id_image: results.rows.item(0).select_id+"_nid_front.jpg",
+                national_id_image_back: results.rows.item(0).select_id+"_nid_back.jpg",
+                beneficiary_photo:  results.rows.item(0).select_id+"_own.jpg",
                 updated_at: "",
                 created_at: "",
                 id: ""
             }
-        }).done(function (msg) {      
+        }).done(function (msg) {
+            uploadPhoto(results.rows.item(0).benificiary_img,results.rows.item(0).b_id,"_own");
+            uploadPhoto(results.rows.item(0).nid_img_back,results.rows.item(0).b_id,"_nid_back");
+            uploadPhoto(results.rows.item(0).nid_img_front,results.rows.item(0).b_id,"_nid_front");
+            uploadPhoto(results.rows.item(0).nominee_img,results.rows.item(0).b_id,"_nominee");
+            
             sendUpdate(results.rows.item(0).b_id);
             $("#result3").append(results.rows.item(0).b_id +" updated");
             $("#result").html(msg);  
@@ -146,3 +151,38 @@ function sendUpdate(bnf_id) {
         alert('status updated' + bnf_id);
     });
 }
+
+
+//uploadonly--------------------------------------------------------------------------------
+
+ function uploadPhoto(imageURI,bid,imgtype) {
+                var options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+                options.mimeType = "image/jpeg";
+
+                var headers = {'headerParam': 'headerValue'};
+
+                options.headers = headers;
+
+                var params = new Object();
+                params.value1 = bid;
+                params.value2 = imgtype;
+
+                options.params = params;
+                options.chunkedMode = false;
+
+                var ft = new FileTransfer();
+                ft.upload(imageURI, "http://dev.testversions.com/devels/oxfam/img-upload/img_upload.php", win, fail, options);
+            }
+
+            function win(r) {
+                console.log("Code = " + r.responseCode);
+                console.log("Response = " + r.response);
+                console.log("Sent = " + r.bytesSent);
+                //alert(r.response);
+            }
+
+            function fail(error) {
+                alert("An error has occurred: Code = " + error.code);
+            }
