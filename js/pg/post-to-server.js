@@ -125,7 +125,7 @@ function seeSingle(tx, results) {
 
 function alertDownQ()
 {
-    alert("Export Query Fail");
+//    alert("Export Query Fail");
 }
 
 function alertDownUpdate()
