@@ -105,7 +105,8 @@
                                     </div>
                                 </div>
                             </div>                             
-
+                            
+                            <button id="edit" class="btn btn-block btn-default">Edit</button>
                         </div>
 
                     </div>
@@ -184,7 +185,9 @@
             $(document).bind("deviceready", function () {
 
                 populateBeneficiarySingle();
-
+                $("#edit").click(function(){
+                    window.location = "new-survey-edit.html";
+                });
 
             });
 

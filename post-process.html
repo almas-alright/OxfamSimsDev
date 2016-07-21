@@ -21,7 +21,7 @@ and open the template in the editor.
                         </ul>
                     </div>
                 </div>                           
-
+                
             </div>
 
         </div>
@@ -35,8 +35,9 @@ and open the template in the editor.
         <script type="text/javascript">
 
 
-            $(document).bind("deviceready", function () {
-
+            $(document).bind("deviceready", function () {              
+                
+                
                 sendUpdate();
 
             });
@@ -57,6 +58,7 @@ and open the template in the editor.
                             tx.executeSql('UPDATE beneficiary_info SET status=0 WHERE status=1',[],successCB,errorCB);
                         }, populateBeneficiaryList, function () {
                     alert('status updated');
+                    populateBeneficiaryList();
                 });
             }
 
