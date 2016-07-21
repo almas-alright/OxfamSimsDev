@@ -497,8 +497,8 @@
            set_input_value_of("#select_id", results.rows.item(i).select_id);
            set_input_value_of("#project_id",results.rows.item(i).project_id);
            set_input_value_of("#office_id",results.rows.item(i).office_id);
-           set_input_value_of("#response_by",results.rows.item(i).response_by);
-           set_input_value_of("#beneficiary_name",results.rows.item(i).beneficiary_name);
+           set_input_value_of("#response_by",results.rows.item(i).group_name);
+           set_input_value_of("#beneficiary_name",results.rows.item(i).benificiary_name);
            setImgSrc("#benificiaryPhoto",results.rows.item(i).benificiary_img); //img
            set_input_value_of("#nid_num",results.rows.item(i).voter_id);
            setImgSrc("#nid-front", results.rows.item(i).nid_img_front); //img
@@ -520,8 +520,9 @@
            set_input_value_of("#occupation_main", results.rows.item(i).occupation);
            set_input_value_of("#occupation_2", results.rows.item(i).occupation_1);
            set_input_value_of("#occupation_3", results.rows.item(i).occupation_2);
-           set_input_value_of("#lat", results.rows.item(i).location_gps) 
-           set_input_value_of("#lon",results.rows.item(i).location_gps);
+           var locationGPS = results.rows.item(i).location_gps.split(",");
+           set_input_value_of("#lat", locationGPS[0]) 
+           set_input_value_of("#lon",locationGPS[1]);
 
         }
 
