@@ -53,11 +53,10 @@ and open the template in the editor.
             function sendUpdate() {
                 var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
                 db.transaction(
-                        function (tx) {
-                            console.log(bnf_id);
-                            tx.executeSql('UPDATE beneficiary_info SET status="0" WHERE status="1"',[],successCB,errorCB);
+                        function (tx) {                            
+                            tx.executeSql('UPDATE beneficiary_info SET status=0 WHERE status=1',[],successCB,errorCB);
                         }, populateBeneficiaryList, function () {
-                    alert('status updated' + bnf_id);
+                    alert('status updated');
                 });
             }
 
