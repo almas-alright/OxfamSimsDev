@@ -495,8 +495,8 @@
         for (var i = 0; i < len; i++) {
             
            set_input_value_of("#select_id", results.rows.item(i).select_id);
-           set_input_value_of("#project_id",results.rows.item(i).project_id);
-           set_input_value_of("#office_id",results.rows.item(i).office_id);
+           set_option_value_of("#project_id",results.rows.item(i).project_id);
+           set_option_value_of("#office_id",results.rows.item(i).office_id);
            set_input_value_of("#response_by",results.rows.item(i).group_name);
            set_input_value_of("#beneficiary_name",results.rows.item(i).benificiary_name);
            setImgSrc("#benificiaryPhoto",results.rows.item(i).benificiary_img); //img
@@ -508,7 +508,7 @@
            set_input_value_of("#union_name", results.rows.item(i).union_name);
            set_input_value_of("#word_name", results.rows.item(i).word);
            set_input_value_of("#address", results.rows.item(i).address);
-           set_input_value_of("#gender", results.rows.item(i).grnder);
+           set_option_value_of("#gender", results.rows.item(i).grnder);
            set_input_value_of("#age", results.rows.item(i).age);
            set_input_value_of("#mobile_no", results.rows.item(i).mobile);
            set_input_value_of("#nominee_name", results.rows.item(i).nominee_name);
@@ -539,6 +539,11 @@
     function set_input_value_of(inputID, value)
     {
         return $(inputID).val(value);
+    }
+    
+    function set_option_value_of(inputID, value)
+    {
+        $(inputID+' option[value='+value+']').attr("selected", "selected");
     }
 
     function set_radio_value_of(name, value)
