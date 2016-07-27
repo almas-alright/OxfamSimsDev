@@ -22,7 +22,7 @@ function populateDB(tx) {
     
     
     tx.executeSql('CREATE TABLE IF NOT EXISTS intervention_list(intervention_id INTEGER PRIMARY KEY AUTOINCREMENT,project_id INTEGER,office_id INTEGER,intervention_type INTEGER,intervention_name TEXT,union_name TEXT,word TEXT,upazilla TEXT,address TEXT,descriptoin TEXT,intervention_photo TEXT,location_gps TEXT,status INT)');
-//    tx.executeSql('INSERT INTO intervention_list (project_id,office_id,intervention_type,intervention_name,union_name,word,upazilla,address,descriptoin,intervention_photo,location_gps,status) VALUES ("12","34","2","Name Of That","unionname D","word45", "upzx","Abcd 1234 c4","river cleaning","imahes/photo.jpg","23.737785, 90.395173", "0")');
+    tx.executeSql('INSERT INTO intervention_list (project_id,office_id,intervention_type,intervention_name,union_name,word,upazilla,address,descriptoin,intervention_photo,location_gps,status) VALUES ("12","34","2","Name Of That","unionname D","word45", "upzx","Abcd 1234 c4","river cleaning","imahes/photo.jpg","23.737785, 90.395173", "0")');
 }
 
 // Transaction error callback
