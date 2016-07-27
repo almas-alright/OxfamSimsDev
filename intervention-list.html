@@ -111,6 +111,7 @@
                                     </ul>
                                 </div>
                             </div>
+                            <button id="delete" class="btn btn-link">Delete All Intervention</button>
                         </div>
 
                     </div>
@@ -141,6 +142,10 @@
         <script type="text/javascript" charset="utf-8">
 
             $(document).bind("deviceready", function () {
+                $("#delete").click(function () {
+                    db_init();
+                    location.reload();
+                });
                 populateInterventionList();
             });
 
@@ -149,7 +154,7 @@
                 var intv_single = '';
                 var len = results.rows.length;
                 for (var i = 0; i < len; i++) {
-                    intv_single += '<li class="list-group-item">' + results.rows.item(i).intervention_id + '<img class="text-center list-img" src="' + results.rows.item(i).intervention_photo + '" alt=""> <span class="ben-name">Word Name: ' + results.rows.item(i).intervention_name + '</span><span class="ben-name">Union Name: ' + results.rows.item(i).upazilla + '</span></li>';
+                    intv_single += '<li class="list-group-item">' + results.rows.item(i).intervention_id + '<img class="text-center list-img" src="' + results.rows.item(i).intervention_photo + '" alt=""> <span class="ben-name">  Name: ' + results.rows.item(i).intervention_name + '</li>';
                 }
                 $('#intv-list').html(intv_single);
             }
@@ -160,6 +165,16 @@
                     tx.executeSql('SELECT * FROM intervention_list ORDER BY intervention_id DESC', [], intv_list, errorCB);
                 }, errorCB, successCB_blank);
 
+            }
+
+            function db_init() {
+                var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
+                db.transaction(populateDB, errorCB, successCB_blank);
+            }
+
+            function populateDB(tx) {
+                tx.executeSql('DROP TABLE IF EXISTS intervention_list');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS intervention_list(intervention_id INTEGER PRIMARY KEY AUTOINCREMENT,project_id INTEGER,office_id INTEGER,intervention_type INTEGER,intervention_name TEXT,union_name TEXT,word TEXT,upazilla TEXT,address TEXT,descriptoin TEXT,intervention_photo TEXT,location_gps TEXT,status INT)');
             }
         </script>
 
