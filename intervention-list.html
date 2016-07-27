@@ -149,7 +149,7 @@
                 var intv_single = '';
                 var len = results.rows.length;
                 for (var i = 0; i < len; i++) {
-                    intv_single += '<li class="list-group-item">' + results.rows.item(i).intervention_id + '<img class="text-center list-img" src="' + results.rows.item(i).intervention_photo + '" alt=""> <span class="ben-name">Word Name: ' + results.rows.item(i).word + '</span><span class="ben-name">Union Name: ' + results.rows.item(i).union_name + '</span></li>';
+                    intv_single += '<li class="list-group-item">' + results.rows.item(i).intervention_id + '<img class="text-center list-img" src="' + results.rows.item(i).intervention_photo + '" alt=""> <span class="ben-name">Word Name: ' + results.rows.item(i).intervention_name + '</span><span class="ben-name">Union Name: ' + results.rows.item(i).upazilla + '</span></li>';
                 }
                 $('#intv-list').html(intv_single);
             }

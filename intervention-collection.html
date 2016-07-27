@@ -127,6 +127,12 @@
                         </div>
                         <div class="row">
                             <div class="input-field col-md-12">
+                                <input id="int_name" type="text" class="validate">
+                                <label for="int_name">Intervention Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col-md-12">
                                 <input id="union_name" type="text" class="validate">
                                 <label for="union_name">Union Name</label>
                             </div>
@@ -135,6 +141,12 @@
                             <div class="input-field col-md-12">
                                 <input id="word_name" type="text" class="validate">
                                 <label for="word_name">Word Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col-md-12">
+                                <input id="upozilla" type="text" class="validate">
+                                <label for="upozilla">Upozilla</label>
                             </div>
                         </div>
                         <div class="row">
@@ -169,7 +181,7 @@
                             </div>
 
                             <div class="input-field col-md-12">
-                                <!--<textarea name="location_gps" id="location_gps" class="materialize-textarea"></textarea>-->
+                                <input type="hidden" id="location_gps" />
                                 <div id="geolocation" class="materialize-textarea text-center"></div>                               
                             </div>
                         </div>
@@ -273,8 +285,12 @@
                                             $("#image-src-flag").val(flag);
                                         });
 
-                                        $("#get_location").on('touchend', function () {
+                                        $("#get_location").on('touchstart', function () {
                                             onLocationReady();
+                                        }).on('touchend', function () {                                            
+                                            var preVal = $('#location_gps').val();
+                                            $('#location_gps').val(preVal.replace(/^,|,$/g, ''));
+                                            $('#geolocation').html(preVal);
                                         });
 
 
@@ -297,16 +313,18 @@
                                             var project_id = get_input_value_of("#project_id");
                                             var office_id = get_input_value_of("#office_id");
                                             var itn_type_id = get_input_value_of("#itn_type_id");
+                                            var itn_name = get_input_value_of("#itn_name");
                                             var union_name = get_input_value_of("#union_name");
                                             var word_name = get_input_value_of("#word_name");
+                                            var upozilla = get_input_value_of("#upozilla");
                                             var int_address = get_input_value_of("#int_address");
                                             var description = get_input_value_of("#description");
                                             var intervention_photo = getImgSrc("#intervention_photo");
-                                            var location_gps = $("#geolocation").html();
+                                            var location_gps = get_input_value_of("#location_gps");
 
                                             var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
                                             db.transaction(function (tx) {
-                                                tx.executeSql('INSERT INTO intervention_list (project_id,office_id,intervention_type,union_name,word,address,descriptoin,intervention_photo,location_gps) VALUES ("' + project_id + '","' + office_id + '","' + itn_type_id + '","' + union_name + '","' + word_name + '","' + int_address + '","' + description + '","' + intervention_photo + '","' + location_gps + '")');
+                                                tx.executeSql('INSERT INTO intervention_list (project_id,office_id,intervention_type,intervention_name,union_name,word,upazilla,address,descriptoin,intervention_photo,location_gps) VALUES ("' + project_id + '","' + office_id + '","' + itn_type_id + '","' + itn_name + '","' + union_name + '","' + word_name + '","' + upozilla + '","' + int_address + '","' + description + '","' + intervention_photo + '","' + location_gps + '")');
                                             }, errorCB, successRedir);
                                         });
 
@@ -397,12 +415,12 @@
                                     //geo location
 
                                     function onLocationReady() {
-                                        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                                        navigator.geolocation.getCurrentPosition(locSuccess, onError);
                                     }
-                                    function onSuccess(position) {
-                                        var element = document.getElementById('geolocation');
-                                        element.innerHTML = '(' + position.coords.latitude + ',' + position.coords.longitude + ')';
-//                                        return '(' + position.coords.latitude + ',' + position.coords.longitude + ')';
+                                    function locSuccess(position) {
+                                        var curVal = $('#location_gps').val();
+                                        curVal += ',' + position.coords.latitude + '|' + position.coords.longitude;
+                                        $('#location_gps').val(curVal);
                                     }
 
                                     // onError Callback receives a PositionError object
@@ -411,11 +429,26 @@
                                         alert('code: ' + error.code + '\n' +
                                                 'message: ' + error.message + '\n');
                                     }
-                                    
+
                                     function successRedir()
                                     {
-                                         window.location="intervention-list.html";
+                                        window.location = "intervention-list.html";
                                     }
+
+
+
+//  `id` 
+//  `intervention_type_id` 
+//  `project_id` 
+//  `office_id` 
+//  `intervention_name` 
+//  `ward` 
+//  `upazilla` 
+//  `address` 
+//  `description` 
+//  `intervention_photo` 
+//  `lat` 
+//  `lng`
 
         </script>
 
