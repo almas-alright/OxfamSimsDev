@@ -127,6 +127,13 @@
                         </div>
                         <div class="row">
                             <div class="input-field col-md-12">
+                                <input id="intervention_txt_id" type="text" class="validate">
+                                <label for="intervention_txt_id">Intervention ID</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col-md-12">
                                 <input id="itn_name" type="text" class="validate">
                                 <label for="itn_name">Intervention Name</label>
                             </div>
@@ -287,7 +294,7 @@
 
                                         $("#get_location").on('touchstart', function () {
                                             onLocationReady();
-                                        }).on('touchend', function () {                                            
+                                        }).on('touchend', function () {
                                             var preVal = $('#location_gps').val();
                                             $('#location_gps').val(preVal.replace(/^,|,$/g, ''));
                                             $('#geolocation').html(preVal);
@@ -313,6 +320,7 @@
                                             var project_id = get_input_value_of("#project_id");
                                             var office_id = get_input_value_of("#office_id");
                                             var itn_type_id = get_input_value_of("#itn_type_id");
+                                            var intervention_txt_id = get_input_value_of("#intervention_txt_id");
                                             var itn_name = get_input_value_of("#itn_name");
                                             var union_name = get_input_value_of("#union_name");
                                             var word_name = get_input_value_of("#word_name");
@@ -324,7 +332,7 @@
 
                                             var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
                                             db.transaction(function (tx) {
-                                                tx.executeSql('INSERT INTO intervention_list (project_id,office_id,intervention_type,intervention_name,union_name,word,upazilla,address,descriptoin,intervention_photo,location_gps,status) VALUES ("' + project_id + '","' + office_id + '","' + itn_type_id + '","' + itn_name + '","' + union_name + '","' + word_name + '","' + upozilla + '","' + int_address + '","' + description + '","' + intervention_photo + '","' + location_gps + '", "0")');
+                                                tx.executeSql('INSERT INTO intervention_list (intervention_txt_id,project_id,office_id,intervention_type,intervention_name,union_name,word,upazilla,address,descriptoin,intervention_photo,location_gps,status) VALUES ("' + intervention_txt_id + '","' + project_id + '","' + office_id + '","' + itn_type_id + '","' + itn_name + '","' + union_name + '","' + word_name + '","' + upozilla + '","' + int_address + '","' + description + '","' + intervention_photo + '","' + location_gps + '", "0")');
                                             }, errorCB, successRedir);
                                         });
 

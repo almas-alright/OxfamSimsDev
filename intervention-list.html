@@ -154,7 +154,7 @@
                 var intv_single = '';
                 var len = results.rows.length;
                 for (var i = 0; i < len; i++) {
-                    intv_single += '<li class="list-group-item">' + results.rows.item(i).intervention_id + '<img class="text-center list-img" src="' + results.rows.item(i).intervention_photo + '" alt=""> <span class="ben-name">  Name: ' + results.rows.item(i).intervention_name + '</li>';
+                    intv_single += '<li class="list-group-item">' + results.rows.item(i).intervention_txt_id + '<img class="text-center list-img" src="' + results.rows.item(i).intervention_photo + '" alt=""> <span class="ben-name">  Name: ' + results.rows.item(i).intervention_name + '</li>';
                 }
                 $('#intv-list').html(intv_single);
             }
@@ -174,7 +174,7 @@
 
             function populateDB(tx) {
                 tx.executeSql('DROP TABLE IF EXISTS intervention_list');
-                tx.executeSql('CREATE TABLE IF NOT EXISTS intervention_list(intervention_id INTEGER PRIMARY KEY AUTOINCREMENT,project_id INTEGER,office_id INTEGER,intervention_type INTEGER,intervention_name TEXT,union_name TEXT,word TEXT,upazilla TEXT,address TEXT,descriptoin TEXT,intervention_photo TEXT,location_gps TEXT,status INT)');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS intervention_list(intervention_id INTEGER PRIMARY KEY AUTOINCREMENT,intervention_txt_id TEXT,project_id INTEGER,office_id INTEGER,intervention_type INTEGER,intervention_name TEXT,union_name TEXT,word TEXT,upazilla TEXT,address TEXT,descriptoin TEXT,intervention_photo TEXT,location_gps TEXT,status INT)');
             }
         </script>
 

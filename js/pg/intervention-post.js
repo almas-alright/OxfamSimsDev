@@ -69,7 +69,7 @@ function seeSingle(tx, results) {
     var len = results.rows.length;
 //    for (var i = 0; i < len; i++) {
 //        $("#json").html(results.rows.item(i).b_id + "  " + results.rows.item(i).benificiary_name + "   " + results.rows.item(i).mothers_name);
-    uploadPhoto(results.rows.item(0).intervention_photo, results.rows.item(0).intervention_id, "intervention");
+    uploadPhoto(results.rows.item(0).intervention_photo, results.rows.item(0).intervention_txt_id, "intervention");
     $.ajax({
         method: "POST",
         url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestInterventionInfo",
@@ -154,16 +154,3 @@ function win(r) {
 function fail(error) {
     alert("An error has occurred: Code = " + error.code);
 }
-
-
-//  intervention_type_id:
-//  project_id:
-//  office_id: 
-//  intervention_name:
-//  ward:
-//  upazilla:
-//  address: 
-//  description:
-//  intervention_photo:
-//  lat:
-//  lng:
