@@ -9,7 +9,7 @@ function errorCB(tx, err) {
 }
 
 function successCB() {
-//    alert("success!");
+    alert("success!");
 }
 
 function intervention_list(tx, results) {
@@ -98,7 +98,7 @@ function seeSingle(tx, results) {
 
 function alertDownQ()
 {
-//    alert("Export Query Fail");
+    alert("Export Query Fail");
 }
 
 function alertDownUpdate()
