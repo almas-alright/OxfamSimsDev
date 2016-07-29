@@ -46,6 +46,7 @@ function populate_intervention_list() {
 
 $(document).bind("deviceready", function () {
     populate_intervention_list();
+    retriveSingle();
     $("#btn-csv").click(function () {
 //        retriveAndPost();
         alert("Wait");
@@ -56,7 +57,7 @@ $(document).bind("deviceready", function () {
     $('li.list-group-item').click(function () {
         alert($(this).attr('data-bid'));
     });
-    retriveSingle();
+    
 });
 function retriveSingle() {
     var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
@@ -75,6 +76,7 @@ function seeSingle(tx, results) {
         url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestInterventionInfo",
         data: {
             intervention_type_id: results.rows.item(0).intervention_type,
+            intervention_id: results.rows.item(0).intervention_txt_id,
             project_id: results.rows.item(0).project_id,
             office_id: results.rows.item(0).office_id,
             intervention_name: results.rows.item(0).intervention_name,
@@ -82,7 +84,7 @@ function seeSingle(tx, results) {
             upazilla: results.rows.item(0).upazilla,
             address: results.rows.item(0).address,
             description: results.rows.item(0).descriptoin,
-            intervention_photo: "x34dfgd5",
+            intervention_photo: results.rows.item(0).intervention_txt_id+"_intervention.jpg",
             lat: results.rows.item(0).location_gps,
             lng: results.rows.item(0).location_gps
         }

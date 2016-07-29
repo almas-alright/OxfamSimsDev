@@ -74,6 +74,7 @@ and open the template in the editor.
                     <img class="img">
                 </div>
             </div>
+            <div id="result"></div>
         </div>
         <!--<img src="images/fucj.jpg" alt="" />-->
 
@@ -83,6 +84,36 @@ and open the template in the editor.
         <script type="text/javascript">
 
             $(document).ready(function () {
+
+                $.ajax({
+                    method: "POST",
+                    url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestInterventionInfo",
+                    data: {
+                        intervention_type_id: "1",
+                        intervention_id: "1dsfdsf",
+                        project_id: "1",
+                        office_id: "2",
+                        intervention_name: "dsd5 folk",
+                        ward: "sdds",
+                        upazilla: "1",
+                        address: "address",
+                        description: "abcd 1234",
+                        intervention_photo: "x34dfgd5.jpg",
+                        lat: "23.548894",
+                        lng: "72.985644"
+                    }
+                }).done(function (msg) {                    
+//                    $("#result3").append(results.rows.item(0).intervention_id + " updated");
+                    $("#result").html(msg);
+                    console.log(msg);
+//                    window.location.reload();
+                });
+
+
+
+
+
+
 
                 var data = {
                     project_id: 1,
@@ -188,7 +219,7 @@ and open the template in the editor.
                             .find('.convertType')
                             .text(convertType)
                             .end()
-                            .show();                       
+                            .show();
 
                 });
 
