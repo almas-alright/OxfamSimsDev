@@ -59,9 +59,13 @@ $(document).bind("deviceready", function () {
     $('li.list-group-item').click(function () {
         alert($(this).attr('data-bid'));
     });
-
-    retriveSingle();
-
+    var serverUrl = localStorage.getItem("server-url")
+    if (serverUrl != null) {
+        retriveSingle();
+    } else
+    {
+        $('#myModal').modal({ show:true });
+    }
 
 
 });
