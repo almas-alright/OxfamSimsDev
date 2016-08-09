@@ -79,6 +79,15 @@ function retriveSingle() {
 }
 
 function seeSingle(tx, results) {
+    
+    var serverUrl = localStorage.getItem("server-url")
+    var url = 'dev.testversions.com';
+    
+    if(serverUrl != null)
+    {
+        url = serverUrl;
+    }
+    
     var len = results.rows.length;
 //    for (var i = 0; i < len; i++) {
 //        $("#json").html(results.rows.item(i).b_id + "  " + results.rows.item(i).benificiary_name + "   " + results.rows.item(i).mothers_name);
@@ -89,7 +98,7 @@ function seeSingle(tx, results) {
 
     $.ajax({
         method: "POST",
-        url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
+        url: "http://"+url+"/devels/oxfam/sims/public/site/requestBenInfo",
         data: {
             project_id: results.rows.item(0).project_id,
             office_id: results.rows.item(0).office_id,
@@ -160,6 +169,13 @@ function sendUpdate(bnf_id) {
 //uploadonly--------------------------------------------------------------------------------
 
 function uploadPhoto(imageURI, bid, imgtype) {
+    var serverUrl = localStorage.getItem("server-url")
+    var url = 'dev.testversions.com';
+    
+    if(serverUrl != null)
+    {
+        url = serverUrl;
+    }
     var options = new FileUploadOptions();
     options.fileKey = "file";
     options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
@@ -177,7 +193,7 @@ function uploadPhoto(imageURI, bid, imgtype) {
     options.chunkedMode = false;
 
     var ft = new FileTransfer();
-    ft.upload(imageURI, "http://dev.testversions.com/devels/oxfam/img-upload/img_upload.php", win, fail, options);
+    ft.upload(imageURI, "http://"+url+"/devels/oxfam/img-upload/img_upload.php", win, fail, options);
 }
 
 function win(r) {
