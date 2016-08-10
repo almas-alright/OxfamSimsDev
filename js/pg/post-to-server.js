@@ -59,16 +59,13 @@ $(document).bind("deviceready", function () {
     $('li.list-group-item').click(function () {
         alert($(this).attr('data-bid'));
     });
-    
-//    var serverUrl = localStorage.getItem("server-url")
-//    if (serverUrl != null) {
-//        retriveSingle();
-//    } else
-//    {
-//        $('#myModal').modal({ show:true });
-//    }
-    
-    retriveSingle();
+    var serverUrl = localStorage.getItem("server-url")
+    if (serverUrl != null) {
+        retriveSingle();
+    } else
+    {
+        $('#myModal').modal({ show:true });
+    }
 
 
 });
@@ -83,7 +80,7 @@ function retriveSingle() {
 
 function seeSingle(tx, results) {
     
-    var serverUrl = localStorage.getItem("server-url")
+    var serverUrl = localStorage.getItem("server-url");
     var url = 'http://dev.testversions.com/devels/oxfam/sims';
     
     if(serverUrl != null)
@@ -101,7 +98,7 @@ function seeSingle(tx, results) {
 
     $.ajax({
         method: "POST",
-        url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
+        url: +url+"/public/site/requestBenInfo",
         data: {
             project_id: results.rows.item(0).project_id,
             office_id: results.rows.item(0).office_id,
@@ -172,8 +169,8 @@ function sendUpdate(bnf_id) {
 //uploadonly--------------------------------------------------------------------------------
 
 function uploadPhoto(imageURI, bid, imgtype) {
-    var serverUrl = localStorage.getItem("server-url")
-    var url = 'http://dev.testversions.com/devels/oxfam/sims';
+    var serverUrl = localStorage.getItem("file-url")
+    var url = 'http://dev.testversions.com/devels/oxfam';
     
     if(serverUrl != null)
     {
@@ -196,7 +193,7 @@ function uploadPhoto(imageURI, bid, imgtype) {
     options.chunkedMode = false;
 
     var ft = new FileTransfer();
-    ft.upload(imageURI, "http://dev.testversions.com/devels/oxfam/img-upload/img_upload.php", win, fail, options);
+    ft.upload(imageURI, url+"/img-upload/img_upload.php", win, fail, options);
 }
 
 function win(r) {
