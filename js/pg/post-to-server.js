@@ -59,13 +59,15 @@ $(document).bind("deviceready", function () {
     $('li.list-group-item').click(function () {
         alert($(this).attr('data-bid'));
     });
-    var serverUrl = localStorage.getItem("server-url")
-    if (serverUrl != null) {
-        retriveSingle();
-    } else
-    {
-        $('#myModal').modal({ show:true });
-    }
+//    var serverUrl = localStorage.getItem("server-url")
+//    if (serverUrl != null) {
+//        retriveSingle();
+//    } else
+//    {
+//        $('#myModal').modal({ show:true });
+//    }
+
+retriveSingle();
 
 
 });
