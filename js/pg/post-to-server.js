@@ -59,16 +59,8 @@ $(document).bind("deviceready", function () {
     $('li.list-group-item').click(function () {
         alert($(this).attr('data-bid'));
     });
-//    var serverUrl = localStorage.getItem("server-url")
-//    if (serverUrl != null) {
-//        retriveSingle();
-//    } else
-//    {
-//        $('#myModal').modal({ show:true });
-//    }
 
-retriveSingle();
-
+    retriveSingle();
 
 });
 
@@ -81,15 +73,6 @@ function retriveSingle() {
 }
 
 function seeSingle(tx, results) {
-    
-    var serverUrl = localStorage.getItem("server-url");
-    var url = 'http://dev.testversions.com/devels/oxfam/sims';
-    
-    if(serverUrl != null)
-    {
-        url = serverUrl;
-    }
-    
     var len = results.rows.length;
 //    for (var i = 0; i < len; i++) {
 //        $("#json").html(results.rows.item(i).b_id + "  " + results.rows.item(i).benificiary_name + "   " + results.rows.item(i).mothers_name);
@@ -100,7 +83,7 @@ function seeSingle(tx, results) {
 
     $.ajax({
         method: "POST",
-        url: +url+"/public/site/requestBenInfo",
+        url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo",
         data: {
             project_id: results.rows.item(0).project_id,
             office_id: results.rows.item(0).office_id,
@@ -124,9 +107,9 @@ function seeSingle(tx, results) {
             national_id_image: results.rows.item(0).select_id + "_nid_front.jpg",
             national_id_image_back: results.rows.item(0).select_id + "_nid_back.jpg",
             beneficiary_photo: results.rows.item(0).select_id + "_own.jpg",
-            updated_at: "",
-            created_at: "",
-            id: ""
+            updated_at: "d",
+            created_at: "d",
+            id: "d"
         }
     }).done(function (msg) {
         sendUpdate(results.rows.item(0).b_id);
@@ -140,7 +123,7 @@ function seeSingle(tx, results) {
 
 function alertDownQ()
 {
-//    alert("Export Query Fail");
+    alert("Export Query Fail");
 }
 
 function alertDownUpdate()
@@ -171,13 +154,6 @@ function sendUpdate(bnf_id) {
 //uploadonly--------------------------------------------------------------------------------
 
 function uploadPhoto(imageURI, bid, imgtype) {
-    var serverUrl = localStorage.getItem("file-url")
-    var url = 'http://dev.testversions.com/devels/oxfam';
-    
-    if(serverUrl != null)
-    {
-        url = serverUrl;
-    }
     var options = new FileUploadOptions();
     options.fileKey = "file";
     options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
@@ -195,14 +171,14 @@ function uploadPhoto(imageURI, bid, imgtype) {
     options.chunkedMode = false;
 
     var ft = new FileTransfer();
-    ft.upload(imageURI, url+"/img-upload/img_upload.php", win, fail, options);
+    ft.upload(imageURI, "http://dev.testversions.com/devels/oxfam/img-upload/img_upload.php", win, fail, options);
 }
 
 function win(r) {
     console.log("Code = " + r.responseCode);
     console.log("Response = " + r.response);
     console.log("Sent = " + r.bytesSent);
-//    alert(r.response);
+    alert(r.response);
 }
 
 function fail(error) {
