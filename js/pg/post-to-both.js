@@ -5,7 +5,7 @@
  */
 
 function errorCB(tx, err) {
-    alert("Error processing SQL: " + err);
+   // alert("Error processing SQL: " + err);
 }
 
 function successCB() {
@@ -124,7 +124,7 @@ function seeSingle(tx, results) {
 
 function alertDownQ()
 {
-    alert("Export Query Fail");
+   // alert("Export Query Fail");
 }
 
 function alertDownUpdate()
@@ -147,7 +147,7 @@ function sendUpdate(bnf_id) {
                 console.log(bnf_id);
                 tx.executeSql('UPDATE beneficiary_info SET status=1 WHERE b_id=' + bnf_id);
             }, alertDownUpdate, function () {
-        alert('status updated' + bnf_id);
+        //alert('status updated' + bnf_id);
     });
 }
 
@@ -180,7 +180,7 @@ function win(r) {
     console.log("Code = " + r.responseCode);
     console.log("Response = " + r.response);
     console.log("Sent = " + r.bytesSent);
-    alert(r.response);
+    //alert(r.response);
 }
 
 function fail(error) {

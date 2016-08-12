@@ -107,15 +107,15 @@
                     </div>
                     
                     <div class="row watch-area">
-                        <div class="col-sm-12 text-center">
+                        <div style="font-size: 12px;" class="col-sm-12 text-left">
                             <hr />
-                            <p><strong>Post Url Online</strong> http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo</p>
-                            <p><strong>Post Url Local</strong>http://192.168.0.78/SIMS/public/site/requestBenInfo</p>
-                            <p class="red"><strong>Post Url Current</strong><span id="sup"></span></p>
+                            <p><strong>Post Url Online: </strong> http://dev.testversions.com/devels/oxfam/sims/public/site/requestBenInfo</p>
+                            <p><strong>Post Url Local: </strong>http://192.168.0.78/SIMS/public/site/requestBenInfo</p>
+                            <p class="red"><strong>Post Url Current: </strong><span id="sup"></span></p>
                             <hr />
-                            <p><strong>File Url Online</strong>http://dev.testversions.com/devels/oxfam/img-upload/img_upload.php</p>
-                            <p><strong>File Url Local</strong>http://192.168.0.78/img-upload/img_upload.php</p>
-                            <p class="red"><strong>File Url Current</strong><span id="fup"></span></p>
+                            <p><strong>File Url Online: </strong>http://dev.testversions.com/devels/oxfam/img-upload/img_upload.php</p>
+                            <p><strong>File Url Local: </strong>http://192.168.0.78/img-upload/img_upload.php</p>
+                            <p class="red"><strong>File Url Current: </strong><span id="fup"></span></p>
                             
                         </div>
                     </div>
@@ -157,8 +157,8 @@
                 
                 $('#save_server_url').click(function () {
                     if (($('#server_url').val() != '') && ($('#file_url').val() != '')) {
-                        localStorage.setItem("server-url", $('#server_url').val()+"/public/site/requestBenInfo");
-                        localStorage.setItem("file-url", $('#file_url').val()+"/img-upload/img_upload.php");
+                        localStorage.setItem("server-url", $('#server_url').val());
+                        localStorage.setItem("file-url", $('#file_url').val());
                         location.reload();
                     } else
                     {
