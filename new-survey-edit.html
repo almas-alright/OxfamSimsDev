@@ -96,10 +96,7 @@
                 <div class="row">
                     <div class="col-lg-12">
 
-                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                            <div class="btn-group" role="group">
-                                <button type="button" id="save" class="btn btn-primary waves-effect waves-light">Save</button>
-                            </div>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">                            
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-info waves-effect waves-light">Load</button>
                             </div>
@@ -121,31 +118,19 @@
                     <form class="form">
                         <div class="row">
                             <div class="input-field col-xs-7">
-                                <input id="select_id" type="text" class="validate">
-                                <label for="select_id">ID</label>
+                                <input id="select_id" type="hidden" class="validate">
+<!--                                <label for="select_id">ID</label>-->
                             </div>
-                            <div class="col-xs-5">
+<!--                            <div class="col-xs-5">
                                 <button type="button" class="btn btn-link">Select</button>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="row">
                             <div class="input-field col-md-12">
-                                <select class="browser-default" name="office_id" id="office_id">
-                                    <option value="0">Select</option>                                    
-                                </select>
-                                <label for="office_id">Office</label>
+                                <input name="office_id" id="office_id" type="hidden" > 
+                                <input name="project_id" id="project_id" type="hidden" >
                             </div>
                         </div>
-
-
-                        <div class="row">
-                            <div class="input-field col-md-12">
-                                <select class="browser-default" name="project_id" id="project_id">
-                                    <option value="0">Select</option>                                    
-                                </select>
-                                <label for="project_id">Project</label>
-                            </div>
-                        </div>                       
 
 
                         <div class="row">
@@ -257,13 +242,11 @@
 
                         <div class="row">
                             <div class="input-field col-md-6">
-                                <select class="browser-default" id="gender">
-                                    <option value="#">select</option>                                    
-                                </select> 
+                                <input type="text" id="gender" />
                                 <label for="gender">Gender</label>
                             </div>
                             <div class="input-field col-xs-6">
-                                <input id="age" type="text" class="validate">
+                                <input id="age" type="number" class="validate">
                                 <label for="age">Age  </label>
                             </div>
                         </div>
@@ -271,7 +254,7 @@
 
                         <div class="row">
                             <div class="input-field col-md-12">
-                                <input id="mobile_no" type="text" class="validate">
+                                <input id="mobile_no" type="number" class="validate">
                                 <label for="mobile_no">Mobile No</label>
                             </div>
                         </div>
@@ -388,7 +371,7 @@
 
                                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-primary waves-effect waves-light">Quest</button>
+                                        <button type="button" id="save" class="btn btn-primary waves-effect waves-light">Save Changes</button>
                                     </div>
                                     <div class="btn-group" role="group">
                                         <button type="button" id="gps_pos_co" class="btn btn-info waves-effect waves-light">GPS</button>
@@ -454,113 +437,275 @@
             </div>
         </div>
 
-        <!--container-->
-        <!-- JQuery -->
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <!--ng-->
-        <script type="text/javascript" src="js/angular.min.js"></script>
+<!--container-->
+<!-- JQuery -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!--ng-->
+<script type="text/javascript" src="js/angular.min.js"></script>
 
-        <!-- cordova -->
-        <script type="text/javascript" src="cordova.js"></script>
+<!-- cordova -->
+<script type="text/javascript" src="cordova.js"></script>
 
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-        <!-- Material Design Bootstrap -->
-        <script type="text/javascript" src="js/mdb.min.js"></script>
+<!-- Material Design Bootstrap -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
 
-        <script type="text/javascript" src="js/custom.js"></script>
-        <script type="text/javascript" src="js/pg/new-survey-edit.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/pg/new-survey-edit.js"></script>
 
-        <script type="text/javascript">
+<script type="text/javascript">
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value
 
-    function errorCB(tx, err) {
-        alert("Error processing SQL: " + err);
+
+
+
+function getLocationPos() {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+}
+
+function errorCB(tx, err) {
+    alert("Error processing SQL: " + err);
+}
+
+function successCB() {
+
+}
+function benificiaryDataList(tx, results) {
+    var benf_single = '';
+    var len = results.rows.length;
+    for (var i = 0; i < len; i++) {
+
+        set_input_value_of("#select_id", results.rows.item(i).select_id);
+        set_input_value_of("#project_id", results.rows.item(i).project_id);
+        set_input_value_of("#office_id", results.rows.item(i).office_id);
+        set_input_value_of("#response_by", results.rows.item(i).group_name);
+        set_input_value_of("#beneficiary_name", results.rows.item(i).benificiary_name);
+        setImgSrc("#benificiaryPhoto", results.rows.item(i).benificiary_img); //img
+        set_input_value_of("#nid_num", results.rows.item(i).voter_id);
+        setImgSrc("#nid-front", results.rows.item(i).nid_img_front); //img
+        setImgSrc("#nid-back", results.rows.item(i).nid_img_back); //img
+        set_input_value_of("#fathers_name", results.rows.item(i).fathers_name);
+        set_input_value_of("#mothers_name", results.rows.item(i).mothers_name);
+        set_input_value_of("#union_name", results.rows.item(i).union_name);
+        set_input_value_of("#word_name", results.rows.item(i).word);
+        set_input_value_of("#address", results.rows.item(i).address);
+        set_input_value_of("#gender", results.rows.item(i).grnder);
+        set_input_value_of("#age", results.rows.item(i).age);
+        set_input_value_of("#mobile_no", results.rows.item(i).mobile);
+        set_input_value_of("#nominee_name", results.rows.item(i).nominee_name);
+        set_input_value_of("#nominee_father", results.rows.item(i).nominee_father);
+        set_input_value_of("#nominee_mother", results.rows.item(i).nominee_mother);
+        set_input_value_of("#relation_with_nom", results.rows.item(i).relation);
+        setImgSrc("#nominee_img", results.rows.item(i).nominee_img); //img
+        set_radio_value_of("married", results.rows.item(i).marital_sts);
+        set_input_value_of("#occupation_main", results.rows.item(i).occupation);
+        set_input_value_of("#occupation_2", results.rows.item(i).occupation_1);
+        set_input_value_of("#occupation_3", results.rows.item(i).occupation_2);
+        var locationGPS = results.rows.item(i).location_gps.split(",");
+        set_input_value_of("#lat", locationGPS[0])
+        set_input_value_of("#lon", locationGPS[1]);
+
     }
 
-    function successCB() {
+}
+function populateBeneficiarySingle()
+{
+    var flag = localStorage.getItem("bid-temp");
+    var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
+    db.transaction(function (tx) {
+        tx.executeSql('SELECT * FROM beneficiary_info WHERE b_id=' + flag, [], benificiaryDataList, errorCB);
+    }, errorCB, successCB);
+}
 
-    }
-    function benificiaryDataList(tx, results) {
-        var benf_single = '';
-        var len = results.rows.length;
-        for (var i = 0; i < len; i++) {
-            
-           set_input_value_of("#select_id", results.rows.item(i).select_id);
-           set_option_value_of("#project_id",["1","2","3"],results.rows.item(i).project_id);
-           set_option_value_of("#office_id",["1","2","3"],results.rows.item(i).office_id);
-           set_input_value_of("#response_by",results.rows.item(i).group_name);
-           set_input_value_of("#beneficiary_name",results.rows.item(i).benificiary_name);
-           setImgSrc("#benificiaryPhoto",results.rows.item(i).benificiary_img); //img
-           set_input_value_of("#nid_num",results.rows.item(i).voter_id);
-           setImgSrc("#nid-front", results.rows.item(i).nid_img_front); //img
-           setImgSrc("#nid-back", results.rows.item(i).nid_img_back); //img
-           set_input_value_of("#fathers_name", results.rows.item(i).fathers_name);
-           set_input_value_of("#mothers_name", results.rows.item(i).mothers_name);
-           set_input_value_of("#union_name", results.rows.item(i).union_name);
-           set_input_value_of("#word_name", results.rows.item(i).word);
-           set_input_value_of("#address", results.rows.item(i).address);
-           set_option_value_of("#gender",["male","female"], results.rows.item(i).grnder);
-           set_input_value_of("#age", results.rows.item(i).age);
-           set_input_value_of("#mobile_no", results.rows.item(i).mobile);
-           set_input_value_of("#nominee_name", results.rows.item(i).nominee_name);
-           set_input_value_of("#nominee_father", results.rows.item(i).nominee_father);
-           set_input_value_of("#nominee_mother", results.rows.item(i).nominee_mother);
-           set_input_value_of("#relation_with_nom", results.rows.item(i).relation);
-           setImgSrc("#nominee_img", results.rows.item(i).nominee_img); //img
-           set_radio_value_of("married", results.rows.item(i).marital_sts);
-           set_input_value_of("#occupation_main", results.rows.item(i).occupation);
-           set_input_value_of("#occupation_2", results.rows.item(i).occupation_1);
-           set_input_value_of("#occupation_3", results.rows.item(i).occupation_2);
-           var locationGPS = results.rows.item(i).location_gps.split(",");
-           set_input_value_of("#lat", locationGPS[0]) 
-           set_input_value_of("#lon",locationGPS[1]);
+function set_input_value_of(inputID, value)
+{
+    return $(inputID).val(value);
+}
 
+function set_option_value_of(inputID, values, value_is)
+{
+    $.each(values, function (i, value) {
+        if (value === value_is)
+        {
+            $(inputID).append($('<option>').text(value).attr({value: value, selected: "selected"}));
         }
+        else
+        {
+            $(inputID).append($('<option>').text(value).attr({value: value}));
+        }
+    });
+}
 
-    }
-    function populateBeneficiarySingle()
-    {
+function set_radio_value_of(name, value)
+{
+    return $("input[name=" + name + "][value=" + value + "]").attr('checked', 'checked');
+}
+function setImgSrc(id, src)
+{
+    return $(id).attr("src", src);
+}
+$(document).bind("deviceready", function () {
+    populateBeneficiarySingle();
+
+
+
+    $('#save').on('touchend', function () {
+        var select_id = get_input_value_of("#select_id");
+        var project_id = "1";//get_input_value_of("#project_id");
+        var office_id = "1"; //get_input_value_of("#office_id");
+        var group = get_input_value_of("#response_by");
+        var benificiary_name = get_input_value_of("#beneficiary_name");
+        var benificiary_img = getImgSrc("#benificiaryPhoto"); //img
+        var voter_id = get_input_value_of("#nid_num");
+        var nid_front_img = getImgSrc("#nid-front"); //img
+        var nid_back_img = getImgSrc("#nid-back"); //img
+        var fathers_name = get_input_value_of("#fathers_name");
+        var mothers_name = get_input_value_of("#mothers_name");
+        var union_name = get_input_value_of("#union_name");
+        var word_name = get_input_value_of("#word_name");
+        var address = get_input_value_of("#address");
+        var gender = get_input_value_of("#gender");
+        var age = get_input_value_of("#age");
+        var mobile_no = get_input_value_of("#mobile_no");
+        var nominee_name = get_input_value_of("#nominee_name");
+        var nominee_father = get_input_value_of("#nominee_father");
+        var nominee_mother = get_input_value_of("#nominee_mother");
+        var relation_with_nom = get_input_value_of("#relation_with_nom");
+        var nominee_img = getImgSrc("#nominee_img"); //img
+        var marital_status = $("input:radio[name=married]").val();
+        var occupation_main = get_input_value_of("#occupation_main");
+        var occupation_2 = get_input_value_of("#occupation_2");
+        var occupation_3 = get_input_value_of("#occupation_3");
+        var location_gps = get_input_value_of("#lat") + "," + get_input_value_of("#lon");
         var flag = localStorage.getItem("bid-temp");
+        //word, address, grnder, age, mobile, nominee_name, relation, nominee_img, marital_sts, occupation, occupation_1, occupation_2, location_gps
         var db = window.openDatabase("oxfam_sims_dev", "1.0", "OxfamSIMS", 1000000);
         db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM beneficiary_info WHERE b_id=' + flag, [], benificiaryDataList, errorCB);
+            tx.executeSql('UPDATE beneficiary_info SET select_id = "' + select_id + '",project_id = "' + project_id + '",office_id = "' + office_id + '",group_name = "' + group + '",benificiary_name = "' + benificiary_name + '",benificiary_img = "' + benificiary_img + '",voter_id = "' + voter_id + '",nid_img_front = "' + nid_front_img + '",nid_img_back = "' + nid_back_img + '",fathers_name = "' + fathers_name + '", mothers_name = "' + mothers_name + '",union_name = "' + union_name + '",word = "' + word_name + '",address = "' + address + '",grnder = "' + gender + '",age = "' + age + '",mobile = "' + mobile_no + '",nominee_name = "' + nominee_name + '",nominee_father = "' + nominee_father + '",nominee_mother = "' + nominee_mother + '",relation = "' + relation_with_nom + '",nominee_img = "' + nominee_img + '",marital_sts = "' + marital_status + '",occupation = "' + occupation_main + '",occupation_1 = "' + occupation_2 + '",occupation_2 = "' + occupation_3 + '",location_gps = "' + location_gps + '" [WHERE b_id=' + flag +']');
         }, errorCB, successCB);
-    }
+    });
 
-    function set_input_value_of(inputID, value)
-    {
-        return $(inputID).val(value);
-    }
-    
-    function set_option_value_of(inputID, values, value_is)
-    {
-        $.each(values, function (i, value) {
-                    if (value === value_is)
-                    {
-                        $(inputID).append($('<option>').text(value).attr({value: value, selected: "selected"}));
-                    }
-                    else
-                    {
-                        $(inputID).append($('<option>').text(value).attr({value: value}));
-                    }
-                    });
-    }
 
-    function set_radio_value_of(name, value)
-    {
-        return $("input[name=" + name + "][value=" + value + "]").attr('checked', 'checked');
-    }
-    function setImgSrc(id, src)
-    {
-        return $(id).attr("src", src);
-    }
-    $(document).bind("deviceready", function () {
-        populateBeneficiarySingle();
+    $('#gps_pos_co').on('touchend', function () {
+        getLocationPos();
+    });
+
+
+    cameraInit();
+
+    $(".set-image").on('touchend', function () {
+        var flag = $(this).attr("data-source");
+        $("#image-src-flag").val(flag);
+    });
+
+
+    $("#myModal").on('hide.bs.modal', function () {
+
+        var destinationID = $("#image-src-flag").val();
+        var sourceVal = $("#image-src-val").val();
+
+        $(destinationID).attr("src", sourceVal);
+
+        $("#image-src-flag").val("");
+        $("#image-src-val").val("");
+        $("#capture-img").attr("src", "images/demo-photo.jpg");
+
 
     });
 
-        </script>
+});
+                                    
+                                    
+//camera only======================================//
+function cameraInit() {
+    pictureSource = navigator.camera.PictureSourceType;
+    destinationType = navigator.camera.DestinationType;
+}
+
+// Called when a photo is successfully retrieved
+//
+function onPhotoDataSuccess(imageData) {
+    // Uncomment to view the base64-encoded image data
+    // console.log(imageData);
+
+    // Get image handle
+    //
+    var smallImage = document.getElementById('captured-img');
+
+    // Unhide image elements
+    //
+    smallImage.style.display = 'block';
+
+    // Show the captured photo
+    // The in-line CSS rules are used to resize the image
+    //
+    smallImage.src = "data:image/jpeg;base64," + imageData;
+}
+
+// Called when a photo is successfully retrieved
+//
+function onPhotoURISuccess(imageURI) {
+    // Uncomment to view the image file URI
+    // console.log(imageURI);
+
+    // Get image handle
+    //
+    var largeImage = document.getElementById('captured-img');
+    var textField = document.getElementById('image-src-val');
+
+    // Unhide image elements
+    //
+//                                        largeImage.style.display = 'block';
+
+    // Show the captured photo
+    // The in-line CSS rules are used to resize the image
+    //
+    largeImage.src = imageURI;
+    textField.value = imageURI;
+}
+
+// A button will call this function
+//
+function capturePhoto() {
+    // Take picture using device camera and retrieve image as base64-encoded string
+    navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+        quality: 30,
+        targetWidth: "512",
+        targetHeight: "512",
+        destinationType: destinationType.FILE_URI});
+}
+
+// A button will call this function
+//
+function capturePhotoEdit() {
+    // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
+    navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 20, allowEdit: true,
+        destinationType: destinationType.DATA_URL});
+}
+
+// A button will call this function
+//
+function getPhoto(source) {
+    // Retrieve image file location from specified source
+    navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+        quality: 30,
+        targetWidth: "512",
+        targetHeight: "512",
+        destinationType: destinationType.FILE_URI,
+        sourceType: source});
+}
+
+// Called if something bad happens.
+//
+function onFail(message) {
+    alert('Failed because: ' + message);
+}
+
+
+</script>
 
 
     </body>

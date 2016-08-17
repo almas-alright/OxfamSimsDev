@@ -26,8 +26,8 @@ $(document).bind("deviceready", function () {
 
     $('#save').on('touchend', function () {
         var select_id = get_input_value_of("#select_id");
-        var project_id = get_input_value_of("#project_id");
-        var office_id = get_input_value_of("#office_id");
+        var project_id = "1";//get_input_value_of("#project_id");
+        var office_id = "1"; //get_input_value_of("#office_id");
         var group = get_input_value_of("#response_by");
         var benificiary_name = get_input_value_of("#beneficiary_name");
         var benificiary_img = getImgSrc("#benificiaryPhoto"); //img
