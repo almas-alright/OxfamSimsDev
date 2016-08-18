@@ -15,7 +15,7 @@ function benificiaryList(tx, results) {
     var benf_single = '';
     var len = results.rows.length;
     for (var i = 0; i < len; i++) {
-        benf_single += '<li class="list-group-item">'+results.rows.item(i).b_id+
+        benf_single += '<li class="list-group-item"> B.ID'+results.rows.item(i).select_id+
                 '<a href="#" data-bid="'+results.rows.item(i).b_id+'"><span class="ben-name">Name: ' + results.rows.item(i).benificiary_name + '</span>'+
                 '</a>'+
                 '</li>';
