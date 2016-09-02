@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Home</title>
+        <!-- Font Awesome -->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/mdb.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- SideNav slide-out button -->
+        <a href="#" data-activates="slide-out" class="navbar-brand button-collapse"><i class="material-icons">menu</i></a>
+        <!--/. SideNav slide-out button -->
+
+        <!-- Sidebar navigation -->
+        <ul id="slide-out" class="side-nav default-side-nav light-side-nav">
+            <!-- Logo -->
+            <div class="logo-wrapper text-center">
+                <a href="index.html"><img src="images/oxfam-logo.png" alt=""></a>
+            </div>
+
+            <!-- Side navigation links -->
+            <ul class="collapsible collapsible-accordion">
+                <li><a href="project-information.html" class="waves-effect waves-light"><i class="fa fa-info-circle"></i>
+                        Project information </a></li>
+                <li><a href="beneficiary-survey.html" class="waves-effect waves-light"><i class="fa fa-pencil-square-o"></i>
+                        Beneficiary Survey </a></li>
+                <li><a href="beneficiary-registration.html" class="waves-effect waves-light"><i class="fa fa-plus"></i>
+                        Beneficiary Registration</a></li>
+                <li><a href="grant-relief-distribution.html" class="waves-effect waves-light"><i class="fa fa-cubes"></i>
+                        Grant/Relief Distribution </a></li>
+                <li><a href="post-distribution-monitoring.html" class="waves-effect waves-light"><i class="fa fa-eye"></i> Post
+                        Distribution Monitoring </a></li>
+                <li><a href="sms-attendance.html" class="waves-effect waves-light"><i class="fa fa-envelope-o"></i> SMS
+                        Attendance</a></li>
+                <li><a href="my-task.html" class="waves-effect waves-light"><i class="fa fa-tasks"></i> My Task </a></li>
+                <li><a href="monitoring-supervision.html" class="waves-effect waves-light"><i class="fa fa-search-plus"></i>
+                        Monitoring/Supervision </a></li>
+                <li><a href="data-management.html" class="waves-effect waves-light"><i class="fa fa-database"></i> Data
+                        Management </a></li>
+                <li><a href="operational-settings.html" class="waves-effect waves-light"><i class="fa fa-wrench"></i>
+                        Operational Settings  </a></li>
+
+            </ul>
+            <!--/. Side navigation links -->
+
+        </ul>
+        <!--/. Sidebar navigation -->
+        <nav class="double-navbar navbar navbar-fixed-top light-green darken-3 z-depth-1">
+
+            <div class="container ">
+
+
+                <header>
+                    <div class="row">
+                        <div class="col-xs-3 text-center">
+                            <div class="navbar-header pull-left">
+                                <!-- SideNav slide-out button -->
+                                <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+                                <!--/. SideNav slide-out button -->
+
+                            </div>
+                        </div>
+                        <div class="col-xs-6 text-center">
+                            <h4 class="app-title">SIMS</h4>
+                        </div>
+                        <div class="col-xs-3 text-center"><a href="index.html"><img src="images/oxfam-logo.png" alt=""></a>
+                        </div>
+                    </div>
+
+                    <!--row-->
+                </header>
+            </div>
+        </nav>
+        <div class="container">
+            <section class="page-content">
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h5 class="page-title">Import Beneficiary</h5>
+
+                    </div>
+                    <!--col-sm-12-->
+                </div>
+                <!--  row-->
+
+
+                <div class="card-panel">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p id="csv_data"></p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul id="beneficiary-list" class="list-group">
+                                        <li class="list-group-item">No Data Found</li>
+                                    </ul>
+                                </div>
+                            </div>                             
+                           
+                        </div>
+
+                    </div>
+                    <!--</form>-->
+                    <div class="clearfix"></div>
+                </div>
+                <!--card-panel-->
+
+            </section>
+        </div>
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <!--ng-->
+        <script type="text/javascript" src="js/angular.min.js"></script>
+
+        <!-- cordova -->
+        <script type="text/javascript" src="cordova.js"></script>
+
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+        <!-- Material Design Bootstrap -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+
+        <script type="text/javascript" src="js/custom.js"></script>
+
+        <!--new syrvey-->
+        <script type="text/javascript" src="js/pg/beneficiary-import.js"></script>
+
+    </body>
+</html>
