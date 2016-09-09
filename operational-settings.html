@@ -103,8 +103,8 @@
                     
                     <div class="row">
                         <div class="input-field col-md-12">
-                            <input id="servey_url" type="url" class="validate" placeholder="sims.oxfam.com/file"> 
-                            <label for="servey_url">Survey URL</label>
+                            <input id="survey_url" type="url" class="validate" placeholder="sims.oxfam.com/survey"> 
+                            <label for="survey_url">Survey URL</label>
                         </div>
                     </div>
                     <div class="row watch-area">
@@ -154,7 +154,7 @@
                 
                 var preVal = localStorage.getItem("server-url");
                 var preValF = localStorage.getItem("file-url");
-                var surveyUrl = localStorage.getItem("servey_url");
+                var surveyUrl = localStorage.getItem("survey-url");
                 if(preVal !=null)
                 {
                     $('#server_url').val(preVal);
@@ -169,7 +169,7 @@
                 
                 if(surveyUrl !=null)
                 {
-                    $('#servey_url').val(surveyUrl);
+                    $('#survey_url').val(surveyUrl);
                     $('#suurl').html(surveyUrl);
                 }
                 
@@ -177,7 +177,7 @@
                     if (($('#server_url').val() != '') && ($('#file_url').val() != '')) {
                         localStorage.setItem("server-url", $('#server_url').val());
                         localStorage.setItem("file-url", $('#file_url').val());
-                        localStorage.setItem("survey-url", $('#servey_url').val());
+                        localStorage.setItem("survey-url", $('#survey_url').val());
                         location.reload();
                     } else
                     {
