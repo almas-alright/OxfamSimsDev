@@ -73,7 +73,7 @@ function seeSingle(tx, results) {
     uploadPhoto(results.rows.item(0).intervention_photo, results.rows.item(0).intervention_txt_id, "intervention");
     $.ajax({
         method: "POST",
-        url: "http://dev.testversions.com/devels/oxfam/sims/public/site/requestInterventionInfo",
+        url: "http://192.168.0.50/SIMS/public/site/requestInterventionInfo",
         data: {
             intervention_type_id: results.rows.item(0).intervention_type,
             intervention_id: results.rows.item(0).intervention_txt_id,
@@ -131,6 +131,7 @@ function sendUpdate(intervention_id) {
 //uploadonly--------------------------------------------------------------------------------
 
 function uploadPhoto(imageURI, bid, imgtype) {
+    var preValF = localStorage.getItem("file-url");
     var options = new FileUploadOptions();
     options.fileKey = "file";
     options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
@@ -143,7 +144,7 @@ function uploadPhoto(imageURI, bid, imgtype) {
     options.params = params;
     options.chunkedMode = false;
     var ft = new FileTransfer();
-    ft.upload(imageURI, "http://dev.testversions.com/devels/oxfam/img-upload/img_upload.php", win, fail, options);
+    ft.upload(imageURI, preValF, win, fail, options);
 }
 
 function win(r) {
