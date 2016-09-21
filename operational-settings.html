@@ -114,6 +114,14 @@
                             <label for="import_url">Import URL</label>
                         </div>
                     </div>
+                    
+                    <div class="row">
+                        <div class="input-field col-md-12">
+                            <input id="inter_url" type="url" class="validate" placeholder="sims.oxfam.com/intervention"> 
+                            <label for="inter_url">Intervention URL</label>
+                        </div>
+                    </div>
+                    
                     <div class="row watch-area">
                         <div class="col-sm-12 text-center">
                             <button id="save_server_url" class="btn btn-xs btn-border-info">Save</button>
@@ -138,6 +146,10 @@
                             <p><strong>Import Url Online: </strong>http://dev.testversions.com/devels/oxfam/sims/public/site/requestSingleBenInfo</p>
                             <p><strong>Import Url Local: </strong>http://192.168.0.78/sims/public/site/requestSingleBenInfo</p>
                             <p class="red"><strong>Import Url Current: </strong><span id="imurl"></span></p>
+                            
+                            <p><strong>Intervention Url Online: </strong>http://dev.testversions.com/devels/oxfam/sims/public/site/requestInterventionInfo</p>
+                            <p><strong>Intervention Url Local: </strong>http://192.168.0.50/SIMS/public/site/requestInterventionInfo</p>
+                            <p class="red"><strong>Intervention Url Current: </strong><span id="intrurl"></span></p>
                             
                         </div>
                     </div>
@@ -167,6 +179,7 @@
                 var preValF = localStorage.getItem("file-url");
                 var surveyUrl = localStorage.getItem("survey-url");
                 var importUrl = localStorage.getItem("import-url");
+                var interUrl = localStorage.getItem("interv-url");
                 if(preVal !=null)
                 {
                     $('#server_url').val(preVal);
@@ -191,12 +204,19 @@
                     $('#imurl').html(importUrl);
                 }
                 
+                if(interUrl !=null)
+                {
+                    $('#inter_url').val(interUrl);
+                    $('#intrurl').html(interUrl);
+                }
+                
                 $('#save_server_url').click(function () {
                     if (($('#server_url').val() != '') && ($('#file_url').val() != '')) {
                         localStorage.setItem("server-url", $('#server_url').val());
                         localStorage.setItem("file-url", $('#file_url').val());
                         localStorage.setItem("survey-url", $('#survey_url').val());
                         localStorage.setItem("import-url", $('#import_url').val());
+                        localStorage.setItem("interv-url", $('#inter_url').val());
                         location.reload();
                     } else
                     {
