@@ -68,12 +68,13 @@ function retriveSingle() {
 
 function seeSingle(tx, results) {
     var len = results.rows.length;
+    var interUrl = localStorage.getItem("interv-url")
 //    for (var i = 0; i < len; i++) {
 //        $("#json").html(results.rows.item(i).b_id + "  " + results.rows.item(i).benificiary_name + "   " + results.rows.item(i).mothers_name);
     uploadPhoto(results.rows.item(0).intervention_photo, results.rows.item(0).intervention_txt_id, "intervention");
     $.ajax({
         method: "POST",
-        url: "http://192.168.0.50/SIMS/public/site/requestInterventionInfo",
+        url: interUrl,
         data: {
             intervention_type_id: results.rows.item(0).intervention_type,
             intervention_id: results.rows.item(0).intervention_txt_id,
