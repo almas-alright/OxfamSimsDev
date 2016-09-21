@@ -9,7 +9,8 @@ $(document).ready(function () {
 
     populateBeneficiaryList();
 
-    var tv = "http://dev.testversions.com/devels/oxfam/sims/public/site/requestSingleBenInfo";
+//    var tv = "http://dev.testversions.com/devels/oxfam/sims/public/site/requestSingleBenInfo";
+    var tv = localStorage.getItem("import-url");
     $.getJSON(tv, function (data) {
         var select_id = data.beneficiary_id;
         var project_id = data.project_id;

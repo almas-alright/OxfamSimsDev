@@ -107,6 +107,13 @@
                             <label for="survey_url">Survey URL</label>
                         </div>
                     </div>
+                    
+                    <div class="row">
+                        <div class="input-field col-md-12">
+                            <input id="import_url" type="url" class="validate" placeholder="sims.oxfam.com/import"> 
+                            <label for="import_url">Import URL</label>
+                        </div>
+                    </div>
                     <div class="row watch-area">
                         <div class="col-sm-12 text-center">
                             <button id="save_server_url" class="btn btn-xs btn-border-info">Save</button>
@@ -127,6 +134,10 @@
                             <p><strong>Survey Url Online: </strong>http://dev.testversions.com/devels/oxfam/survey/02/index.php/626281</p>
                             <p><strong>Survey Url Local: </strong>n./a</p>
                             <p class="red"><strong>Survey Url Current: </strong><span id="suurl"></span></p>
+                            <hr />
+                            <p><strong>Import Url Online: </strong>http://dev.testversions.com/devels/oxfam/sims/public/site/requestSingleBenInfo</p>
+                            <p><strong>Import Url Local: </strong>http://192.168.0.78/sims/public/site/requestSingleBenInfo</p>
+                            <p class="red"><strong>Import Url Current: </strong><span id="imurl"></span></p>
                             
                         </div>
                     </div>
@@ -155,6 +166,7 @@
                 var preVal = localStorage.getItem("server-url");
                 var preValF = localStorage.getItem("file-url");
                 var surveyUrl = localStorage.getItem("survey-url");
+                var importUrl = localStorage.getItem("import-url");
                 if(preVal !=null)
                 {
                     $('#server_url').val(preVal);
@@ -173,11 +185,18 @@
                     $('#suurl').html(surveyUrl);
                 }
                 
+                if(importUrl !=null)
+                {
+                    $('#import_url').val(surveyUrl);
+                    $('#imurl').html(surveyUrl);
+                }
+                
                 $('#save_server_url').click(function () {
                     if (($('#server_url').val() != '') && ($('#file_url').val() != '')) {
                         localStorage.setItem("server-url", $('#server_url').val());
                         localStorage.setItem("file-url", $('#file_url').val());
                         localStorage.setItem("survey-url", $('#survey_url').val());
+                        localStorage.setItem("import-url", $('#import_url').val());
                         location.reload();
                     } else
                     {
